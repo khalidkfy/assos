@@ -1,0 +1,24 @@
+<template>
+	<sidebar />
+
+	<div class="home">
+		<div class="row fex-side-bar">
+			<!--begin::Dashboard-->
+			<div class="dash">
+				<slot> </slot>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	import Sidebar from "../layouts/sidebar.vue";
+
+	export default {
+		name: "personal",
+
+		components: {
+			Sidebar,
+		},
+	};
+</script>
