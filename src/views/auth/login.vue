@@ -94,7 +94,7 @@ export default {
             console.log(res.data.data.token)
           const token = res.data.data.token;
           sessionStorage.setItem("token", token);
-          this.$router.push({ name: "Home" });
+          this.$router.push({ name: "add" });
         })
         .catch((e) => {
           console.log(e);
