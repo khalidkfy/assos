@@ -7,6 +7,8 @@ import show from "../views/beneficiary/show/show.vue";
 import subs from "../views/subscriptions/subscriptions.vue";
 import listSubs from "../views/subscriptions/listubs.vue";
 import print from "../views/subscriptions/print.vue";
+import setting from "../views/subscriptions/setting.vue";
+import setting2 from "../views/subscriptions/setting2.vue";
 
 const routes = [
   {
@@ -49,6 +51,16 @@ const routes = [
     path: "/show",
     name: "show",
     component: show,
+  },
+  {
+    path: "/setting",
+    name: "setting",
+    component: setting,
+  },
+  {
+    path: "/setting2",
+    name: "setting2",
+    component: setting2,
   },
 
 ];

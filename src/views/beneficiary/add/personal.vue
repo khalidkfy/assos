@@ -91,18 +91,13 @@
 					<div class="col-sm-10">
 						<select
 							class="form-select"
-							aria-label="Default select example"
-							v-model="governorate"
-						>
-							<option>غزة</option>
-							<option>الشمال</option>
-							<option>خانيونس</option>
-							<option>دير البلح</option>
-							<option>رفح</option>
+							aria-label="Default select example" v-model="rec" @change="countr2">
+							<option v-for="item in informats" :key="item.id" :value="item.id">{{item.governorate}}</option>
 						</select>
 					</div>
 				</div>
 			</div>
+	
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -124,7 +119,11 @@
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">الحي</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="district" />
+						<select
+							class="form-select"
+							aria-label="Default select example" v-model="district">
+							<option v-for="items in informats2" :key="items.id" :value="items.id">{{items.district}}</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -303,8 +302,6 @@
 					</div>
 				</div>
 			</div>
-			{{ file }}
-
 			<div class="row justify-content-center">
 				<button type="submit" class="btn w-25 mt-4" v-on:click.prevent="upload">
 					اضافة
@@ -346,12 +343,54 @@
 				address: "",
 				near_number: "",
 				file: null,
+				informats:[],	
+				informats2:[],
+				rec:"",				
 			};
 		},
-
+	created() {
+			this.countr();
+			this.countr2();
+		},
 		methods: {
 			uploadFile() {
 				this.file = this.$refs.file.files[0];
+			},
+	countr() {
+				const token = sessionStorage.getItem("token");
+
+				axios
+					.get(`api/dropdown/index`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						this.informats = res.data;
+						this.num_plac = res.data;
+						
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+			countr2() {
+				const token = sessionStorage.getItem("token");
+
+				axios
+					.get(`api/dropdown/show?governorate_id=${this.rec}&district_id=1`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						this.informats2 = res.data;
+					})
+					.catch((e) => {
+						console.log(e);
+					});
 			},
 
 			upload() {
@@ -362,7 +401,8 @@
 				formData.append("name", this.name);
 				formData.append("affiliate_no", this.affiliate_no);
 				formData.append("mobile_number", this.mobile_number);
-				formData.append("governorate", this.governorate);
+				formData.append("governorate_id", this.rec);
+				formData.append("governorate", this.rec);
 				formData.append("phone_number", this.phone_number);
 				formData.append("gender", this.gender);
 				formData.append("birth_date", this.birth_date);
@@ -377,7 +417,7 @@
 				formData.append("year", this.year);
 				formData.append("social_status", this.social_status);
 				formData.append("district", this.district);
-
+				formData.append("district_id", this.district);
 				formData.append("address", this.address);
 				formData.append("near_number", this.near_number);
 
@@ -403,6 +443,10 @@
 					});
 			},
 		},
+
+		
+			
+
 	};
 </script>
 <style scoped>
