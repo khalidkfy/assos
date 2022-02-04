@@ -5,6 +5,7 @@
      <router-link to="/add">اضافة مستفيدين </router-link>
        <router-link to="listSubs">عرض الاشتراكات</router-link>
          <router-link to="/setting">الاعدادات </router-link> 
+         <p v-on:click.prevent="logout" style="cursor: pointer;">تسجيل الخروج </p> 
 
 </div>
 
@@ -13,7 +14,11 @@
 <script>
 export default {
   name: 'Sidebar',
-
-}
+  methods: {
+    logout() {
+  sessionStorage.clear();
+  this.$router.push({ name: "login" });
+  }
+}}
 
 </script>
