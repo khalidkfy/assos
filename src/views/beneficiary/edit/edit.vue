@@ -165,18 +165,11 @@
                       >المحافظة</label
                     >
                     <div class="col-sm-10">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                        
-                        v-model="governorate"
-                      >
-                        <option>غزة</option>
-                        <option>الشمال</option>
-                        <option>خانيونس</option>
-                        <option>دير البلح</option>
-                        <option>رفح</option>
-                      </select>
+                   	<select
+							class="form-select"
+							aria-label="Default select example" v-model="rec" @change="countr2">
+							<option v-for="item in informats1" :key="item.id" :value="item.id">{{item.governorate}}</option>
+						</select>
                     </div>
                   </div>
                 </div>
@@ -204,12 +197,11 @@
                       >الحي</label
                     >
                     <div class="col-sm-10">
-                      <input
-                        type="text"
-                        class="form-control"
-                        
-                        v-model="district"
-                      />
+                  <select
+							class="form-select"
+							aria-label="Default select example" v-model="district">
+							<option v-for="items in informats2" :key="items.id" :value="items.id">{{items.district}}</option>
+						</select>
                     </div>
                   </div>
                 </div>
@@ -435,379 +427,7 @@
                 <!-- النهاية -->
               </div>
             </div>
-            <div
-              class="tab-pane fade"
-              id="pills-profile"
-              role="tabpanel"
-              aria-labelledby="pills-profile-tab"
-            >
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-
-                      >حيازة سكن</label
-                    >
-                    <div class="col-sm-10">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                                            v-model="housing_possession"
-
-                        
-                      >
-                        <option ></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label">
-                      اخر حيازة سكن</label
-                    >
-                    <div class="col-sm-10">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                                                v-model="other_housing_possession"
-
-                        
-                      >
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >نوع السكن
-                    </label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" v-model="accommodation_type"   />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >نقص اثاث
-                    </label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" v-model="lack_of_furniture"  />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >ملاحظات السكن</label
-                    >
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" v-model="housing_notes "  />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >وصف حالة الاغطية</label
-                    >
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" v-model="description_of_case"  />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >العلاج</label
-                    >
-                    <div class="col-sm-10">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                        v-model="treatment "
-                        
-                      >
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >التهوية</label
-                    >
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" v-model="ventilation "  />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >حالة الأثاث</label
-                    >
-                    <div class="col-sm-10">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                         v-model="furniture_case"
-                        
-                      >
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      وجود سرير وفرشة مناسبة
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      يوجد مكان مخصص للأدوية
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      الغرفة بحاجة للصيانة
-                    </label>
-                  </div>
-
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      ملاحظات الادوية
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <hr class="mt-4" />
-              <div class="p-3">
-                <p>علاقة المسن بالأسرة</p>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mt-4">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >متعاون مع الباحث
-                    </label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" v-model="collaborating_with_researcher"  />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 mt-4">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >يمكن الاستعانة
-                    </label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" v-model="can_used"  />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      احترام متبادل
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      مشاركة الاخرين
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      اهتمام
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      الاهتمام بالاخرين
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      الدعم النفسي
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      منبوذ اناني
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      توفير الاحتياجات
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      منبوذ سليط اللسان
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      انطوائي
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      منبوذ مريض
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-4 mt-4">
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      مبادر
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline mt-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
-                      منبوذ صعب الحركة
-                    </label>
-                  </div>
-                </div>
-
-                <div class="col-md-6 mt-1">
-                  <div class="m-3 row">
-                    <label for="inputPassword" class="col-sm-12 col-form-label"
-                      >ملاحظات التعاون
-                    </label>
-                    <div class="col-sm-9">
-                      <textarea name="" id="" cols="30" rows="10" v-model="cooperation_notes"></textarea>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-              			<button @click.prevent="edithome" class="btn w-25">اضافة</button>
-
-            </div>
+        <home />
             <div
               class="tab-pane fade"
               id="pills-contact"
@@ -1047,21 +667,23 @@
               			<button @click.prevent="editwork" class="btn w-25">اضافة</button>
 
             </div>
-     
           </div>
+
         </div>
       </div>
     </div>
   </div>
+     
 </template>
 
 
 <script>
     import axios from "axios";
+     import home from "./home.vue";
 
     export default {
         name: "editpage",
-   
+          components:{home},
         data() {
             return{
       id_number: "",
@@ -1135,8 +757,11 @@
       housing_need: "",
       elderly_need: "",
       economic_evaluation: "",
+      rec: "",
 
-      informats: [],
+      informats: [],  
+      informats1: [],
+      informats2: [],
 
 
 
@@ -1147,8 +772,47 @@
             this.basicdata();
             this.homedata();
             this.workdata(); this.source();
+            this.countr();
+            this.countr2();
         },
         methods: {
+          	countr() {
+				const token = sessionStorage.getItem("token");
+
+				axios
+					.get(`api/dropdown/index`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						this.informats1 = res.data;
+						this.num_plac = res.data;
+						
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+			countr2() {
+				const token = sessionStorage.getItem("token");
+
+				axios
+					.get(`api/dropdown/show?governorate_id=${this.rec}&district_id=1`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						this.informats2 = res.data;
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+
             // SHOW DATA 
             basicdata() {
                 const token = sessionStorage.getItem("token");
@@ -1206,32 +870,32 @@
                     .then((res) => {
                         console.log(res.data);  console.log('home');
                   this.housing_possession = res.data.data.housing_possession ;
-              this.other_housing_possession  = res.data.data.other_housing_possession ;
-             this.accommodation_type  = res.data.data.accommodation_type ;
-         this.furniture_case  = res.data.data.furniture_case ;
-            this.lack_of_furniture  = res.data.data.lack_of_furniture ;
-        this.housing_notes  = res.data.data.housing_notes ;
-              this.description_of_case  = res.data.data.description_of_case ;
-      this.ventilation  = res.data.data.ventilation ;
-           this.bed_and_mattress  = res.data.data.bed_and_mattress ;
-    this.medicines  = res.data.data.medicines ;
-      this.maintenance  = res.data.data.maintenance ;
-           this.medication_notes  = res.data.data.medication_notes ;
-    this.treatment  = res.data.data.treatment ;
-         this.mutual_respect  = res.data.data.mutual_respect ;
-   this.interest  = res.data.data.interest ;
-              this.psychological_support  = res.data.data.psychological_support ;
-this.needs  = res.data.data.needs ;
-    this.introvert  = res.data.data.introvert ;
-     this.initiative  = res.data.data.initiative ;
-          this.selfish_outcast  = res.data.data.selfish_outcast ;
-            this.caring_for_others  = res.data.data.caring_for_others ;
-       this.sick_outcast  = res.data.data.sick_outcast ;
-              this.collaborating_with_researcher  = res.data.data.collaborating_with_researcher ;
-   this.can_used = res.data.data.can_used ;
-         this.cooperation_notes = res.data.data.cooperation_notes ;
-          this.share_with_others = res.data.data.share_with_others ;
-        this.outcast_awkward = res.data.data.outcast_awkward ;
+                  this.other_housing_possession  = res.data.data.other_housing_possession ;
+                  this.accommodation_type  = res.data.data.accommodation_type ;
+                  this.furniture_case  = res.data.data.furniture_case ;
+                   this.lack_of_furniture  = res.data.data.lack_of_furniture ;
+                   this.housing_notes  = res.data.data.housing_notes ;
+                    this.description_of_case  = res.data.data.description_of_case ;
+                    this.ventilation  = res.data.data.ventilation ;
+                    this.bed_and_mattress  = res.data.data.bed_and_mattress ;
+                    this.medicines  = res.data.data.medicines ;
+                    this.maintenance  = res.data.data.maintenance ;
+                        this.medication_notes  = res.data.data.medication_notes ;
+                  this.treatment  = res.data.data.treatment ;
+                      this.mutual_respect  = res.data.data.mutual_respect ;
+                this.interest  = res.data.data.interest ;
+                            this.psychological_support  = res.data.data.psychological_support ;
+              this.needs  = res.data.data.needs ;
+                  this.introvert  = res.data.data.introvert ;
+                  this.initiative  = res.data.data.initiative ;
+                        this.selfish_outcast  = res.data.data.selfish_outcast ;
+                          this.caring_for_others  = res.data.data.caring_for_others ;
+                    this.sick_outcast  = res.data.data.sick_outcast ;
+                            this.collaborating_with_researcher  = res.data.data.collaborating_with_researcher ;
+                this.can_used = res.data.data.can_used ;
+                      this.cooperation_notes = res.data.data.cooperation_notes ;
+                        this.share_with_others = res.data.data.share_with_others ;
+                      this.outcast_awkward = res.data.data.outcast_awkward ;
 
                     })
                     .catch((e) => {
@@ -1381,13 +1045,11 @@ this.needs  = res.data.data.needs ;
 
 edithome() {
 				const token = sessionStorage.getItem("token");
-				const af1 = sessionStorage.getItem("af1");
-
 				axios
 					.post(
 						"api/home/update",
 						{
-							beneficiary_id: af1,
+							beneficiary_id: this.$route.query.q,
 							housing_possession: this.housing_possession,
 							other_housing_possession: this.other_housing_possession,
 							accommodation_type: this.accommodation_type,
@@ -1433,7 +1095,6 @@ edithome() {
 						console.log(e);
 					});
 			},
-
 
 
 

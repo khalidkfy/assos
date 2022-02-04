@@ -17,7 +17,10 @@
 							aria-label="Default select example"
 							v-model="housing_possession"
 						>
-							<option>يسشيسشيشسي</option>
+							<option>ملك</option>
+							<option>ايجار</option>
+							<option>ارض حكومة</option>
+							<option>مع الاقارب</option>
 						</select>
 					</div>
 				</div>
@@ -33,7 +36,8 @@
 							aria-label="Default select example"
 							v-model="other_housing_possession"
 						>
-							<option>سشيسشيسشي</option>
+							<option>يوجد</option>
+							<option>لايوجد</option>
 						</select>
 					</div>
 				</div>
@@ -45,8 +49,15 @@
 						>نوع السكن
 					</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="accommodation_type" />
-					</div>
+							<select
+							class="form-select"
+							aria-label="Default select example"
+							 v-model="accommodation_type">
+							<option>باطون</option>
+							<option>اسبست</option>
+							<option>زينكو</option>
+							<option>خص</option>
+						</select>					</div>
 				</div>
 			</div>
 
@@ -67,7 +78,7 @@
 						>ملاحظات السكن</label
 					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="housing_notes" />
+						<input type="text" class="form-control" v-model="housing_notes " />
 					</div>
 				</div>
 			</div>
@@ -116,7 +127,10 @@
 							aria-label="Default select example"
 							v-model="furniture_case"
 						>
-							<option>سشيسشيسشي</option>
+							<option>سيء</option>
+							<option>جيد</option>
+							<option>ممتاز</option>
+							<option>قديم</option>
 						</select>
 					</div>
 				</div>
@@ -382,53 +396,10 @@
 				cooperation_notes: "",
 			};
 		},
-		created() {
-			this.homedata();
-		},
-		methods: {
-			homedata() {
-				const token = sessionStorage.getItem("token");
-				axios
-					.get(`api/home/show?beneficiary_id=${this.$route.query.q}`, {
-						headers: {
-							Authorization: "Bearer " + token,
-						},
-					})
-					.then((res) => {
-						console.log(res.data);
-						console.log("home");
-						this.housing_possession = res.data.data.housing_possession;
-						this.other_housing_possession = res.data.data.other_housing_possession;
-						this.accommodation_type = res.data.data.accommodation_type;
-						this.furniture_case = res.data.data.furniture_case;
-						this.lack_of_furniture = res.data.data.lack_of_furniture;
-						this.housing_notes = res.data.data.housing_notes;
-						this.description_of_case = res.data.data.description_of_case;
-						this.ventilation = res.data.data.ventilation;
-						this.bed_and_mattress = res.data.data.bed_and_mattress;
-						this.medicines = res.data.data.medicines;
-						this.maintenance = res.data.data.maintenance;
-						this.medication_notes = res.data.data.medication_notes;
-						this.treatment = res.data.data.treatment;
-						this.mutual_respect = res.data.data.mutual_respect;
-						this.interest = res.data.data.interest;
-						this.psychological_support = res.data.data.psychological_support;
-						this.needs = res.data.data.needs;
-						this.introvert = res.data.data.introvert;
-						this.initiative = res.data.data.initiative;
-						this.selfish_outcast = res.data.data.selfish_outcast;
-						this.caring_for_others = res.data.data.caring_for_others;
-						this.sick_outcast = res.data.data.sick_outcast;
-						this.collaborating_with_researcher = res.data.data.collaborating_with_researcher;
-						this.can_used = res.data.data.can_used;
-						this.cooperation_notes = res.data.data.cooperation_notes;
-						this.share_with_others = res.data.data.share_with_others;
-						this.outcast_awkward = res.data.data.outcast_awkward;
-					})
-					.catch((e) => {
-						console.log(e);
-					});
-			},
+		  created() {
+            this.homedata();
+        },
+			methods: {
 			upload() {
 				const token = sessionStorage.getItem("token");
 				const af1 = sessionStorage.getItem("af1");
@@ -475,21 +446,56 @@
 					)
 					.then((res) => {
 						console.log(res.data);
-						// const token = res.data.data.token;
-						// sessionStorage.setItem("token", token);
-						// this.$router.push({ name: "dashboard" });
+					
 					})
 					.catch((e) => {
 						console.log(e);
 					});
 			},
+			          homedata(){
+                const token = sessionStorage.getItem("token");
+                axios
+                    .get(`api/home/show?beneficiary_id=${this.$route.query.q}`, {
+                        headers: {
+                            Authorization: "Bearer " + token,
+                        },
+                    })
+                    .then((res) => {
+                        console.log(res.data);  console.log('home');
+                  this.housing_possession = res.data.data.housing_possession ;
+                  this.other_housing_possession  = res.data.data.other_housing_possession ;
+                  this.accommodation_type  = res.data.data.accommodation_type ;
+                  this.furniture_case  = res.data.data.furniture_case ;
+                   this.lack_of_furniture  = res.data.data.lack_of_furniture ;
+                   this.housing_notes  = res.data.data.housing_notes  ;
+                    this.description_of_case  = res.data.data.description_of_case ;
+                    this.ventilation  = res.data.data.ventilation ;
+                    this.bed_and_mattress  = res.data.data.bed_and_mattress ;
+                    this.medicines  = res.data.data.medicines ;
+                    this.maintenance  = res.data.data.maintenance ;
+                    this.medication_notes  = res.data.data.medication_notes ;
+             	     this.treatment  = res.data.data.treatment ;
+                      this.mutual_respect  = res.data.data.mutual_respect ;
+            		    this.interest  = res.data.data.interest ;
+                            this.psychological_support  = res.data.data.psychological_support ;
+         			     this.needs  = res.data.data.needs ;
+                  this.introvert  = res.data.data.introvert ;
+                  this.initiative  = res.data.data.initiative ;
+                        this.selfish_outcast  = res.data.data.selfish_outcast ;
+                          this.caring_for_others  = res.data.data.caring_for_others ;
+                    this.sick_outcast  = res.data.data.sick_outcast ;
+                            this.collaborating_with_researcher  = res.data.data.collaborating_with_researcher ;
+                this.can_used = res.data.data.can_used ;
+                      this.cooperation_notes = res.data.data.cooperation_notes ;
+                        this.share_with_others = res.data.data.share_with_others ;
+                      this.outcast_awkward = res.data.data.outcast_awkward ;
+
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    });
+            },
 		},
 	};
-</script>
-<style scoped>
-	.form-control,
-	.form-select,
-	textarea {
-		background-color: #f5f8fa;
-	}
-</style>
+	
+	</script>

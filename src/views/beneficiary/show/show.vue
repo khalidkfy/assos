@@ -1060,6 +1060,7 @@
               role="tabpanel"
               aria-labelledby="pills-fourth-tab"
             >
+            
               <table class="table table-light table-bordered">
                 <thead>
                   <tr>
@@ -1079,11 +1080,17 @@
                     <td>{{ item.in_kind_assistance }}</td>
                     <td>{{ item.financial_evaluation }}</td>
                     <td>{{ item.notes }}</td>
+                
                   </tr>
-
+           
                  
                 </tbody>
               </table>
+              <div class="d-flex justify-content-around" v-for="(item, index) in informats2" :key="index" >
+                  <a>{{ item.total_financial_evaluation }}</a>
+                  <a>{{ item.total_financial_income }}</a>
+                  <a>{{ item.total_summation }}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1174,6 +1181,7 @@
       economic_evaluation: "",
 
       informats: [],
+      informats2: [],
 
 
 
@@ -1183,7 +1191,8 @@
         created() {
             this.basicdata();
             this.homedata();
-            this.workdata(); this.source();
+            this.workdata();
+             this.source();
         },
         methods: {
             // SHOW DATA 
@@ -1242,33 +1251,34 @@
                     })
                     .then((res) => {
                         console.log(res.data);  console.log('home');
-                   this.housing_possession = res.data.data.housing_possession ;
-                   this.other_housing_possession = res.data.data.other_housing_possession ;
-                   this.accommodation_type = res.data.data.accommodation_type ;
-                   this.furniture_case = res.data.data.furniture_case ;
-                   this.lack_of_furniture = res.data.data.lack_of_furniture ;
-                   this.housing_notes = res.data.data.housing_notes ;
-                   this.description_of_case = res.data.data.description_of_case ;
-                   this.ventilation = res.data.data.ventilation ;
-                   this.bed_and_mattress = res.data.data.bed_and_mattress ;
-                   this.medicines = res.data.data.medicines ;
-                   this.maintenance = res.data.data.maintenance ;
-                   this.medication_notes = res.data.data.medication_notes ;
-                   this.treatment = res.data.data.treatment ;
-                   this.mutual_respect = res.data.data.mutual_respect ;
-                   this.interest = res.data.data.interest ;
-                   this.psychological_support = res.data.data.psychological_support ;
-                   this.needs = res.data.data.needs ;
-                   this.introvert = res.data.data.introvert ;
-                   this.initiative = res.data.data.initiative ;
-                   this.selfish_outcast = res.data.data.selfish_outcast ;
-                   this.caring_for_others = res.data.data.caring_for_others ;
-                   this.sick_outcast = res.data.data.sick_outcast ;
-                   this.collaborating_with_researcher  = res.data.data.collaborating_with_researcher ;
-                   this.can_used = res.data.data.can_used ;
-                   this.cooperation_notes = res.data.data.cooperation_notes ;
-                   this.share_with_others = res.data.data.share_with_others ;
-                   this.outcast_awkward = res.data.data.outcast_awkward ;
+                    this.housing_possession = res.data.data.housing_possession ;
+                  this.other_housing_possession  = res.data.data.other_housing_possession ;
+                  this.accommodation_type  = res.data.data.accommodation_type ;
+                  this.furniture_case  = res.data.data.furniture_case ;
+                   this.lack_of_furniture  = res.data.data.lack_of_furniture ;
+                   this.housing_notes  = res.data.data.housing_notes  ;
+                    this.description_of_case  = res.data.data.description_of_case ;
+                    this.ventilation  = res.data.data.ventilation ;
+                    this.bed_and_mattress  = res.data.data.bed_and_mattress ;
+                    this.medicines  = res.data.data.medicines ;
+                    this.maintenance  = res.data.data.maintenance ;
+                    this.medication_notes  = res.data.data.medication_notes ;
+             	     this.treatment  = res.data.data.treatment ;
+                      this.mutual_respect  = res.data.data.mutual_respect ;
+            		    this.interest  = res.data.data.interest ;
+                            this.psychological_support  = res.data.data.psychological_support ;
+         			     this.needs  = res.data.data.needs ;
+                  this.introvert  = res.data.data.introvert ;
+                  this.initiative  = res.data.data.initiative ;
+                        this.selfish_outcast  = res.data.data.selfish_outcast ;
+                          this.caring_for_others  = res.data.data.caring_for_others ;
+                    this.sick_outcast  = res.data.data.sick_outcast ;
+                            this.collaborating_with_researcher  = res.data.data.collaborating_with_researcher ;
+                this.can_used = res.data.data.can_used ;
+                      this.cooperation_notes = res.data.data.cooperation_notes ;
+                        this.share_with_others = res.data.data.share_with_others ;
+                      this.outcast_awkward = res.data.data.outcast_awkward ;
+
 
                     })
                     .catch((e) => {
@@ -1285,7 +1295,8 @@
                                     })
                                     .then((res) => {
                                         console.log(res.data.data);
-                                            this.informats = res.data.data
+                                            this.informats = res.data.data.data ,
+                                            this.informats2 = res.data
                                               
                                                                     
                                 

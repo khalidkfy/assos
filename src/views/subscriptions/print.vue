@@ -1,64 +1,86 @@
 <template>
-          <container>
-
 		<div class="back">
-			<div class="new"  id="printableArea">
-				<div class="hd1 row" v-for="(item, index) in informats" :key="index" >
-					<div v-if="nums[index]" class="cont col-5">
-						<img src="../../assets/img/back.jpeg" alt="" />
+			<div class="new" id="printableArea">
+				<div class="hd1" style="width: 50%; " v-for="(item, index) in informats" :key="index">
+					<div c v-if="nums[index]" class="cont">
+						<img src="../../assets/img/back.jpeg" class="amg" alt="" />
 						<p class="abs">{{ item.beneficiary_name }}</p>
-						<p class="abs2">{{ item.affiliate_no }}</p>
+						<p class="abs2">{{ item.id_number }}</p>
 						<p class="abs4">{{ item.birth_date }}</p>
 						<p class="abs3">{{ item.printing_date }}</p>
-						<p class="abs5">{{ item.printing_date }}</p>
+						<p class="abs5">{{ item.district.district }}</p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<button @click.prevent="printDiv('printableArea')" class="btn btn-primary">
-			Print this page
+		<button
+			@click.prevent="		
+				printDiv();
+				upload();
+			"
+			class="btn btn-primary"
+		>
+			طباعة
 		</button>
-		          </container>
-
 </template>
 <style scoped>
 	.cont {
 		position: relative;
-	}	
+	}
+	.new {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 20px;
+	}
+	.amg {
+		height: 150px;
+		display: inline;
+		width: 100%;
+	}
 
 	.abs {
 		position: absolute;
-		top: 175px;
-		right: 165px;
-}
+		top: 55px;
+		right: 110px;
+		z-index: 999;
+		font-size: 16px;
+	}
 	.abs2 {
 		position: absolute;
-		top: 208px;
-		right: 165px;
-}
+		top: 70px;
+		right: 110px;
+		font-size: 16px;
+		z-index: 999;
+	}
 	.abs3 {
 		position: absolute;
-		top: 273px;
-		right: 165px;
-}
+		top: 95px;
+		right: 110px;
+		z-index: 999;	
+		font-size: 16px;
+
+	}
 	.abs4 {
 		position: absolute;
-		top:240px;
-		right: 165px;
-}
-	.abs5{
+		z-index: 999;
+		font-size: 16px;
+		top: 83px;
+		right: 110px;
+	}
+	.abs5 {
 		position: absolute;
-		top:305px;
-		right: 165px;
-}
+		z-index: 999;
+		top: 110px;	
+		font-size: 16px;
+		right: 110px;
+	}
 </style>
 
 <script>
 	import axios from "axios";
-	import container from '@/components/containers/container.vue';
+
 	export default {
-          components: { container },
 		name: "personal",
 		data() {
 			return {
@@ -72,17 +94,30 @@
 			this.basicdata();
 		},
 		methods: {
-
-	printDiv(divName) {
-     var printContents = document.getElementById(divName).innerHTML;
-     var originalContents = document.body.innerHTML;
-
-     document.body.innerHTML = printContents;
-
-     window.print();
-
-     document.body.innerHTML = originalContents;
-},
+			upload() {
+				const token = sessionStorage.getItem("token");
+				axios
+					.post(
+						"api/subscription/toggleprint",
+						{
+							subscription_id: this.nums,
+						},
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						}
+					)
+					.then((res) => {
+						console.log(res.data);
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+			printDiv() {
+				window.print();
+			},
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 

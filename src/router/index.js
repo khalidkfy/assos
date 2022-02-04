@@ -9,6 +9,7 @@ import listSubs from "../views/subscriptions/listubs.vue";
 import print from "../views/subscriptions/print.vue";
 import setting from "../views/subscriptions/setting.vue";
 import setting2 from "../views/subscriptions/setting2.vue";
+import edit2 from "../views/subscriptions/edit.vue";
 
 const routes = [
   {
@@ -61,6 +62,11 @@ const routes = [
     path: "/setting2",
     name: "setting2",
     component: setting2,
+  },
+  {
+    path: "/editsub",
+    name: "editsub",
+    component: edit2,
   },
 
 ];

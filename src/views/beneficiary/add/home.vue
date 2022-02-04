@@ -17,7 +17,10 @@
 							aria-label="Default select example"
 							v-model="housing_possession"
 						>
-							<option>يسشيسشيشسي</option>
+							<option>ملك</option>
+							<option>ايجار</option>
+							<option>ارض حكومة</option>
+							<option>مع الاقارب</option>
 						</select>
 					</div>
 				</div>
@@ -33,7 +36,8 @@
 							aria-label="Default select example"
 							v-model="other_housing_possession"
 						>
-							<option>سشيسشيسشي</option>
+							<option>يوجد</option>
+							<option>لايوجد</option>
 						</select>
 					</div>
 				</div>
@@ -45,8 +49,15 @@
 						>نوع السكن
 					</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="accommodation_type" />
-					</div>
+							<select
+							class="form-select"
+							aria-label="Default select example"
+							 v-model="accommodation_type">
+							<option>باطون</option>
+							<option>اسبست</option>
+							<option>زينكو</option>
+							<option>خص</option>
+						</select>					</div>
 				</div>
 			</div>
 
@@ -116,7 +127,10 @@
 							aria-label="Default select example"
 							v-model="furniture_case"
 						>
-							<option>سشيسشيسشي</option>
+							<option>سيء</option>
+							<option>جيد</option>
+							<option>ممتاز</option>
+							<option>قديم</option>
 						</select>
 					</div>
 				</div>

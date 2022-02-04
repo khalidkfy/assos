@@ -1,17 +1,9 @@
-	
 <template>
 	<container>
 	
-		<div class="d-flex flex-column ">
-			<router-link
-			class="links btn"
-			:to="{ name: 'editsub', query: { q: benid} }"
-			style="color: black"
-		>
-			تعديل</router-link
-		>
+		<div class="d-flex flex-column align-items-center">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<div class="m-3 mt-5 row">
 						<label for="inputPassword" class="col-sm-4 col-form-label">
 							حالة الاشتراك
@@ -26,23 +18,20 @@
 							<option value="1">مدفوع</option>
 						
 						</select>
-
 						</div>
 					</div>
 				</div>
 
+	
 		
 			</div>
-			<div class="row justify-content-center">
-
-	<button class="w-25 btn btn-primary mt-5" @click.prevent="upload(); upload2();">
+			<button class="w-25 btn btn-primary mt-5" @click.prevent="upload">
 				اضافة مشترك
 			</button>
-			</div>
-		
 		</div>
 	</container>
 </template>
+
 <script>
 	import axios from "axios";
 	import container from "@/components/containers/container.vue";
@@ -54,9 +43,6 @@
 		data() {
 			return {
 				subscription_type: "",
-				subscription_date: "",
-				printing_date: "",
-				end_date: "",
 				benid: this.$route.query.q,
 			};
 		},
@@ -66,34 +52,11 @@
 				const token = sessionStorage.getItem("token");
 				axios
 					.post(
-						"api/subscription/store",
-						{
-							beneficiary_id: this.benid,
-							subscription_type: this.subscription_type,
-							subscription_date: this.subscription_date,
-							printing_date: this.printing_date,
-							end_date: this.end_date,
-						},
-						{
-							headers: {
-								Authorization: "Bearer " + token,
-							},
-						}
-					)
-					.then((res) => {
-						console.log(res.data);
-					})
-					.catch((e) => {
-						console.log(e);
-					});
-			},
-				upload2() {
-				const token = sessionStorage.getItem("token");
-				axios
-					.post(
-						"api/subscription/togglepayment",
+						"api/subscription/update",
 						{
 							subscription_id: this.benid,
+							subscription_type: this.subscription_type,
+						
 						},
 						{
 							headers: {

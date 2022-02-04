@@ -5,9 +5,9 @@
 			<option>2022</option>
 		</select>
 		<div class="row justify-content-around">
-		<input type="text" class="form-control w-25 m-2 " v-model="name" placeholder="الاسم">
-		<input type="text" class="form-control w-25 m-2" v-model="affiliate" placeholder="رقم الهوية"> 
-		<input type="text" class="form-control w-25 m-2" v-model="id_nu" placeholder="رقم الشخص"> 		
+		<input type="text" class="form-control w-25 m-2 " v-model="name" 	@change="basicdata"  placeholder="الاسم">
+		<input type="text" class="form-control w-25 m-2" v-model="affiliate" @change="basicdata" placeholder="رقم الهوية"> 
+		<input type="text" class="form-control w-25 m-2" v-model="id_nu" 	@change="basicdata" placeholder="رقم الشخص"> 		
 		</div>
 	
 		<hr />
