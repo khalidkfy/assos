@@ -12,7 +12,6 @@
           type="email"
           class="form-control"
           id="exampleFormControlInput1"
-          placeholder="محمد محمد"
           v-model="username"
         />
       </div>

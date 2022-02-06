@@ -1,10 +1,6 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <div class="row fex-side-bar">
-      <Sidebar />
-      <!--begin::Dashboard-->
-      <div class="dash">
+  <Container>
+  
         <div>
           <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -670,20 +666,22 @@
           </div>
 
         </div>
-      </div>
-    </div>
-  </div>
-     
+    
+             </Container>
+
 </template>
 
 
 <script>
     import axios from "axios";
      import home from "./home.vue";
+	import Container from "@/components/containers/container.vue";
 
     export default {
         name: "editpage",
-          components:{home},
+          components:{home
+          ,Container
+          },
         data() {
             return{
       id_number: "",

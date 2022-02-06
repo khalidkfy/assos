@@ -437,6 +437,7 @@
 						// const token = res.data.data.token;
 						sessionStorage.setItem("af1", res.data.data.id);
 						// this.$router.push({ name: "dashboard" });
+						location.reload();
 					})
 					.catch((e) => {
 						console.log(e);

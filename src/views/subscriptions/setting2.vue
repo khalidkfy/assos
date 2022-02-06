@@ -4,26 +4,28 @@
 			<div class="col-md-6">
 				<div class="m-3 mt-5 row">
 					<label for="inputPassword" class="col-sm-4 col-form-label">
-						رسوم الاشتراك
-					</label>
+			النوع		</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" v-model="setting_id" />
+							<select	class="form-select "	aria-label="Default select example" v-model="setting_id"	>
+			<option value="1" >رسوم الاشتراك</option>
+			<option value="2" >رسوم الطلب</option>
+		</select>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 mt-5 row">
 					<label for="inputPassword" class="col-sm-4 col-form-label">
-						مبلغ الاشتراك
-					</label>
+القيمة					</label>
 					<div class="col-sm-8">
 						<input type="number" class="form-control" v-model="value" />
 					</div>
 				</div>
+					
 			</div>
             <div class="row justify-content-center">
                     <button class="w-25 btn btn-primary mt-5" @click.prevent="upload">
-						اضافة 
+						تحديث 
 					</button>
             </div>
             	
@@ -40,8 +42,8 @@
 
 		data() {
 			return {
-				setting_id: "",
-				value: "",
+				setting_id: "1",
+				value: "0",
 			};
 		},
 

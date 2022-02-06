@@ -1,6 +1,7 @@
 *{
     direction: rtl;
     font-family: "Tajawal", sans-serif;
+    box-sizing: border-box;
 
 }
 html,
@@ -9,6 +10,8 @@ body {
   text-align: right;
   direction: rtl;
   background-color: whitesmoke;
+  box-sizing: border-box;
+
   
 }
 
@@ -91,5 +94,10 @@ body {
   }
   .sidenav a:hover {
     color: #f1f1f1;
-  }
+  } 
+  .table > thead{
+background-color: #f0f0f0!important;  }
+  .table > :not(:first-child){
+    border-top: 1px solid #bab6b6 !important; 
   
+  }

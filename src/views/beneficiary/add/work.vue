@@ -103,13 +103,14 @@
                     القدرة على العمل
                 </label>
             </div>
+            <br>
             <div class="form-check form-check-inline mt-2">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="need_training" />
                 <label class="form-check-label" for="flexCheckDefault">
                     هل يوجد حاجة للتدريب
                 </label>
             </div>
-
+            <br>
             <div class="form-check form-check-inline mt-2">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="income_generating_project" />
                 <label class="form-check-label" for="flexCheckDefault">
@@ -146,14 +147,14 @@ export default {
   name: "work",
   data() {
     return {
-      elderly_work: true,
+      elderly_work: false,
       work_nature: "",
       employment: "",
       job_can_do: "",
-      need_training: true,
+      need_training: false,
       training_type: "",
       social_assessment: "",
-      income_generating_project: true,
+      income_generating_project: false,
       project_nature: "",
       cost_of_project: "",
       financial_assistance: "",
@@ -200,6 +201,7 @@ export default {
           // const token = res.data.data.token;
           // sessionStorage.setItem("token", token);
           // this.$router.push({ name: "dashboard" });
+          location.reload();
         })
         .catch((e) => {
           console.log(e);

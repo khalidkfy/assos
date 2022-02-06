@@ -180,7 +180,7 @@
 			<hr class="mt-5" />
 		</div>
 		<div class="p-3">
-			<p>علاقة المسن بالأسرة</p>
+			<p class="relat">علاقة المسن بالأسرة</p>
 		</div>
 		<div class="row">
 			<div class="col-md-6 mt-4">
@@ -446,7 +446,8 @@
 						console.log(res.data);
 						// const token = res.data.data.token;
 						// sessionStorage.setItem("token", token);
-						// this.$router.push({ name: "dashboard" });
+						location.reload();
+
 					})
 					.catch((e) => {
 						console.log(e);
@@ -461,4 +462,8 @@
 	textarea {
 		background-color: #f5f8fa;
 	}
+	.relat{
+		color: red;
+		font-weight: 700;
+		}
 </style>

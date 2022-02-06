@@ -1,27 +1,30 @@
 <template>
 	<container>
-		<select	class="form-select"	aria-label="Default select example"	v-model="year"	@change="basicdata">
+		<div class="row  justify-content-around">
+		<select	class="form-select m-2" style="width: 40%;"	aria-label="Default select example"	v-model="year"	@change="basicdata">
 			<option>2021</option>
 			<option>2022</option>
 		</select>
+				<input type="text" class="form-control m-2 " style="width: 40%;" v-model="name" 	@change="basicdata"  placeholder="الاسم">
+</div>
 		<div class="row justify-content-around">
-		<input type="text" class="form-control w-25 m-2 " v-model="name" 	@change="basicdata"  placeholder="الاسم">
-		<input type="text" class="form-control w-25 m-2" v-model="affiliate" @change="basicdata" placeholder="رقم الهوية"> 
-		<input type="text" class="form-control w-25 m-2" v-model="id_nu" 	@change="basicdata" placeholder="رقم الشخص"> 		
+		<input type="text" class="form-control m-2" style="width: 40%;" v-model="affiliate" @change="basicdata" placeholder="رقم المستفيد"> 
+		<input type="text" class="form-control m-2" style="width: 40%;" v-model="id_nu" 	@change="basicdata" placeholder="رقم الهوية" > 		
 		</div>
 	
 		<hr />
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
 			<table class="table table-bordered">
-				<thead>
+				<thead >
 					<tr>
-						<th scope="col"></th>
+						<th scope="col">#</th>
 						<th scope="col">الاسم</th>
 						<th scope="col">الحالة</th>
 						<th scope="col">رقم الهوية</th>
 						<th scope="col">السنة</th>
 						<th scope="col">عرض البيانات</th>
-						<th scope="col"></th>
+							<th scope="col">الاجراء</th>	
+							<th scope="col">الاشتراك</th>
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
@@ -35,8 +38,7 @@
 							<router-link
 								class="links"
 								:to="{ name: 'show', query: { q: informat.id } }"
-								style="color: black"
-							>
+								style="color: black">
 								عرض</router-link
 							>
 						</th>
@@ -93,7 +95,9 @@
 						{
 							headers: {
 								Authorization: "Bearer " + token,
-							},
+							},   params:{
+          									  per_page : 150
+       									   }
 						}
 					)
 					.then((res) => {

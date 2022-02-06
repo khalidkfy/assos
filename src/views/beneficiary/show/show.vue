@@ -1,10 +1,6 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <div class="row fex-side-bar">
-      <Sidebar />
-      <!--begin::Dashboard-->
-      <div class="dash">
+      <container>
+
         <div>
           <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -1086,26 +1082,29 @@
                  
                 </tbody>
               </table>
+              <div>
+                  المجموع الكلي
+              </div>
               <div class="d-flex justify-content-around" v-for="(item, index) in informats2" :key="index" >
-                  <a>{{ item.total_financial_evaluation }}</a>
                   <a>{{ item.total_financial_income }}</a>
+                  <a>{{ item.total_financial_evaluation }}</a>
                   <a>{{ item.total_summation }}</a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </container>
 </template>
 
 
 <script>
     import axios from "axios";
+	import container from "@/components/containers/container.vue";
 
     export default {
         name: "editpage",
-   
+   		components: { container },
+
         data() {
             return{
       id_number: "",

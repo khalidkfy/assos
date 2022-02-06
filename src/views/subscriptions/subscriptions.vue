@@ -3,13 +3,13 @@
 	<container>
 	
 		<div class="d-flex flex-column ">
-			<router-link
+			<!-- <router-link
 			class="links btn"
 			:to="{ name: 'editsub', query: { q: benid} }"
 			style="color: black"
 		>
 			تعديل</router-link
-		>
+		> -->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="m-3 mt-5 row">
