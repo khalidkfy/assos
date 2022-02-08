@@ -96,7 +96,7 @@
 							headers: {
 								Authorization: "Bearer " + token,
 							},   params:{
-          									  per_page : 150
+          									  per_page : 3500
        									   }
 						}
 					)

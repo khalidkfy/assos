@@ -83,7 +83,7 @@ import container from '@/components/containers/container.vue';
               Authorization: "Bearer " + token,
             },
              params:{
-            per_page : 350,
+            per_page : 3500,
  
           }
           }
