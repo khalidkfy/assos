@@ -31,7 +31,8 @@
 					</div>
 				</div>
 
-		
+		<small>  {{ err }}
+</small>
 			</div>
 			<div class="row justify-content-center">
 
@@ -57,6 +58,8 @@
 				subscription_date: "",
 				printing_date: "",
 				end_date: "",
+				err: "",
+				
 				benid: this.$route.query.q,
 			};
 		},
@@ -83,8 +86,9 @@
 					.then((res) => {
 						console.log(res.data);
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch((error) => {
+												this.err = error.message;
+
 					});
 			},
 				upload2() {
@@ -104,10 +108,11 @@
 					.then((res) => {
 						console.log(res.data);
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch((error) => {
+												this.err = error.message;
 					});
 			},
+			
 		},
 	};
 </script>

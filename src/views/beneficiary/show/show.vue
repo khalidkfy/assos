@@ -1082,17 +1082,32 @@
                  
                 </tbody>
               </table>
-              <div>
-                  المجموع الكلي
-              </div>
-              <div class="d-flex justify-content-around" v-for="(item, index) in informats2" :key="index" >
+            
+
+            <div class="d-flex justify-content-around">
+
+                                <p>إجمالي الدخل المالي:</p>
+
+              <div  v-for="(item, index) in informats2" :key="index" >
                   <a>{{ item.total_financial_income }}</a>
+
+                </div>
+                                <p>التقييم المالي الإجمالي:</p>
+
+                <div v-for="(item, index) in informats2" :key="index">
                   <a>{{ item.total_financial_evaluation }}</a>
+
+                </div>
+                <p>المجموع الكلي :</p>
+                <div v-for="(item, index) in informats2" :key="index">
                   <a>{{ item.total_summation }}</a>
+
+                </div>
+                            </div>
+
               </div>
             </div>
           </div>
-        </div>
     </container>
 </template>
 

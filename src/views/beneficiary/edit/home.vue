@@ -97,13 +97,10 @@
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">العلاج</label>
 					<div class="col-sm-10">
-						<select
+						<input
 							class="form-select"
-							aria-label="Default select example"
 							v-model="treatment"
-						>
-							<option>شسيسشيسشي</option>
-						</select>
+						/>
 					</div>
 				</div>
 			</div>

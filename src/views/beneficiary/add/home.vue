@@ -97,13 +97,8 @@
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">العلاج</label>
 					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="treatment"
-						>
-							<option>شسيسشيسشي</option>
-						</select>
+							<input type="text" class="form-control" v-model="treatment" />
+							
 					</div>
 				</div>
 			</div>
@@ -394,6 +389,7 @@
 				collaborating_with_researcher: "",
 				can_used: "",
 				cooperation_notes: "",
+			
 			};
 		},
 
@@ -406,6 +402,7 @@
 					.post(
 						"api/home/update",
 						{
+							
 							beneficiary_id: af1,
 							housing_possession: this.housing_possession,
 							other_housing_possession: this.other_housing_possession,
@@ -443,14 +440,18 @@
 						}
 					)
 					.then((res) => {
-						console.log(res.data);
+				
+						console.log(res.data.data);
+
+location.reload();
+
 						// const token = res.data.data.token;
 						// sessionStorage.setItem("token", token);
-						location.reload();
 
 					})
 					.catch((e) => {
 						console.log(e);
+
 					});
 			},
 		},

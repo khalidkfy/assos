@@ -18,6 +18,9 @@
 							v-model="affiliate_no"
 							required
 						/>
+						<small class="text-danger ">
+							 {{ erraffili }}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -26,6 +29,9 @@
 					<label for="inputPassword" class="col-sm-12 col-form-label">الاسم </label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="name" />
+						<small class="text-danger">
+							 {{ errname }}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -34,6 +40,9 @@
 					<label for="inputPassword" class="col-sm-12 col-form-label">الهوية </label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="id_number" required />
+							<small class="text-danger">
+							 {{ errid }}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -48,7 +57,17 @@
 						>
 							<option>A</option>
 							<option>B</option>
+							<option>C</option>
+							<option>D</option>
+							<option>متوفي</option>
+							<option>منقطع A</option>
+							<option> منقطع B</option>
+							<option> منقطع C</option>
+							<option> منقطع E</option>
 						</select>
+							<small class="text-danger">
+							 {{ errclass }}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -64,6 +83,9 @@
 							<option>2021</option>
 							<option>2022</option>
 						</select>
+							<small class="text-danger">
+							 {{ erryear}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -79,6 +101,9 @@
 							<option>ذكر</option>
 							<option>أنثى</option>
 						</select>
+							<small class="text-danger">
+							 {{ errgender}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -94,6 +119,9 @@
 							aria-label="Default select example" v-model="rec" @change="countr2">
 							<option v-for="item in informats" :key="item.id" :value="item.id">{{item.governorate}}</option>
 						</select>
+							<small class="text-danger">
+							 {{ errgovern}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -112,6 +140,9 @@
 							<option>اعزب</option>
 							<option>متزوج</option>
 						</select>
+							<small class="text-danger">
+							 {{ errsocial}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -124,6 +155,9 @@
 							aria-label="Default select example" v-model="district">
 							<option v-for="items in informats2" :key="items.id" :value="items.id">{{items.district}}</option>
 						</select>
+						<small class="text-danger">
+							 {{ errdistrict}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -134,6 +168,9 @@
 					>
 					<div class="col-sm-10">
 						<input type="date" class="form-control" v-model="birth_date" />
+						<small class="text-danger">
+							 {{ errbirth}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -142,6 +179,9 @@
 					<label for="inputPassword" class="col-sm-12 col-form-label">الهاتف</label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="phone_number" />
+							<small class="text-danger">
+							 {{ errphone}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -151,6 +191,9 @@
 					<label for="inputPassword" class="col-sm-12 col-form-label">العنوان</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="address" />
+						<small class="text-danger">
+							 {{ ereaddres}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -161,6 +204,9 @@
 					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="near_number" />
+						<small class="text-danger">
+							 {{ errnear}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -171,7 +217,11 @@
 					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="mobile_number" />
+												<small class="text-danger">
+							 {{ errphone}}
+						</small>
 					</div>
+				
 				</div>
 			</div>
 
@@ -182,6 +232,7 @@
 					</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="wife_name" />
+								
 					</div>
 				</div>
 			</div>
@@ -221,6 +272,7 @@
 							<option>بكالوريس</option>
 							<option>دراسات عليا</option>
 						</select>
+						
 					</div>
 				</div>
 			</div>
@@ -254,6 +306,9 @@
 							<option>مواطن</option>
 							<option>لاجئ</option>
 						</select>
+									<small class="text-danger">
+							 {{ errcitizn}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -295,11 +350,14 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>اضف صورة</label
+						>اضف صورة الهوية</label
 					>
 					<div class="col-sm-10">
 						<input type="file" @change="uploadFile" ref="file" />
 					</div>
+								<small class="text-danger">
+							 {{ errimage}}
+						</small>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -345,7 +403,25 @@
 				file: null,
 				informats:[],	
 				informats2:[],
-				rec:"",				
+				rec:"",		
+				ereaddres:'',			
+				errbirth:'',			
+				errcitizn:'',			
+				errdistrict:'',			
+				erraffili:'',			
+				errclass:'',			
+				errgender:'',			
+				errgovern:'',			
+				errimage:'',			
+				errid:'',			
+				errname:'',			
+				errnear:'',			
+				errnumof:'',			
+				errphone:'',			
+				errqualification:'',			
+				errsocial:'',			
+				errspecialty:'',			
+				erryear:'',			
 			};
 		},
 	created() {
@@ -439,8 +515,30 @@
 						// this.$router.push({ name: "dashboard" });
 						location.reload();
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch((error) => {
+						console.log(error.response.data.errors);
+						this.err = error.response.data.errors.name[0];
+							this.errname = error.response.data.errors.name[0];			
+							this.ereaddres = error.response.data.errors.address[0];		
+							this.errbirth = error.response.data.errors.birth_date[0];		
+							this.errcitizn = error.response.data.errors.citizenship[0];		
+							this.errdistrict = error.response.data.errors.district_id[0];		
+							this.erraffili = error.response.data.errors.affiliate_no[0];		
+							this.errclass = error.response.data.errors.class[0];		
+							this.errgender = error.response.data.errors.gender[0];		
+							this.errgovern = error.response.data.errors.governorate_id[0];		
+							this.errimage = error.response.data.errors.id_image[0];		
+							this.errid = error.response.data.errors.id_number[0];		
+							this.errnear = error.response.data.errors.near_number[0];		
+							this.errnumof = error.response.data.errors.number_of_people[0];		
+							this.errphone = error.response.data.errors.phone_number[0];		
+							this.errqualification = error.response.data.errors.qualification[0];		
+							this.errsocial = error.response.data.errors.social_status[0];		
+							this.errspecialty = error.response.data.errors.specialty[0];		
+							this.erryear = error.response.data.errors.year[0];		
+
+
+
 					});
 			},
 		},

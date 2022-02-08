@@ -2,8 +2,9 @@
 		<div class="back">
 			<div class="new" id="printableArea">
 				<div class="hd1" style="width: 50%; " v-for="(item, index) in informats" :key="index">
-					<div c v-if="nums[index]" class="cont">
+					<div v-if="nums[index]" class="cont">
 						<img src="../../assets/img/back.jpeg" class="amg" alt="" />
+						<p class="abs0">{{ item.affiliate_no }}</p>
 						<p class="abs">{{ item.beneficiary_name }}</p>
 						<p class="abs2">{{ item.id_number }}</p>
 						<p class="abs4">{{ item.birth_date }}</p>
@@ -19,7 +20,7 @@
 				printDiv();
 				upload();
 			"
-			class="btn btn-primary"
+			class="btn btn-primary d-print-none"
 		>
 			طباعة
 		</button>
@@ -34,28 +35,35 @@
 		font-size: 20px;
 	}
 	.amg {
-		height: 150px;
+		height: 263px;
 		display: inline;
 		width: 100%;
 	}
 
 	.abs {
 		position: absolute;
-		top: 55px;
+		top: 111px;
 		right: 110px;
+		z-index: 999;
+		font-size: 16px;
+	}
+	.abs0 {
+		position: absolute;
+		top: 80px;
+		left: 30px;
 		z-index: 999;
 		font-size: 16px;
 	}
 	.abs2 {
 		position: absolute;
-		top: 70px;
+		top: 133px;
 		right: 110px;
 		font-size: 16px;
 		z-index: 999;
 	}
 	.abs3 {
 		position: absolute;
-		top: 95px;
+		top: 177px;
 		right: 110px;
 		z-index: 999;	
 		font-size: 16px;
@@ -65,13 +73,13 @@
 		position: absolute;
 		z-index: 999;
 		font-size: 16px;
-		top: 83px;
+		top: 155px;
 		right: 110px;
 	}
 	.abs5 {
 		position: absolute;
 		z-index: 999;
-		top: 110px;	
+		top: 199px;	
 		font-size: 16px;
 		right: 110px;
 	}
@@ -96,8 +104,7 @@
 		methods: {
 			upload() {
 				const token = sessionStorage.getItem("token");
-				axios
-					.post(
+				axios.post(
 						"api/subscription/toggleprint",
 						{
 							subscription_id: this.nums,
@@ -106,10 +113,12 @@
 							headers: {
 								Authorization: "Bearer " + token,
 							},
+							
 						}
 					)
 					.then((res) => {
 						console.log(res.data);
+						
 					})
 					.catch((e) => {
 						console.log(e);
@@ -126,6 +135,9 @@
 						headers: {
 							Authorization: "Bearer " + token,
 						},
+						  params:{
+								per_page : 1500
+      					    }
 					})
 					.then((res) => {
 						console.log(res.data);

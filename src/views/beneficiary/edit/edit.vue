@@ -902,8 +902,7 @@
             },
                  source(){
                                 const token = sessionStorage.getItem("token");
-                                axios
-                                    .get(`api/sourcesofincome/show?beneficiary_id=${this.$route.query.q}`, {
+                                axios.get(`api/sourcesofincome/show?beneficiary_id=${this.$route.query.q}`, {
                                         headers: {
                                             Authorization: "Bearer " + token,
                                         },
@@ -922,8 +921,7 @@
 
              workdata(){
                                 const token = sessionStorage.getItem("token");
-                                axios
-                                    .get(`api/work/show?beneficiary_id=${this.$route.query.q}`, {
+                                axios.get(`api/work/show?beneficiary_id=${this.$route.query.q}`, {
                                         headers: {
                                             Authorization: "Bearer " + token,
                                         },
@@ -957,8 +955,7 @@
             editpersonal() {
       const token = sessionStorage.getItem("token");
 
-      axios
-        .post(
+      axios.post(
           "api/beneficiary/update",
           {
             id_number:this.$route.query.q,
@@ -994,7 +991,8 @@
         )
         .then((res) => {
           console.log(res.data);
-        
+        						location.reload();
+
         })
         .catch((e) => {
           console.log(e);
@@ -1004,8 +1002,7 @@
              editwork() {            // Edit Home page 
 
       const token = sessionStorage.getItem("token");
-      axios
-        .post(
+      axios.post(
           "api/work/update",
           {  
               beneficiary_id :this.$route.query.q,
@@ -1032,7 +1029,8 @@
           }
         )
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data);						location.reload();
+
   
         })
         .catch((e) => {
@@ -1043,8 +1041,7 @@
 
 edithome() {
 				const token = sessionStorage.getItem("token");
-				axios
-					.post(
+				axios.post(
 						"api/home/update",
 						{
 							beneficiary_id: this.$route.query.q,
@@ -1088,6 +1085,8 @@ edithome() {
 						// const token = res.data.data.token;
 						// sessionStorage.setItem("token", token);
 						// this.$router.push({ name: "dashboard" });
+            						location.reload();
+
 					})
 					.catch((e) => {
 						console.log(e);

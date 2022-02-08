@@ -54,7 +54,9 @@
 					.get(`api/setting/index`, {
 						headers: {
 							Authorization: "Bearer " + token,
-						},
+						}, params:{
+            per_page : 150
+          }
 					})
 					.then((res) => {
 						console.log(res.data);

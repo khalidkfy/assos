@@ -77,7 +77,7 @@
 
 		data() {
 			return {
-				year: "2022",
+				year: "",
 				name:"",
 				affiliate:"",
 				id_nu:"",
