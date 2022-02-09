@@ -452,7 +452,7 @@
 				uploadFile2() {
 				this.file2 = this.$refs.file2.files[0];
 			},
-				uploadFile2() {
+				uploadFile3() {
 				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
 								this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
 
