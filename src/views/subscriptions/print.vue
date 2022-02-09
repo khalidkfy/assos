@@ -35,7 +35,7 @@
 		font-size: 20px;
 	}
 	.amg {
-		height: 263px;
+		height: 260px;
 		display: inline;
 		width: 100%;
 	}

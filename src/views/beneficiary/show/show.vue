@@ -82,6 +82,8 @@
                       />
                     </div>
                   </div>
+
+
                 </div>
                 <div class="col-md-6">
                   <div class="m-3 row">
@@ -98,6 +100,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="m-3 row">
                     <label for="inputPassword" class="col-sm-12 col-form-label"
@@ -440,6 +443,46 @@
                     </div>
                   </div>
                 </div>
+                                <div class="col-md-6">
+
+ <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+صورة الهوية</button>
+      
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+     <img :src="id_image" class="w-100 h-100" >      </div>
+      </div>
+   
+    </div>
+  </div>
+  </div>
+                                  <div class="col-md-6">
+
+  <button class="btn" data-bs-toggle="modal" data-bs-target="#ex">
+صورة الطلب</button>
+      
+
+
+<div class="modal fade" id="ex" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+     <img :src="aflt" class="w-100 h-100" >      </div>
+      </div>
+   
+    </div>
+  </div>
+  </div>
 
                 <!-- النهاية -->
               </div>
@@ -1069,7 +1112,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr  v-for="item in informats" :key="item.id">
+                  <tr class="text-center"  v-for="item in informats" :key="item.id">
                     <td>{{ item.source_of_income }}</td>
                     <td>{{ item.financial_value }}</td>
                     <td>{{ item.income_source_details }}</td>
@@ -1084,22 +1127,22 @@
               </table>
             
 
-            <div class="d-flex justify-content-evenly">
+            <div class="d-flex justify-content-evenly " style="background:rgba(131, 160, 51 , 1) ; color:white">
 
-                                <p>إجمالي الدخل المالي:</p>
+                                <p class="mt-3">إجمالي الدخل المالي:</p>
 
-              <div  v-for="(item, index) in informats2" :key="index" >
+              <div  class="mt-3 " v-for="(item, index) in informats2" :key="index" >
                   <a>{{ item.total_financial_income }}</a>
 
                 </div>
-                                <p >التقييم المالي الإجمالي:</p>
+                                <p class="mt-3">التقييم المالي الإجمالي:</p>
 
-                <div v-for="(item, index) in informats2" :key="index">
+                <div class="mt-3 " v-for="(item, index) in informats2" :key="index">
                   <a>{{ item.total_financial_evaluation }}</a>
 
                 </div>
-                <p>المجموع الكلي :</p>
-                <div v-for="(item, index) in informats2" :key="index">
+                <p class="mt-3">المجموع الكلي :</p>
+                <div class="mt-3 " v-for="(item, index) in informats2" :key="index">
                   <a>{{ item.total_summation }}</a>
 
                 </div>
@@ -1197,7 +1240,8 @@
       informats: [],
       informats2: [],
 
-
+id_image:"",
+aflt:""
 
 
     };
@@ -1239,11 +1283,12 @@
                         this.specialty = res.data.data.specialty,
                         this.qualification = res.data.data.qualification,
                         this.social_status = res.data.data.social_status,
+                        this.id_image = res.data.data.id_image,
+                        this.aflt = res.data.data.affiliate_image,
                         this.district = res.data.data.district,
                         this.address = res.data.data.address,
-                        this.near_number = res.data.data.near_number
+                        this.near_number = res.data.data.near_number,
                         this.current_work = res.data.data.current_work
-                        
 
 
 

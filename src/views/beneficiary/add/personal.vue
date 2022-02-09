@@ -9,7 +9,7 @@
 			<div class="col-md-6">
 				<div class="m-3 mt-4 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم المستفيد
+						>رقم المستفيد <span class="text-danger">*</span>
 					</label>
 					<div class="col-sm-10">
 						<input
@@ -26,7 +26,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 mt-4 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الاسم </label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">الاسم<span class="text-danger">*</span> </label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="name" />
 						<small class="text-danger">
@@ -37,7 +37,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الهوية </label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">الهوية <span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="id_number" required />
 							<small class="text-danger">
@@ -48,7 +48,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">التصنيف</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">التصنيف <span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -73,7 +73,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">العام</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">العام <span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -91,7 +91,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الجنس </label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">الجنس <span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -111,7 +111,7 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>المحافظة</label
+						>المحافظة <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<select
@@ -129,7 +129,7 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الحالة الاجتماعية</label
+						>الحالة الاجتماعية <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<select
@@ -148,7 +148,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الحي</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">الحي<span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -164,7 +164,7 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>تاريخ الميلاد</label
+						>تاريخ الميلاد <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<input type="date" class="form-control" v-model="birth_date" />
@@ -176,7 +176,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الهاتف</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">الهاتف<span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="phone_number" />
 							<small class="text-danger">
@@ -188,7 +188,7 @@
 
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">العنوان</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">العنوان<span class="text-danger">*</span></label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="address" />
 						<small class="text-danger">
@@ -200,7 +200,7 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم القريب</label
+						>رقم القريب<span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="near_number" />
@@ -213,7 +213,7 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم الجوال</label
+						>رقم الجوال <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="mobile_number" />
@@ -295,7 +295,7 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>المواطنة</label
+						>المواطنة<span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<select
@@ -350,14 +350,28 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>اضف صورة الهوية</label
+						>اضف صورة الهوية <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
 						<input type="file" @change="uploadFile" ref="file" />
+													      <img :src="show2" class="w-50 h-50 mt-3" />
+
 					</div>
 								<small class="text-danger">
 							 {{ errimage}}
 						</small>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>اضف صورة </label
+					>
+					<div class="col-sm-10">
+						<input type="file" @change="uploadFile2" ref="file2" />
+					</div>
+							      <img :src="show" class="w-50 h-50 mt-3" />
+
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -401,6 +415,7 @@
 				address: "",
 				near_number: "",
 				file: null,
+				file2: null,
 				informats:[],	
 				informats2:[],
 				rec:"",		
@@ -422,6 +437,8 @@
 				errsocial:'',			
 				errspecialty:'',			
 				erryear:'',			
+				show:'',			
+				show2:'',			
 			};
 		},
 	created() {
@@ -432,6 +449,15 @@
 			uploadFile() {
 				this.file = this.$refs.file.files[0];
 			},
+				uploadFile2() {
+				this.file2 = this.$refs.file2.files[0];
+			},
+				uploadFile2() {
+				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
+								this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
+
+			},
+
 	countr() {
 				const token = sessionStorage.getItem("token");
 
@@ -473,6 +499,7 @@
 				const token = sessionStorage.getItem("token");
 				let formData = new FormData();
 				formData.append("id_image", this.file);
+				formData.append("affiliate_image", this.file2);
 				formData.append("id_number", this.id_number);
 				formData.append("name", this.name);
 				formData.append("affiliate_no", this.affiliate_no);

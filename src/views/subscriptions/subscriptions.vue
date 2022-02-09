@@ -31,7 +31,8 @@
 					</div>
 				</div>
 
-		<small>  {{ err }}
+		<small>
+			  {{ err }}
 </small>
 			</div>
 			<div class="row justify-content-center">
@@ -87,6 +88,7 @@
 						console.log(res.data);
 					})
 					.catch((error) => {
+							console.log(error.data);
 												this.err = error.message;
 
 					});
