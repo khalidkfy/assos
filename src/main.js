@@ -10,10 +10,4 @@ import  Axios from 'axios'
 // basic URL for this page 
 Axios.defaults.baseURL = 'https://associationapi.awtar-tech.com/';
 
-if (process.env.NODE_ENV === 'production') {
-    // Handle SPA
-    App.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-}
-
-
 createApp(App).use(store).use(router).mount("#app");
