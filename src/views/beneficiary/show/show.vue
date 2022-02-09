@@ -1084,7 +1084,7 @@
               </table>
             
 
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-evenly">
 
                                 <p>إجمالي الدخل المالي:</p>
 
@@ -1092,7 +1092,7 @@
                   <a>{{ item.total_financial_income }}</a>
 
                 </div>
-                                <p>التقييم المالي الإجمالي:</p>
+                                <p >التقييم المالي الإجمالي:</p>
 
                 <div v-for="(item, index) in informats2" :key="index">
                   <a>{{ item.total_financial_evaluation }}</a>
