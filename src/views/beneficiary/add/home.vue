@@ -246,7 +246,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 mt-4">
+			<div class="col-md-4 mt-4">
 				<div class="form-check mt-2">
 					<input
 						class="form-check-input"
@@ -265,6 +265,7 @@
 					/>
 					<label class="form-check-label" for="asdew"> منبوذ اناني </label>
 				</div>
+				
 			</div>
 
 			<div class="col-md-3 mt-4">
@@ -309,7 +310,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 mt-4">
+			<div class="col-md-4 mt-4">
 				<div class="form-check mt-2">
 					<input
 						class="form-check-input"

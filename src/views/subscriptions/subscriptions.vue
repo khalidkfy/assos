@@ -68,8 +68,7 @@
 		methods: {
 			upload() {
 				const token = sessionStorage.getItem("token");
-				axios
-					.post(
+				axios .post(
 						"api/subscription/store",
 						{
 							beneficiary_id: this.benid,
@@ -79,7 +78,7 @@
 							end_date: this.end_date,
 						},
 						{
-							headers: {
+							headers:{
 								Authorization: "Bearer " + token,
 							},
 						}
@@ -93,10 +92,10 @@
 
 					});
 			},
+
 				upload2() {
 				const token = sessionStorage.getItem("token");
-				axios
-					.post(
+				axios.post(
 						"api/subscription/togglepayment",
 						{
 							subscription_id: this.benid,
@@ -110,8 +109,7 @@
 					.then((res) => {
 						console.log(res.data);
 					})
-					.catch((error) => {
-												this.err = error.message;
+					.catch(() => {
 					});
 			},
 			

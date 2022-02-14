@@ -167,7 +167,7 @@
 						>تاريخ الميلاد <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" v-model="birth_date" />
+						<input type="text" class="form-control" v-model="birth_date" />
 						<small class="text-danger">
 							 {{ errbirth}}
 						</small>
@@ -353,7 +353,7 @@
 						>اضف صورة الهوية <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="file" @change="uploadFile" ref="file" />
+						<input type="file" @change="uploadFile4" ref="file" />
 													      <img :src="show2" class="w-50 h-50 mt-3" />
 
 					</div>
@@ -368,7 +368,7 @@
 						>اضف صورة </label
 					>
 					<div class="col-sm-10">
-						<input type="file" @change="uploadFile2" ref="file2" />
+						<input type="file" @change="uploadFile3" ref="file2" />
 					</div>
 							      <img :src="show" class="w-50 h-50 mt-3" />
 
@@ -454,6 +454,9 @@
 			},
 				uploadFile3() {
 				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
+
+			},
+				uploadFile4() {
 								this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
 
 			},
