@@ -21,6 +21,7 @@
 							<option>ايجار</option>
 							<option>ارض حكومة</option>
 							<option>مع الاقارب</option>
+							<option>اخرى</option>
 						</select>
 					</div>
 				</div>
@@ -38,6 +39,8 @@
 						>
 							<option>يوجد</option>
 							<option>لايوجد</option>
+							<option>اخرى</option>
+
 						</select>
 					</div>
 				</div>
@@ -57,6 +60,8 @@
 							<option>اسبست</option>
 							<option>زينكو</option>
 							<option>خص</option>
+														<option>اخرى</option>
+
 						</select>					</div>
 				</div>
 			</div>
@@ -126,6 +131,8 @@
 							<option>جيد</option>
 							<option>ممتاز</option>
 							<option>قديم</option>
+														<option>اخرى</option>
+
 						</select>
 					</div>
 				</div>
@@ -440,21 +447,34 @@
 							},
 						}
 					)
-					.then((res) => {
-				
-						console.log(res.data.data);
-
-location.reload();
-
-						// const token = res.data.data.token;
-						// sessionStorage.setItem("token", token);
+					.then(() => {
+							this.show()
 
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch(() => {
+							this.failed()
 
 					});
 			},
+			    show(){
+      this.$swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'تمت الاضافة بنجاح ',
+  showConfirmButton: false,
+  timer: 1500
+}).then(() => {
+					location.reload();
+        });
+
+    },
+    failed(){
+       this.$swal.fire({
+  icon: 'error',
+  title: 'هناك خطأ ما !',
+  text: 'تأكد من المدخلات المطلوبة',
+})
+    }
 		},
 	};
 </script>

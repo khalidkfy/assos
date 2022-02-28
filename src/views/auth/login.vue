@@ -90,15 +90,46 @@ export default {
           password: this.password,
         })
         .then((res) => {
-            console.log(res.data.data.token)
           const token = res.data.data.token;
           sessionStorage.setItem("token", token);
-          this.$router.push({ name: "lists" });
+          this.show()
+          // this.$router.push({ name: "lists" });
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {
+              this.failed()
+});
     },
+    show(){
+   const  Swal = this.$swal ; 
+      const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'تم تسجيل الدخول بنجاح'
+}).then(() => {
+          this.$router.push({ name: "lists" });
+        });
+  
+    },
+    failed(){
+       this.Swal.fire({
+  icon: 'error',
+  title: 'هناك خطأ ما !',
+  text: 'تأكد من الاسم وكلمة السر',
+    confirmButtonText: 'نعم',
+
+})
+    }
   },
 };
 </script>

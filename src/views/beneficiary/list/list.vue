@@ -1,17 +1,16 @@
 <template>
 	<container>
 		<div class="row justify-content-around">
-			<select
-				class="form-select m-2"
-				style="width: 40%"
+	
+			<input
+				type="text"
+				class="form-control m-2"
+					style="width: 40%"
 				aria-label="Default select example"
 				v-model="year"
 				@change="basicdata"
-			>
-				<option></option>
-				<option>2021</option>
-				<option>2022</option>
-			</select>
+				placeholder="السنة"
+			/>
 			<input
 				type="text"
 				class="form-control m-2"
@@ -42,7 +41,7 @@
 
 		<hr />
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
-			<table class="table table-bordered">
+			<table class="table ">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -52,7 +51,6 @@
 						<th scope="col">السنة</th>
 						<th scope="col">عرض البيانات</th>
 						<th scope="col">الاجراء</th>
-						<th scope="col">الاشتراك</th>
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
@@ -81,15 +79,7 @@
 							>
 						</th>
 
-						<th>
-							<router-link
-								class="links"
-								:to="{ name: 'subs', query: { q: informat.id } }"
-								style="color: black"
-							>
-								اضافة اشتراك</router-link
-							>
-						</th>
+						
 					</tr>
 				</tbody>
 			</table>

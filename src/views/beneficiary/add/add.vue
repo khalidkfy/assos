@@ -55,7 +55,7 @@
 						aria-controls="pills-fourth"
 						aria-selected="false"
 					>
-						مصادر الدخل
+						الاحتياجات
 					</button>
 				</li>
 			</ul>

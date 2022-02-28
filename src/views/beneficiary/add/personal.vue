@@ -64,6 +64,7 @@
 							<option> منقطع B</option>
 							<option> منقطع C</option>
 							<option> منقطع E</option>
+							<option> اخرى</option>
 						</select>
 							<small class="text-danger">
 							 {{ errclass }}
@@ -139,6 +140,8 @@
 						>
 							<option>اعزب</option>
 							<option>متزوج</option>
+														<option> اخرى</option>
+
 						</select>
 							<small class="text-danger">
 							 {{ errsocial}}
@@ -167,7 +170,7 @@
 						>تاريخ الميلاد <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="birth_date" />
+						<input type="date" class="form-control" v-model="birth_date" />
 						<small class="text-danger">
 							 {{ errbirth}}
 						</small>
@@ -271,6 +274,8 @@
 							<option>دبلوم</option>
 							<option>بكالوريس</option>
 							<option>دراسات عليا</option>
+														<option> اخرى</option>
+
 						</select>
 						
 					</div>
@@ -288,6 +293,8 @@
 							<option>عربي</option>
 							<option>انجليزي</option>
 							<option>صحة</option>
+														<option> اخرى</option>
+
 						</select>
 					</div>
 				</div>
@@ -305,6 +312,7 @@
 						>
 							<option>مواطن</option>
 							<option>لاجئ</option>
+							
 						</select>
 									<small class="text-danger">
 							 {{ errcitizn}}
@@ -343,18 +351,19 @@
 							v-model="previous_work"
 						>
 							<option>مزارع</option>
+														<option> اخرى</option>
+
 						</select>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
+					<label for="img" class="col-sm-8 col-form-label btn"
 						>اضف صورة الهوية <span class="text-danger">*</span></label
 					>
-					<div class="col-sm-10">
-						<input type="file" @change="uploadFile4" ref="file" />
-													      <img :src="show2" class="w-50 h-50 mt-3" />
+					<div class="col-sm-6">
+						<input type="file" class="btn d-none" id="img" @change="uploadFile" ref="file" />
 
 					</div>
 								<small class="text-danger">
@@ -364,18 +373,28 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
+					<label for="img2" class="col-sm-8 col-form-label btn"
 						>اضف صورة </label
 					>
-					<div class="col-sm-10">
-						<input type="file" @change="uploadFile3" ref="file2" />
+					<div class="col-sm-6">
+						<input type="file" class="btn d-none" id="img2"  @change="uploadFile2" ref="file2" />
 					</div>
-							      <img :src="show" class="w-50 h-50 mt-3" />
+
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="img3"  class="col-sm-8 btn col-form-label"
+						>اضف صورة </label
+					>
+					<div class="col-sm-6">
+						<input type="file" class="btn d-none"  id="img3"  @change="uploadFile3" ref="file3" />
+					</div>
 
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<button type="submit" class="btn w-25 mt-4" v-on:click.prevent="upload">
+				<button type="submit" class="btn w-25 mt-4"  v-on:click.prevent="upload">
 					اضافة
 				</button>
 			</div>
@@ -387,7 +406,6 @@
 
 <script>
 	import axios from "axios";
-
 	export default {
 		name: "personal",
 		data() {
@@ -416,6 +434,7 @@
 				near_number: "",
 				file: null,
 				file2: null,
+				file3: null,
 				informats:[],	
 				informats2:[],
 				rec:"",		
@@ -452,18 +471,15 @@
 				uploadFile2() {
 				this.file2 = this.$refs.file2.files[0];
 			},
-				uploadFile3() {
-				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
-
+			uploadFile3() {
+				this.file3 = this.$refs.file3.files[0];
 			},
 				uploadFile4() {
+				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
 								this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
-
 			},
-
 	countr() {
 				const token = sessionStorage.getItem("token");
-
 				axios
 					.get(`api/dropdown/index`, {
 						headers: {
@@ -482,7 +498,6 @@
 			},
 			countr2() {
 				const token = sessionStorage.getItem("token");
-
 				axios
 					.get(`api/dropdown/show?governorate_id=${this.rec}&district_id=1`, {
 						headers: {
@@ -497,12 +512,13 @@
 						console.log(e);
 					});
 			},
-
+			
 			upload() {
 				const token = sessionStorage.getItem("token");
 				let formData = new FormData();
 				formData.append("id_image", this.file);
 				formData.append("affiliate_image", this.file2);
+				formData.append("image", this.file3);
 				formData.append("id_number", this.id_number);
 				formData.append("name", this.name);
 				formData.append("affiliate_no", this.affiliate_no);
@@ -526,11 +542,8 @@
 				formData.append("district_id", this.district);
 				formData.append("address", this.address);
 				formData.append("near_number", this.near_number);
-
 				axios
-					.post(
-						"api/beneficiary/store",
-						formData,
+					.post("api/beneficiary/store",formData,
 						{
 							headers: {
 								Authorization: "Bearer " + token,
@@ -540,12 +553,11 @@
 					)
 					.then((res) => {
 						console.log(res.data);
-						// const token = res.data.data.token;
 						sessionStorage.setItem("af1", res.data.data.id);
-						// this.$router.push({ name: "dashboard" });
-						location.reload();
+					this.showtrue()
 					})
 					.catch((error) => {
+						this.failed();
 						console.log(error.response.data.errors);
 						this.err = error.response.data.errors.name[0];
 							this.errname = error.response.data.errors.name[0];			
@@ -566,16 +578,30 @@
 							this.errsocial = error.response.data.errors.social_status[0];		
 							this.errspecialty = error.response.data.errors.specialty[0];		
 							this.erryear = error.response.data.errors.year[0];		
-
-
-
 					});
 			},
-		},
+						    showtrue(){
+      this.$swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'تمت الاضافة بنجاح ',
+  showConfirmButton: false,
+  timer: 1500
+}).then(() => {
+					location.reload();
+        });
 
+    },
+    failed(){
+       this.$swal.fire({
+  icon: 'error',
+  title: 'هناك خطأ ما !',
+  text: 'تأكد من المدخلات المطلوبة',
+})
+    }
+		},
 		
 			
-
 	};
 </script>
 <style scoped>

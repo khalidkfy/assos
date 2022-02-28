@@ -20,13 +20,13 @@ body {
     
   }
   .btn , .nav-item .active{
-  background-color:#83A033 !important;  
+  background-color: #009879 !important;  
   color: white !important;
    text-decoration: none;
   }
   
   .nav-link{
-    color: #83A033 !important;  
+    color:  #009879 !important;  
     }
 
     .home {
@@ -81,7 +81,7 @@ body {
   
   
   .sidenav a:hover {
-  background-color: #83A033;
+  background-color:  #009879;
   border-radius: 5px;    
   color: white;
   }
@@ -95,9 +95,28 @@ body {
   .sidenav a:hover {
     color: #f1f1f1;
   } 
+  table{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+
+  }
   .table > thead{
-background-color: #f0f0f0!important;  }
+    background-color: #009879!important; 
+    border-collapse: collapse;
+    color: white;
+    border-radius: 3px;
+    text-align: center;
+    
+  }
+  .table th{
+    text-align: center;
+    
+  }
   .table > :not(:first-child){
     border-top: 1px solid #bab6b6 !important; 
   
+  }
+  .actives{
+    background-color: #009879;
+    color: white !important;
   }
