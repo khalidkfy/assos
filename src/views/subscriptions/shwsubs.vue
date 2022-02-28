@@ -11,18 +11,18 @@
 							<th scope="col" >رقم المستفيد</th>
 							<th scope="col">الرقم</th>
 							<th scope="col">الاسم</th>
-							<th scope="col">رقم المصدر</th>
+							<th scope="col"> التكلفة</th>
 							<th scope="col">رقم الجوال</th>
 							<th scope="col">العام</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="text-center" v-for="item in informats" :key="item.id">
-							<input type="checkbox" class="mt-3" :value="informat.beneficiary_id" v-model="selcted">
+							<input type="checkbox" class="mt-3" :value="item.beneficiary_id" v-model="selcted">
 							<td>{{ item.affiliate_no }}</td>
 							<td>{{ item.beneficiary_id }}</td>
 							<td>{{ item.beneficiary_name }}</td>
-							<td>{{ item.source_id }}</td>
+							<td>{{ item.cost}}</td>
 							<td>{{ item.mobile_number }}</td>
 							<td>{{ item.year }}</td>
 			

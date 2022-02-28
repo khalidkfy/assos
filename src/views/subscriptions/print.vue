@@ -6,10 +6,11 @@
 						<img src="../../assets/img/back.jpeg" class="amg" alt="" />
 						<p class="abs0">{{ item.affiliate_no }}</p>
 						<p class="abs">{{ item.beneficiary_name }}</p>
-						<p class="abs2">{{ item.id_number }}</p>
-						<p class="abs4">{{ item.birth_date }}</p>
-						<p class="abs3">{{ item.printing_date }}</p>
-						<p class="abs5">{{ item.district.district }}</p>
+						<p class="abs2">{{ item.beneficiary_id }}</p>
+						<p class="abs4">{{ item.start_subscription }}</p>
+						<p class="abs4">{{ item.start_subscription }}</p>
+						<p class="abs4">{{ item.start_subscription }}</p>
+						 <img :src="item.image" class="imgs" alt="">
 					</div>
 				</div>
 			</div>
@@ -131,7 +132,7 @@
 				const token = sessionStorage.getItem("token");
 
 				axios
-					.get(`api/subscription/index`, {
+					.get(`api/subsc/show?subsc_id=${this.nums}`, {
 						headers: {
 							Authorization: "Bearer " + token,
 						},
