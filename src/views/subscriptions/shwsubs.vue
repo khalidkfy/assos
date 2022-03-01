@@ -78,5 +78,34 @@
 					});
 			},
 		},
+		      
+  computed: {
+    selectAll: {
+      get() {
+        if (this.informats && this.informats.length > 0) { // A informats array exists with at least one item
+          let allChecked = true;
+          for (const user of this.informats) {
+            if (!this.selcted.includes(user.id)) {
+              allChecked = false; // If even one is not included in array
+            }
+            
+            // Break out of loop if mismatch already found
+            if(!allChecked) break;
+          }
+          return allChecked;
+        }
+        return false;
+      },
+      set(value) {
+        const checked = [];
+        if (value) {
+          this.informats.forEach((user) => {
+            checked.push(user.id);
+          });
+        }
+        this.selcted = checked;
+      }
+    },
+  }
 	};
 </script>

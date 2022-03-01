@@ -35,19 +35,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="row m-2">
-					<label for="flexCheckDefault2" class="col-sm-5 col-form-label"
-						>نوع الاشتراك
-					</label>
-					<div class="col-sm-9 mt-2">
-						<select v-model="subscription_type" class="form-select">
-							<option value="1">مجاني</option>
-							<option value="0">غير مجاني</option>
-						</select>
-					</div>
-				</div>
-			</div>
+		
 		</div>
 
 		<button @click.prevent="upload" class="btn mx-4">تسجيل اشتراك</button>

@@ -18,37 +18,43 @@
 							v-model="affiliate_no"
 							required
 						/>
-						<small class="text-danger ">
-							 {{ erraffili }}
+						<small class="text-danger">
+							{{ erraffili }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 mt-4 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الاسم<span class="text-danger">*</span> </label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الاسم<span class="text-danger">*</span>
+					</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="name" />
 						<small class="text-danger">
-							 {{ errname }}
+							{{ errname }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الهوية <span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الهوية <span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="id_number" required />
-							<small class="text-danger">
-							 {{ errid }}
+						<small class="text-danger">
+							{{ errid }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">التصنيف <span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>التصنيف <span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -61,20 +67,22 @@
 							<option>D</option>
 							<option>متوفي</option>
 							<option>منقطع A</option>
-							<option> منقطع B</option>
-							<option> منقطع C</option>
-							<option> منقطع E</option>
-							<option> اخرى</option>
+							<option>منقطع B</option>
+							<option>منقطع C</option>
+							<option>منقطع E</option>
+							<option>اخرى</option>
 						</select>
-							<small class="text-danger">
-							 {{ errclass }}
+						<small class="text-danger">
+							{{ errclass }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">العام <span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>العام <span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -84,15 +92,17 @@
 							<option>2021</option>
 							<option>2022</option>
 						</select>
-							<small class="text-danger">
-							 {{ erryear}}
+						<small class="text-danger">
+							{{ erryear }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الجنس <span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الجنس <span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
@@ -102,8 +112,8 @@
 							<option>ذكر</option>
 							<option>أنثى</option>
 						</select>
-							<small class="text-danger">
-							 {{ errgender}}
+						<small class="text-danger">
+							{{ errgender }}
 						</small>
 					</div>
 				</div>
@@ -117,16 +127,21 @@
 					<div class="col-sm-10">
 						<select
 							class="form-select"
-							aria-label="Default select example" v-model="rec" @change="countr2">
-							<option v-for="item in informats" :key="item.id" :value="item.id">{{item.governorate}}</option>
+							aria-label="Default select example"
+							v-model="rec"
+							@change="countr2"
+						>
+							<option v-for="item in informats" :key="item.id" :value="item.id">
+								{{ item.governorate }}
+							</option>
 						</select>
-							<small class="text-danger">
-							 {{ errgovern}}
+						<small class="text-danger">
+							{{ errgovern }}
 						</small>
 					</div>
 				</div>
 			</div>
-	
+
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -140,26 +155,31 @@
 						>
 							<option>اعزب</option>
 							<option>متزوج</option>
-														<option> اخرى</option>
-
+							<option>اخرى</option>
 						</select>
-							<small class="text-danger">
-							 {{ errsocial}}
+						<small class="text-danger">
+							{{ errsocial }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الحي<span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الحي<span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<select
 							class="form-select"
-							aria-label="Default select example" v-model="district">
-							<option v-for="items in informats2" :key="items.id" :value="items.id">{{items.district}}</option>
+							aria-label="Default select example"
+							v-model="district"
+						>
+							<option v-for="items in informats2" :key="items.id" :value="items.id">
+								{{ items.district }}
+							</option>
 						</select>
 						<small class="text-danger">
-							 {{ errdistrict}}
+							{{ errdistrict }}
 						</small>
 					</div>
 				</div>
@@ -172,18 +192,20 @@
 					<div class="col-sm-10">
 						<input type="date" class="form-control" v-model="birth_date" />
 						<small class="text-danger">
-							 {{ errbirth}}
+							{{ errbirth }}
 						</small>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">الهاتف<span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الهاتف<span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="phone_number" />
-							<small class="text-danger">
-							 {{ errphone}}
+						<small class="text-danger">
+							{{ errphone }}
 						</small>
 					</div>
 				</div>
@@ -191,11 +213,13 @@
 
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">العنوان<span class="text-danger">*</span></label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>العنوان<span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="address" />
 						<small class="text-danger">
-							 {{ ereaddres}}
+							{{ ereaddres }}
 						</small>
 					</div>
 				</div>
@@ -208,7 +232,7 @@
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="near_number" />
 						<small class="text-danger">
-							 {{ errnear}}
+							{{ errnear }}
 						</small>
 					</div>
 				</div>
@@ -220,11 +244,10 @@
 					>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" v-model="mobile_number" />
-												<small class="text-danger">
-							 {{ errphone}}
+						<small class="text-danger">
+							{{ errphone }}
 						</small>
 					</div>
-				
 				</div>
 			</div>
 
@@ -235,7 +258,6 @@
 					</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" v-model="wife_name" />
-								
 					</div>
 				</div>
 			</div>
@@ -274,10 +296,8 @@
 							<option>دبلوم</option>
 							<option>بكالوريس</option>
 							<option>دراسات عليا</option>
-														<option> اخرى</option>
-
+							<option>اخرى</option>
 						</select>
-						
 					</div>
 				</div>
 			</div>
@@ -293,8 +313,7 @@
 							<option>عربي</option>
 							<option>انجليزي</option>
 							<option>صحة</option>
-														<option> اخرى</option>
-
+							<option>اخرى</option>
 						</select>
 					</div>
 				</div>
@@ -312,10 +331,9 @@
 						>
 							<option>مواطن</option>
 							<option>لاجئ</option>
-							
 						</select>
-									<small class="text-danger">
-							 {{ errcitizn}}
+						<small class="text-danger">
+							{{ errcitizn }}
 						</small>
 					</div>
 				</div>
@@ -351,50 +369,60 @@
 							v-model="previous_work"
 						>
 							<option>مزارع</option>
-														<option> اخرى</option>
-
+							<option>اخرى</option>
 						</select>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="img" class="col-sm-8 col-form-label btn"
+			<div class="col-md-10">
+
+			
+
+					<div class=" row flex-row me-5 my-4">
+					<label for="img2" class="col-sm-3 col-form-label btn"> اضف صورة البطاقة </label>
+					<div class="col-sm-1">
+						<input
+							type="file"
+							class="btn d-none"
+							id="img2"
+							@change="uploadFile2"
+							ref="file2"
+						/>
+					</div>
+
+
+
+					<label for="img3" class="col-sm-4 btn col-form-label ">اضف صورة شخصية </label>
+					<div class="col-sm-1">
+						<input
+							type="file"
+							class="btn d-none"
+							id="img3"
+							@change="uploadFile3"
+							ref="file3"
+						/>
+					</div>
+						<label for="img" class="col-sm-3 col-form-label btn"
 						>اضف صورة الهوية <span class="text-danger">*</span></label
 					>
-					<div class="col-sm-6">
-						<input type="file" class="btn d-none" id="img" @change="uploadFile" ref="file" />
-
+					<div class="col-sm-1">
+						<input
+							type="file"
+							class="btn d-none"
+							id="img"
+							@change="uploadFile"
+							ref="file"
+						/>
 					</div>
-								<small class="text-danger">
-							 {{ errimage}}
-						</small>
+					<small class="text-danger">
+						{{ errimage }}
+					</small>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="img2" class="col-sm-8 col-form-label btn"
-						>اضف صورة </label
-					>
-					<div class="col-sm-6">
-						<input type="file" class="btn d-none" id="img2"  @change="uploadFile2" ref="file2" />
-					</div>
 
-				</div>
 			</div>
-				<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="img3"  class="col-sm-8 btn col-form-label"
-						>اضف صورة </label
-					>
-					<div class="col-sm-6">
-						<input type="file" class="btn d-none"  id="img3"  @change="uploadFile3" ref="file3" />
-					</div>
-
-				</div>
-			</div>
+			
 			<div class="row justify-content-center">
-				<button type="submit" class="btn w-25 mt-4"  v-on:click.prevent="upload">
+				<button type="submit" class="btn w-25 mt-4" v-on:click.prevent="upload">
 					اضافة
 				</button>
 			</div>
@@ -435,32 +463,32 @@
 				file: null,
 				file2: null,
 				file3: null,
-				informats:[],	
-				informats2:[],
-				rec:"",		
-				ereaddres:'',			
-				errbirth:'',			
-				errcitizn:'',			
-				errdistrict:'',			
-				erraffili:'',			
-				errclass:'',			
-				errgender:'',			
-				errgovern:'',			
-				errimage:'',			
-				errid:'',			
-				errname:'',			
-				errnear:'',			
-				errnumof:'',			
-				errphone:'',			
-				errqualification:'',			
-				errsocial:'',			
-				errspecialty:'',			
-				erryear:'',			
-				show:'',			
-				show2:'',			
+				informats: [],
+				informats2: [],
+				rec: "",
+				ereaddres: "",
+				errbirth: "",
+				errcitizn: "",
+				errdistrict: "",
+				erraffili: "",
+				errclass: "",
+				errgender: "",
+				errgovern: "",
+				errimage: "",
+				errid: "",
+				errname: "",
+				errnear: "",
+				errnumof: "",
+				errphone: "",
+				errqualification: "",
+				errsocial: "",
+				errspecialty: "",
+				erryear: "",
+				show: "",
+				show2: "",
 			};
 		},
-	created() {
+		created() {
 			this.countr();
 			this.countr2();
 		},
@@ -468,17 +496,17 @@
 			uploadFile() {
 				this.file = this.$refs.file.files[0];
 			},
-				uploadFile2() {
+			uploadFile2() {
 				this.file2 = this.$refs.file2.files[0];
 			},
 			uploadFile3() {
 				this.file3 = this.$refs.file3.files[0];
 			},
-				uploadFile4() {
+			uploadFile4() {
 				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
-								this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
+				this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
 			},
-	countr() {
+			countr() {
 				const token = sessionStorage.getItem("token");
 				axios
 					.get(`api/dropdown/index`, {
@@ -490,7 +518,6 @@
 						console.log(res.data);
 						this.informats = res.data;
 						this.num_plac = res.data;
-						
 					})
 					.catch((e) => {
 						console.log(e);
@@ -512,7 +539,7 @@
 						console.log(e);
 					});
 			},
-			
+
 			upload() {
 				const token = sessionStorage.getItem("token");
 				let formData = new FormData();
@@ -543,65 +570,62 @@
 				formData.append("address", this.address);
 				formData.append("near_number", this.near_number);
 				axios
-					.post("api/beneficiary/store",formData,
-						{
-							headers: {
-								Authorization: "Bearer " + token,
-								"content-type": "multipart/form-data",
-							},
-						}
-					)
+					.post("api/beneficiary/store", formData, {
+						headers: {
+							Authorization: "Bearer " + token,
+							"content-type": "multipart/form-data",
+						},
+					})
 					.then((res) => {
 						console.log(res.data);
 						sessionStorage.setItem("af1", res.data.data.id);
-					this.showtrue()
+						this.showtrue();
 					})
 					.catch((error) => {
 						this.failed();
 						console.log(error.response.data.errors);
 						this.err = error.response.data.errors.name[0];
-							this.errname = error.response.data.errors.name[0];			
-							this.ereaddres = error.response.data.errors.address[0];		
-							this.errbirth = error.response.data.errors.birth_date[0];		
-							this.errcitizn = error.response.data.errors.citizenship[0];		
-							this.errdistrict = error.response.data.errors.district_id[0];		
-							this.erraffili = error.response.data.errors.affiliate_no[0];		
-							this.errclass = error.response.data.errors.class[0];		
-							this.errgender = error.response.data.errors.gender[0];		
-							this.errgovern = error.response.data.errors.governorate_id[0];		
-							this.errimage = error.response.data.errors.id_image[0];		
-							this.errid = error.response.data.errors.id_number[0];		
-							this.errnear = error.response.data.errors.near_number[0];		
-							this.errnumof = error.response.data.errors.number_of_people[0];		
-							this.errphone = error.response.data.errors.phone_number[0];		
-							this.errqualification = error.response.data.errors.qualification[0];		
-							this.errsocial = error.response.data.errors.social_status[0];		
-							this.errspecialty = error.response.data.errors.specialty[0];		
-							this.erryear = error.response.data.errors.year[0];		
+						this.errname = error.response.data.errors.name[0];
+						this.ereaddres = error.response.data.errors.address[0];
+						this.errbirth = error.response.data.errors.birth_date[0];
+						this.errcitizn = error.response.data.errors.citizenship[0];
+						this.errdistrict = error.response.data.errors.district_id[0];
+						this.erraffili = error.response.data.errors.affiliate_no[0];
+						this.errclass = error.response.data.errors.class[0];
+						this.errgender = error.response.data.errors.gender[0];
+						this.errgovern = error.response.data.errors.governorate_id[0];
+						this.errimage = error.response.data.errors.id_image[0];
+						this.errid = error.response.data.errors.id_number[0];
+						this.errnear = error.response.data.errors.near_number[0];
+						this.errnumof = error.response.data.errors.number_of_people[0];
+						this.errphone = error.response.data.errors.phone_number[0];
+						this.errqualification = error.response.data.errors.qualification[0];
+						this.errsocial = error.response.data.errors.social_status[0];
+						this.errspecialty = error.response.data.errors.specialty[0];
+						this.erryear = error.response.data.errors.year[0];
 					});
 			},
-						    showtrue(){
-      this.$swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'تمت الاضافة بنجاح ',
-  showConfirmButton: false,
-  timer: 1500
-}).then(() => {
-					location.reload();
-        });
-
-    },
-    failed(){
-       this.$swal.fire({
-  icon: 'error',
-  title: 'هناك خطأ ما !',
-  text: 'تأكد من المدخلات المطلوبة',
-})
-    }
+			showtrue() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						location.reload();
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
 		},
-		
-			
 	};
 </script>
 <style scoped>

@@ -1,7 +1,8 @@
 <template>
 	<container>							
-
-		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
+			<h5 class="text-secondary mx-5">{{name}}</h5>
+			<hr class="mx-5">
+		<div class="d-flex justify-content-center align-items-start mx-5 mt-2 h-100">
 			<table class="table">
 				<thead>
 					<tr class="text-center">
@@ -9,6 +10,7 @@
 						<th scope="col">رقم المنتسب</th>
 						<th scope="col">اسم المنتسب</th>
 						<th scope="col">رقم الجوال </th>
+						<th scope="col">اسم الدورة </th>
 						<th scope="col">رقم الدورة </th>
 						<th scope="col">العام </th>
 				
@@ -22,7 +24,8 @@
 						<th>{{ informat.beneficiary_id }}</th>
 						<th>{{ informat.beneficiary_name }}</th>
 						<th>{{ informat.mobile_number }}</th>
-						<th>{{ informat.source_id }}</th>
+						<th>{{ informat.effectiveness_name }}</th>
+						<th>{{ informat.effectiveness_number }}</th>
 						<th>{{ informat.year }}</th>
 						
 					
@@ -58,7 +61,7 @@
 				const token = sessionStorage.getItem("token");
 				axios
 					.get(
-						`api/source/show?source_id=${this.$route.query.q}`,
+						`api/course/show?course_id=${this.$route.query.q}`,
 						{
 							headers: {
 								Authorization: "Bearer " + token,
@@ -71,6 +74,8 @@
 					.then((res) => {
 						console.log(res.data);
 						this.informats = res.data.data;
+						this.name = res.data.data[0].effectiveness_name;
+						
 					})
 					.catch((e) => {
 						console.log(e);

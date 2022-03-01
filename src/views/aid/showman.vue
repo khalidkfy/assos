@@ -1,37 +1,33 @@
 <template>
 	<container>
-
-		<hr />
-		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
-			<table class="table ">
+		<h5 class="text-secondary mx-5">{{ name }}</h5>
+		<hr class="mx-5" />
+		<div class="d-flex justify-content-center align-items-start mt-2 mx-5 h-100">
+			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">رقم المستفيد</th>
-						<th scope="col">اسم المستفيد </th>
+						<th scope="col">اسم المستفيد</th>
 						<th scope="col">رقم الهاتف</th>
 						<th scope="col">رقم المشروع</th>
-												<th scope="col">تاريخ الاستلام</th>
-
+						<th scope="col">تاريخ الاستلام</th>
 						<th scope="col">العام</th>
-					
-
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="text-center" v-for="item in informats" :key="item.id">
-													<td>{{ item.beneficiary_id }}</td>
+						<td>{{ item.beneficiary_id }}</td>
 
-							<td>{{ item.affiliate_no }}</td>
-							<td>{{ item.beneficiary_name }}</td>
-							<td>{{ item.mobile_number}}</td>
+						<td>{{ item.affiliate_no }}</td>
+						<td>{{ item.beneficiary_name }}</td>
+						<td>{{ item.mobile_number }}</td>
 
-							<td>{{ item.project_number}}</td>
-														<td>{{ item.received_date}}</td>
+						<td>{{ item.project_number }}</td>
+						<td>{{ item.received_date }}</td>
 
-							<td>{{ item.year}}</td>
-			
-						</tr>
+						<td>{{ item.year }}</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -52,7 +48,7 @@
 				affiliate: "",
 				id_nu: "",
 				informats: [],
-				title : ""
+				title: "",
 			};
 		},
 		created() {
@@ -73,7 +69,7 @@
 					.then((res) => {
 						console.log(res.data.data);
 						this.informats = res.data.data;
-						this.title = res.data.data.project_name;
+						this.name = res.data.data[0].project_name;
 					})
 					.catch((e) => {
 						console.log(e);

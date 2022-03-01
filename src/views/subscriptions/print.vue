@@ -6,11 +6,11 @@
 						<img src="../../assets/img/back.jpeg" class="amg" alt="" />
 						<p class="abs0">{{ item.affiliate_no }}</p>
 						<p class="abs">{{ item.beneficiary_name }}</p>
-						<p class="abs2">{{ item.beneficiary_id }}</p>
+						<p class="abs2">{{ item.id_number }}</p>
+						<p class="abs4">{{ item.birth_date }}</p>
 						<p class="abs4">{{ item.start_subscription }}</p>
-						<p class="abs4">{{ item.start_subscription }}</p>
-						<p class="abs4">{{ item.start_subscription }}</p>
-						 <img :src="item.image" class="imgs" alt="">
+						<p class="abs4">{{ item.district }}</p>
+						 <img :src="'https://associationapi.awtar-tech.com/' + item.image" class="imgs" alt="">
 					</div>
 				</div>
 			</div>
@@ -34,6 +34,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		font-size: 20px;
+	}
+	.imgs{
+			position: absolute;
+		top: 111px;
+		right: 265px;
+		width: 65px;
+		height: 85px ;
+		z-index: 999;
 	}
 	.amg {
 		height: 260px;

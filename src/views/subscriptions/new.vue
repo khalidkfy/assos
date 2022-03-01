@@ -2,10 +2,7 @@
 	<container>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 my-2">
-					<button type="button" @click="addRow" class="btn">اضف مستفيد</button>
-				</div>
-				<table class="table table-bordered">
+				<table class="table table-bordered mt-5">
 					<thead>
 						<tr>
 							<th>رقم المستفيد</th>
@@ -15,14 +12,7 @@
 					</thead>
 					<tbody>
 						<tr v-for="(input, index) in people" :key="index" class="text-center">
-							<!-- <th>
-									<input
-										type="text"
-										v-model="people[index]['beneficiary_id']"
-										class="form-control "
-										placeholder="اي دي المستفيد"
-									/>
-								</th> -->
+				
 							<th>
 								<input
 									type="text"
@@ -31,13 +21,13 @@
 									placeholder="رقم المستفيد "
 								/>
 							</th>
+							
 							<th>
-								<input
-									type="text"
-									v-model="people[index]['subscription_type']"
-									class="form-control"
-									placeholder="النوع"
-								/>
+								
+							<select v-model="people[index]['subscription_type']" class="form-select">
+							<option value="1">مجاني</option>
+							<option value="0">غير مجاني</option>
+							</select>
 							</th>
 							<th>
 								<button
@@ -110,6 +100,7 @@
 
 				<div class="form-group row">
 					<div class="col-lg-12">
+						<button type="button" @click="addRow" class="btn ms-4">اضف مستفيد</button>
 						<button class="btn btn-primary" @click="save">حفظ</button>
 					</div>
 				</div>

@@ -1,8 +1,9 @@
 <template>
 	<container>
-
+			<h5 class="my-3 mx-5 text-secondary">{{name}}</h5>
+			<hr class=" mx-5">
 		<div class="row align-items-center justify-content-center">
-			<div class="col-11 my-5">
+			<div class="col-11 my-2">
 				<table class="table ">
 					<thead>
 						<tr class="text-center">
@@ -65,6 +66,7 @@
 					.then((res) => {
 						console.log(res.data.data);
 						this.informats = res.data.data;
+						this.name = res.data.data[0].source_of_income;
 					})
 					.catch((e) => {
 						console.log(e);

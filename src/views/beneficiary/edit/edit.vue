@@ -419,7 +419,67 @@
                     </div>
                   </div>
                 </div>
-			<button @click.prevent="editpersonal" class="btn w-25">اضافة</button>
+                			<div class="col-md-10">
+
+			
+
+					<div class=" row flex-row me-5 my-4">
+					<label for="img2" class="col-sm-4 col-form-label btn"> اضف صورة البطاقة </label>
+					<div class="col-sm-1">
+						<input
+							type="file"
+							class="btn d-none"
+							id="img2"
+							@change="uploadFile2"
+							ref="file2"
+						/>
+					</div>
+
+
+
+					<label for="img3" class="col-sm-3 btn col-form-label ">اضف صورة شخصية </label>
+					<div class="col-sm-1">
+						<input
+							type="file"
+							class="btn d-none"
+							id="img3"
+							@change="uploadFile3"
+							ref="file3"
+						/>
+					</div>
+						<label for="img" class="col-sm-3 col-form-label btn"
+						>اضف صورة الهوية <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-1">
+						<input
+							type="file"
+							class="btn d-none"
+							id="img"
+							@change="uploadFile"
+							ref="file"
+						/>
+					</div>
+
+          <div  class=" row  justify-content-center mt-2" style="height:70px">
+            <div class="col-4 row justify-content-center">
+            <img :src="affiliate_image" alt="" class="amgs " >
+
+            </div>  
+             <div class="col-4 row justify-content-center">
+                        <img :src="image" alt=""  class="amgs me-5">
+
+            </div>  
+             <div class="col-4 row justify-content-center">
+                        <img :src="id_image" alt=""  class="amgs" style="margin-right:150px !important">
+
+            </div>
+
+
+</div>
+				</div>
+
+			</div>
+			<button @click.prevent="editpersonal" class="btn w-25 mt-5">اضافة</button>
                 <!-- النهاية -->
               </div>
             </div>
@@ -688,6 +748,9 @@
       name: "",
       affiliate_no: "",
       mobile_number: "",
+      affiliate_image:null ,
+      id_image:null ,
+      image:null ,
       governorate: "",
       phone_number: "",
       gender: "",
@@ -706,6 +769,9 @@
       district: "",
       address: "",
       near_number:"",
+      file:null,
+      file2:null,
+      file3:null,
         // home page 
 
       housing_possession: "",
@@ -774,6 +840,15 @@
             this.countr2();
         },
         methods: {
+          uploadFile() {
+				this.file = this.$refs.file.files[0];
+			},
+			uploadFile2() {
+				this.file2 = this.$refs.file2.files[0];
+			},
+			uploadFile3() {
+				this.file3 = this.$refs.file3.files[0];
+			},
           	countr() {
 				const token = sessionStorage.getItem("token");
 
@@ -823,9 +898,14 @@
                     })
                     .then((res) => {
                         console.log(res.data);
+                        console.log("البيانات الاساسية");
                         this.id_number = res.data.data.id_number,
                         this.affiliate_no = res.data.data.affiliate_no,
                         this.name = res.data.data.name,
+                        this.image = res.data.data.image,
+                        this.affiliate_image = res.data.data.affiliate_image,
+                        this.id_image = res.data.data.id_image,
+                        
                         this.mobile_number = res.data.data.mobile_number,
                         this.governorate = res.data.data.governorate,
                         this.citizenship = res.data.data.citizenship,
@@ -951,53 +1031,7 @@
                                     });
             },
             // EDIT DATA 
-                // EDIT PERSONAL DATA 
-            editpersonal() {
-      const token = sessionStorage.getItem("token");
 
-      axios.post(
-          "api/beneficiary/update",
-          {
-            id_number:this.$route.query.q,
-            beneficiary_id:this.$route.query.q,
-            
-            name: this.name,
-            affiliate_no: this.affiliate_no,
-            mobile_number: this.mobile_number,
-            governorate: this.governorate,
-            phone_number: this.phone_number,
-            gender: this.gender,
-            year: this.year,
-            birth_date: this.birth_date,
-            number_of_people: this.number_of_people,
-            citizenship: this.citizenship,
-            class: this.classe,
-            wife_identity: this.wife_identity,
-            wife_name: this.wife_name,
-            previous_work: this.previous_work,
-            current_work: this.current_work,
-            specialty: this.specialty,
-            qualification: this.qualification,
-            social_status: this.social_status,
-            district: this.district,
-            address: this.address,
-            near_number:this.near_number
-            
-          },
-        {
-          headers:{
-            'Authorization': 'Bearer '+token
-          }}
-        )
-        .then((res) => {
-          console.log(res.data);
-        						location.reload();
-
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
             // EDIT HOME DATA  
              editwork() {            // Edit Home page 
 
@@ -1082,16 +1116,63 @@ edithome() {
 					)
 					.then((res) => {
 						console.log(res.data);
-						// const token = res.data.data.token;
-						// sessionStorage.setItem("token", token);
-						// this.$router.push({ name: "dashboard" });
+
             						location.reload();
 
 					})
 					.catch((e) => {
 						console.log(e);
 					});
-			},
+			},                // EDIT PERSONAL DATA 
+            editpersonal() {
+      const token = sessionStorage.getItem("token");
+        let formData = new FormData();
+				formData.append("id_image", this.file);
+				formData.append("affiliate_image", this.file2);
+				formData.append("image", this.file3);
+				formData.append("id_number", this.$route.query.q);
+				formData.append("name", this.name);
+				formData.append("affiliate_no", this.affiliate_no);
+				formData.append("mobile_number", this.mobile_number);
+				formData.append("governorate_id", this.rec);
+				formData.append("governorate", this.rec);
+				formData.append("phone_number", this.phone_number);
+				formData.append("gender", this.gender);
+				formData.append("birth_date", this.birth_date);
+				formData.append("number_of_people", this.number_of_people);
+				formData.append("citizenship", this.citizenship);
+				formData.append("class", this.classe);
+				formData.append("wife_identity", this.wife_identity);
+				formData.append("wife_name", this.wife_name);
+				formData.append("current_work", this.current_work);
+				formData.append("specialty", this.specialty);
+				formData.append("qualification", this.qualification);
+				formData.append("year", this.year);
+				formData.append("social_status", this.social_status);
+				formData.append("district", this.district);
+				formData.append("district_id", this.district);
+				formData.append("address", this.address);
+				formData.append("near_number", this.near_number);
+				formData.append("beneficiary_id", this.$route.query.q);
+      axios.post(
+          "api/beneficiary/update",formData,
+      
+        {
+          headers:{
+            'Authorization': 'Bearer '+ token,
+            "content-type": "multipart/form-data",
+
+          }}
+        )
+        .then((res) => {
+          console.log(res.data);
+        						location.reload();
+
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
 
 
 
@@ -1117,6 +1198,9 @@ edithome() {
     textarea {
         background-color: #f5f8fa;
     }
-
+.amgs{
+  width: 100px  !important;
+  height: 100px;
+}
 </style>
 

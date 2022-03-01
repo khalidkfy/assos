@@ -1352,9 +1352,29 @@
 					role="tabpanel"
 					aria-labelledby="pills-eight-tab"
 				>
-				<h1>sadsadsadasdsdsadsadasdasd
-          eight page
-        </h1>
+			<table class="table ">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+									<th scope="col">الكود</th>
+						<th scope="col">نوع الاشتراك</th>
+						<th scope="col">تاريخ البداية</th>
+						<th scope="col">تاريخ النهاية</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="text-center" v-for="item in subscs" :key="item.id">
+										<th scope="row">{{ item.id }}</th>
+										<th scope="row">{{ item.code }}</th>
+						<th v-if="item.subscription_type == 1">غير مجاني</th>
+						<th v-else-if="item.subscription_type == 0">مجاني</th>
+
+						<th scope="row">{{ item.start_subscription }}</th>
+						<th scope="row">{{ item.end_subscription }}</th>
+					
+							</tr>
+						</tbody>
+					</table>
 				</div>
       </div>
 		</div>
@@ -1452,7 +1472,9 @@
 				typeneed: "",
 				noteneed: "",
 				aid:[],
-				course:[]			};
+				course:[],	
+				subscs:[]	
+						};
 		},
 		created() {
 			this.basicdata();
@@ -1461,6 +1483,7 @@
 			this.source();
 			this.aids();
 			this.courses();
+			this.subsc();
 		},
 		methods: {
 			needed() {
@@ -1492,6 +1515,23 @@
 						console.log(res.data.data.aid);
 						console.log("aid ");
 						this.aid = res.data.data.aid;
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+				subsc() {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(`api/subscriptionpeople/show?beneficiary_id=${this.$route.query.q}`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data.data);
+						console.log("subscs ");
+						this.subscs = res.data.data;
 					})
 					.catch((e) => {
 						console.log(e);
