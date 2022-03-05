@@ -1,5 +1,49 @@
 <template>
-	<container>							<th><router-link class="btn" to="addcourse">اضافة دورة</router-link></th>
+	<container>					
+		
+				<div class="row justify-content-around">
+			<input
+				type="text"
+				class="form-control m-2"
+				style="width: 40%"
+				aria-label="Default select example"
+				v-model="effectiveness_name"
+				@change="basicdata"
+				placeholder="اسم الدورة"
+			/>
+			<input
+				type="text"
+				class="form-control m-2"
+				style="width: 40%"
+				v-model="name"
+				@change="effectiveness_number"
+				placeholder="رقم الدورة"
+			/>
+		</div>
+		<div class="row justify-content-around">
+			<input
+				type="text"
+				class="form-control m-2"
+				style="width: 40%"
+				v-model="funded_side"
+				@change="basicdata"
+				placeholder="الجهة الممولة"
+			/>
+			<input
+				type="text"
+				class="form-control m-2"
+				style="width: 40%"
+				v-model="supervisor"
+				@change="basicdata"
+				placeholder="المشرف"
+			/>
+		</div>
+
+		<hr />
+		
+		
+		
+				<th><router-link class="btn" to="addcourse">اضافة دورة</router-link></th>
 
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
 			<table class="table ">
@@ -15,9 +59,10 @@
 						<th scope="col">وقت النهاية</th>
 						<th scope="col">عدد المشتركين </th>
 						<th scope="col">تكلفة المشرف</th>
-												<th scope="col">المبلغ الاجمالي</th>
-												<th scope="col">*</th>
-												<th scope="col">*</th>
+						<th scope="col">المبلغ الاجمالي</th>
+						<th scope="col">الجهة الممولة</th>
+						<th scope="col">*</th>
+						<th scope="col">*</th>
 
 					</tr>
 				</thead>
@@ -34,6 +79,8 @@
 						<th>{{ informat.number_of_effectiveness }}</th>
 						<th>{{ informat.supervisor_cost }}</th>
 						<th>{{ informat.total_cost }}</th>
+						<th>{{ informat.funded_side }}</th>
+						
 						<th>
 							<router-link :to="{name:'showpcorse' , query: { q: informat.id }}" class="btn">عرض</router-link>						</th>
 						<th>
@@ -46,6 +93,34 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+			<div class="d-flex align-items-center justify-content-between">
+			<div class="d-flex align-items-center">
+				<input
+					type="number"
+					class="form-control m-2"
+					style="width: 40%"
+					v-model="page"
+					@change="basicdata"
+					placeholder="رقم الهوية"
+				/>
+				<small class="mx-2">عدد الصفحات {{ nums }}</small>
+			</div>
+
+			<div class="d-flex align-items-center">
+				<select
+					type="number"
+					class="form-control m-2"
+					style="width: 100%"
+					v-model="per"
+					@change="basicdata"
+				>
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
 		</div>
 	</container>
 </template>
@@ -64,6 +139,10 @@
 				affiliate: "",
 				id_nu: "",
 				informats: [],
+				effectiveness_number:"",
+				effectiveness_name:"",
+				funded_side:"",
+				supervisor:"",
 			};
 		},
 		created() {
@@ -74,19 +153,22 @@
 				const token = sessionStorage.getItem("token");
 				axios
 					.get(
-						`api/course/index?effectiveness_number&effectiveness_name&funded_side&supervisor`,
+						`api/course/index?effectiveness_number=${this.effectiveness_number}&effectiveness_name=${this.effectiveness_name}&funded_side=${this.funded_side}&supervisor=${this.supervisor}`,
 						{
 							headers: {
 								Authorization: "Bearer " + token,
 							},
 							params: {
-								per_page: 3500,
+								page: this.page,
+								per_page: this.per,
 							},
 						}
 					)
 					.then((res) => {
 						console.log(res.data);
 						this.informats = res.data.data;
+												this.nums = res.data.paging.last_page;
+
 					})
 					.catch((e) => {
 						console.log(e);

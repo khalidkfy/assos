@@ -53,7 +53,7 @@
 						>تاريخ المشروع
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="project_date" />
+						<input type="date" class="form-control" v-model="project_date" />
 					</div>
 				</div>
 			</div>

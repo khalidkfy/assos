@@ -48,6 +48,7 @@
 						<th scope="col">الاسم</th>
 						<th scope="col">الحالة</th>
 						<th scope="col">رقم الهوية</th>
+						<th scope="col">رقم المنتسب </th>
 						<th scope="col">السنة</th>
 						<th scope="col">عرض البيانات</th>
 						<th scope="col">الاجراء</th>
@@ -59,6 +60,7 @@
 						<th>{{ informat.name }}</th>
 						<th>{{ informat.class }}</th>
 						<th>{{ informat.id_number }}</th>
+						<th>{{ informat.affiliate_no }}</th>
 						<th>{{ informat.year }}</th>
 						<th>
 							<router-link
@@ -82,8 +84,43 @@
 						
 					</tr>
 				</tbody>
+
 			</table>
+
 		</div>
+		<div class="d-flex align-items-center justify-content-between">
+			<div class="d-flex align-items-center ">
+<input
+				type="number"
+				class="form-control m-2"
+				style="width: 40%"
+				v-model="page"
+				@change="basicdata"
+				placeholder="رقم الهوية"
+			/>
+						<small class="mx-2">عدد الصفحات {{nums}}</small>
+
+			</div>
+
+				<div class="d-flex align-items-center">
+<select
+				type="number"
+				class="form-control m-2"
+				style="width:100%"
+				v-model="per"
+				@change="basicdata"
+			>		
+				<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+			</select>
+
+			</div>
+
+			
+		</div>
+	
 	</container>
 </template>
 <script>
@@ -91,7 +128,9 @@
 	import container from "@/components/containers/container.vue";
 
 	export default {
-		components: { container },
+		components: { container
+		
+		},
 		name: "personal",
 
 		data() {
@@ -101,14 +140,19 @@
 				affiliate: "",
 				id_nu: "",
 				informats: [],
+				page: 1,
+				nums:null,
+				per:10
 			};
 		},
 		created() {
 			this.basicdata();
 		},
 		methods: {
+		
 			basicdata() {
 				const token = sessionStorage.getItem("token");
+				
 				axios
 					.get(
 						`api/beneficiary/index?year=${this.year}&name=${this.name}&affiliate_no=${this.affiliate}&id_number=${this.id_nu}`,
@@ -117,13 +161,15 @@
 								Authorization: "Bearer " + token,
 							},
 							params: {
-								per_page: 3500,
+								page: this.page,
+								 per_page:this.per
 							},
 						}
 					)
 					.then((res) => {
-						console.log(res.data.data[0]);
+						console.log(res.data.paging.last_page);
 						this.informats = res.data.data;
+						this.nums = res.data.paging.last_page;
 					})
 					.catch((e) => {
 						console.log(e);

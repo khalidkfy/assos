@@ -190,7 +190,7 @@
 						>تاريخ الميلاد <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" v-model="birth_date" />
+						<input type="text" class="form-control" v-model="birth_date" />
 						<small class="text-danger">
 							{{ errbirth }}
 						</small>
@@ -403,7 +403,7 @@
 						/>
 					</div>
 						<label for="img" class="col-sm-3 col-form-label btn"
-						>اضف صورة الهوية <span class="text-danger">*</span></label
+						>اضف صورة الهوية </label
 					>
 					<div class="col-sm-1">
 						<input
@@ -565,14 +565,15 @@
 				formData.append("qualification", this.qualification);
 				formData.append("year", this.year);
 				formData.append("social_status", this.social_status);
-				formData.append("district", this.district);
 				formData.append("district_id", this.district);
 				formData.append("address", this.address);
 				formData.append("near_number", this.near_number);
-				axios
-					.post("api/beneficiary/store", formData, {
+
+				axios.post("api/beneficiary/store", formData, {
 						headers: {
+
 							Authorization: "Bearer " + token,
+
 							"content-type": "multipart/form-data",
 						},
 					})

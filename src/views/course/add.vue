@@ -49,7 +49,7 @@
 						>التاريخ
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="date" />
+						<input type="date" class="form-control" v-model="date" />
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 						>وقت البداية
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="start" />
+						<input type="time" class="form-control" v-model="start" />
 					</div>
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 						>وقت النهاية
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="end" />
+						<input type="time" class="form-control" v-model="end" />
 					</div>
 				</div>
 			</div>

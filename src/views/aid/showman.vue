@@ -31,6 +31,34 @@
 				</tbody>
 			</table>
 		</div>
+			<div class="d-flex align-items-center justify-content-between">
+			<div class="d-flex align-items-center">
+				<input
+					type="number"
+					class="form-control m-2"
+					style="width: 40%"
+					v-model="page"
+					@change="basicdata"
+					placeholder="رقم الهوية"
+				/>
+				<small class="mx-2">عدد الصفحات {{ nums }}</small>
+			</div>
+
+			<div class="d-flex align-items-center">
+				<select
+					type="number"
+					class="form-control m-2"
+					style="width: 100%"
+					v-model="per"
+					@change="basicdata"
+				>
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
+		</div>
 	</container>
 </template>
 <script>
@@ -49,6 +77,9 @@
 				id_nu: "",
 				informats: [],
 				title: "",
+					page: 1,
+				nums: null,
+				per: 10,
 			};
 		},
 		created() {
@@ -62,14 +93,17 @@
 						headers: {
 							Authorization: "Bearer " + token,
 						},
-						params: {
-							per_page: 3500,
-						},
+					params: {
+								page: this.page,
+								per_page: this.per,
+							},
 					})
 					.then((res) => {
 						console.log(res.data.data);
 						this.informats = res.data.data;
 						this.name = res.data.data[0].project_name;
+												this.nums = res.data.paging.last_page;
+
 					})
 					.catch((e) => {
 						console.log(e);

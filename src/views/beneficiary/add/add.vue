@@ -44,6 +44,20 @@
 						العمل والتقييم
 					</button>
 				</li>
+					<li class="nav-item" role="presentation">
+					<button
+						class="nav-link"
+						id="pills-contact-tab"
+						data-bs-toggle="pill"
+						data-bs-target="#pills-income"
+						type="button"
+						role="tab"
+						aria-controls="pills-income"
+						aria-selected="false"
+					>
+						مصادر الدخل 					
+			</button>
+				</li>
 				<li class="nav-item" role="presentation">
 					<button
 						class="nav-link"
@@ -57,10 +71,14 @@
 					>
 						الاحتياجات
 					</button>
-				</li>
+				</li>	
+			
 			</ul>
+			
 			<div class="tab-content" id="pills-tabContent">
 				<personal />
+								<Incoms />
+
 				<home />
 				<work />
 				<Source />
@@ -69,11 +87,13 @@
 	</Container>
 </template>
 <script>
+
 	import personal from "@/views/beneficiary/add/personal.vue";
 	import home from "@/views/beneficiary/add/home.vue";
 	import work from "@/views/beneficiary/add/work.vue";
 	import Container from "@/components/containers/container.vue";
 	import Source from "./source.vue";
+	import Incoms from "./income.vue";
 
 	export default {
 		name: "add",
@@ -81,7 +101,7 @@
 			personal,
 			home,
 			work,
-
+			Incoms,
 			Container,
 			Source,
 		},

@@ -2,12 +2,11 @@
 	<container>
 		<div class="container">
 			<div class="row">
-				<table class="table table-bordered mt-5">
+				<table class="table  mt-5">
 					<thead>
 						<tr>
 							<th>رقم المستفيد</th>
 							<th>النوع</th>
-							<th>حذف مستفيد</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -22,13 +21,7 @@
 								/>
 							</th>
 							
-							<th>
-								
-							<select v-model="people[index]['subscription_type']" class="form-select">
-							<option value="1">مجاني</option>
-							<option value="0">غير مجاني</option>
-							</select>
-							</th>
+						
 							<th>
 								<button
 									type="button"
@@ -128,7 +121,6 @@
 			addRow() {
 				this.people.push({
 					beneficiary_id: "",
-					cost: "",
 				});
 			},
 			deleteRow(index) {
@@ -149,14 +141,37 @@
 							},
 						}
 					)
-					.then((res) => {
-						console.log(res.data);
+					.then(() => {
+						this.show();
 					})
 					.catch((error) => {
-						console.log(error.data);
+							this.failed();
 						this.err = error.message;
 					});
 			},
+			    show(){
+   const  Swal = this.$swal ; 
+      const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'تم تسجيل مشترك بنجاح '
+}).then(() => {
+          this.$router.push({ name: "listSubs" });
+        });
+  
+    },
+
 		},
 	};
 </script>
