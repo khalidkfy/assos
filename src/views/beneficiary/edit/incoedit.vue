@@ -118,7 +118,7 @@
 					.post(
 						"api/sourcesofincome/update",
 						{
-							beneficiary_id: this.$route.query.q,
+							source_of_income_id: this.$route.query.q,
                             source_of_income:this.source_of_income , 
                             financial_value:this.financial_value, 
                             income_source_details:this.income_source_details,
@@ -132,7 +132,13 @@
 								Authorization: "Bearer " + token,
 							},
 						}
-					)
+					)		.then(() => {
+						
+						this.$router.push({ name: "edit" });
+					})
+					.catch((err) => {
+						console.log(err)
+					});
 			
 			},
 		
