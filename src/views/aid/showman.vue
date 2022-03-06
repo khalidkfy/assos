@@ -1,5 +1,28 @@
 <template>
 	<container>
+				<div class="row justify-content-around">
+	
+			<input
+				type="text"
+				class="form-control m-2"
+					style="width: 40%"
+				aria-label="Default select example"
+				v-model="nme"
+				@change="basicdata"
+				placeholder="الاسم"
+			/>
+				<input
+				type="text"
+				class="form-control m-2"
+					style="width: 40%"
+				aria-label="Default select example"
+				v-model="affilt"
+				@change="basicdata"
+				placeholder="رقم المستفيد"
+			/>
+		
+		</div>			
+				
 		<h5 class="text-secondary mx-5">{{ name }}</h5>
 		<hr class="mx-5" />
 		<div class="d-flex justify-content-center align-items-start mt-2 mx-5 h-100">
@@ -79,6 +102,8 @@
 				title: "",
 					page: 1,
 				nums: null,
+				nme:"",
+				affilt:"",
 				per: 10,
 			};
 		},
@@ -89,7 +114,7 @@
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios
-					.get(`api/aid/show?aid_id=${this.$route.query.q}`, {
+					.get(`api/aid/show?aid_id=${this.$route.query.q}&name=${this.nme}&affiliate_no=${this.affilt}`, {
 						headers: {
 							Authorization: "Bearer " + token,
 						},
@@ -100,8 +125,8 @@
 					})
 					.then((res) => {
 						console.log(res.data.data);
-						this.informats = res.data.data;
-						this.name = res.data.data[0].project_name;
+						this.informats = res.data.data.AidPeople;
+						this.name = res.data.data.Aid.project_name;
 												this.nums = res.data.paging.last_page;
 
 					})

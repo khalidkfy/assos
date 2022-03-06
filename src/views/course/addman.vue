@@ -14,27 +14,47 @@
 						<thead>
 							<tr>
 								<th>رقم المستفيد</th>
-								<th>حذف مستفيد</th>
+								<th>اسم المستفيد</th>
+								<th>رقم الجوال</th>
+								<th>السنة </th>
+								<th>حذف المستفيد  </th>
+				
 							</tr>
 						</thead>
-						<tbody>
+						<tbody >
 							<tr v-for="(input, index) in people" :key="index" class="text-center">
-								<!-- <th>
-									<input
-										type="text"
-										v-model="people[index]['beneficiary_id']"
-										class="form-control "
-										placeholder="اي دي المستفيد"
-									/>
-								</th> -->
+
 								<th>
 									<input
 										type="text"
-										v-model="people[index]['beneficiary_id']"
+										v-model="people[index]['beneficiary_id'] "
 										class="form-control "
+										@change="ret"
 										placeholder="رقم المستفيد "
 									/>
 								</th>
+								<th>
+									<div v-for=" (s , index) in informats" :key="index">
+								<p>{{s.name}}</p>
+							
+							</div>
+								</th>
+
+									<th>
+									<div v-for=" (s , index) in informats" :key="index">
+								<p>{{s.phone_number}}</p>
+							
+							</div>
+								</th>
+
+
+									<th>
+									<div v-for=" (s , index) in informats" :key="index">
+								<p>{{s.year}}</p>
+							
+							</div>
+								</th>
+								
 								<th>
 										<button
 										type="button"
@@ -61,7 +81,8 @@
 							</tr>
 						</tbody>
 					</table>
-			
+	
+						
 					<div class="form-group row">
 						<div class="col-lg-12">
 							<button class="btn btn-primary" @click="save">حفظ</button>
@@ -82,6 +103,7 @@
 			return {
 				informats: [],
 				people: [],
+				pe2:[]
 			};
 		},
 		created() {
@@ -112,14 +134,61 @@
 							},
 						}
 					)
-					.then((res) => {
-						console.log(res.data);
+					.then(() => {
+						this.show();
 					})
-					.catch((error) => {
-						console.log(error.data);
-						this.err = error.message;
+					.catch(() => {
+						this.failed();
 					});
 			},
+			ret(){
+						
+				const token = sessionStorage.getItem("token");
+				const nums = this.people.length - 1 ;
+				const arr = this.people[nums].beneficiary_id;
+				
+				axios
+					.get(
+						`api/return/returndata?affiliate_no=${arr}`,
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						
+						}
+					)
+					.then((res) => {
+						console.log(res.data);
+						this.informats = res.data;
+
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+		
+			},
+
+			show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						this.$router.push({ name: "showcorse" });
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
+
 		},
 	};
 </script>

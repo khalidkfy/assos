@@ -43,7 +43,9 @@
 						>الهوية <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="id_number" required />
+						<input type="number" class="form-control" v-model="id_number" required 
+						@change="inform"
+						/>
 						<small class="text-danger">
 							{{ errid }}
 						</small>
@@ -109,8 +111,8 @@
 							aria-label="Default select example"
 							v-model="gender"
 						>
-							<option>ذكر</option>
-							<option>أنثى</option>
+							<option value="1">ذكر</option>
+							<option value="2">أنثى</option>
 						</select>
 						<small class="text-danger">
 							{{ errgender }}
@@ -385,9 +387,12 @@
 							type="file"
 							class="btn d-none"
 							id="img2"
-							@change="uploadFile2"
+							@change="uploadFile2()
+							
+							"
 							ref="file2"
 						/>
+
 					</div>
 
 
@@ -398,7 +403,11 @@
 							type="file"
 							class="btn d-none"
 							id="img3"
-							@change="uploadFile3"
+							@change="
+							uploadFile3()
+							
+							
+							"
 							ref="file3"
 						/>
 					</div>
@@ -410,13 +419,13 @@
 							type="file"
 							class="btn d-none"
 							id="img"
-							@change="uploadFile"
+							@change="uploadFile()
+							"
 							ref="file"
 						/>
+
 					</div>
-					<small class="text-danger">
-						{{ errimage }}
-					</small>
+				
 				</div>
 
 			</div>
@@ -444,7 +453,7 @@
 				mobile_number: "",
 				governorate: "",
 				phone_number: "",
-				gender: "",
+				gender: 1,
 				year: "",
 				birth_date: "",
 				number_of_people: "",
@@ -486,6 +495,7 @@
 				erryear: "",
 				show: "",
 				show2: "",
+				show3: "",
 			};
 		},
 		created() {
@@ -503,9 +513,13 @@
 				this.file3 = this.$refs.file3.files[0];
 			},
 			uploadFile4() {
-				this.show = URL.createObjectURL(this.$refs.file2.files[0]);
-				this.show2 = URL.createObjectURL(this.$refs.file.files[0]);
+				this.show = URL.createObjectURL(this.$refs.file.files[0]);
+								this.show2= URL.createObjectURL(this.$refs.file2.files[0]);
+												this.show3 = URL.createObjectURL(this.$refs.file3.files[0]);
+
+
 			},
+		
 			countr() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -534,6 +548,27 @@
 					.then((res) => {
 						console.log(res.data);
 						this.informats2 = res.data;
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+			inform(){
+					const token = sessionStorage.getItem("token");
+				axios
+					.get(`api/return/returnid?id_number=${this.id_number}`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						this.birth_date = res.data.data.birth_date;
+						this.name = res.data.data.name;
+						this.gender = res.data.data.gender;
+						this.address = res.data.data.address;
+						
+						
 					})
 					.catch((e) => {
 						console.log(e);

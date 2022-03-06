@@ -2,26 +2,38 @@
 	<container>
 		<div class="container">
 			<div class="row">
-				<table class="table  mt-5">
+				<table class="table mt-5">
 					<thead>
 						<tr>
 							<th>رقم المستفيد</th>
-							<th>النوع</th>
+							<th>الاسم</th>
+							<th>الرقم</th>
+							<th>حذف</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr v-for="(input, index) in people" :key="index" class="text-center">
-				
 							<th>
 								<input
 									type="text"
 									v-model="people[index]['beneficiary_id']"
 									class="form-control"
 									placeholder="رقم المستفيد "
+									@change="ret"
 								/>
 							</th>
+							<th>
+							<div v-for=" (s , index) in informats" :key="index">
+								<p>{{s.name}}</p>
 							
-						
+							</div>
+								</th>
+									<th>
+									<div v-for=" (s , index) in informats" :key="index">
+								<p>{{s.phone_number}}</p>
+							
+							</div>
+									</th>
 							<th>
 								<button
 									type="button"
@@ -145,33 +157,57 @@
 						this.show();
 					})
 					.catch((error) => {
-							this.failed();
+						this.failed();
 						this.err = error.message;
 					});
 			},
-			    show(){
-   const  Swal = this.$swal ; 
-      const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
+				ret(){
+						
+				const token = sessionStorage.getItem("token");
+				const nums = this.people.length - 1 ;
+				const arr = this.people[nums].beneficiary_id;
+				
+				axios
+					.get(
+						`api/return/returndata?affiliate_no=${arr}`,
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						
+						}
+					)
+					.then((res) => {
+						console.log(res.data);
+						this.informats = res.data;
 
-Toast.fire({
-  icon: 'success',
-  title: 'تم تسجيل مشترك بنجاح '
-}).then(() => {
-          this.$router.push({ name: "listSubs" });
-        });
-  
-    },
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+		
+			},
+			show() {
+				const Swal = this.$swal;
+				const Toast = Swal.mixin({
+					toast: true,
+					position: "top-end",
+					showConfirmButton: false,
+					timer: 2000,
+					timerProgressBar: true,
+					didOpen: (toast) => {
+						toast.addEventListener("mouseenter", Swal.stopTimer);
+						toast.addEventListener("mouseleave", Swal.resumeTimer);
+					},
+				});
 
+				Toast.fire({
+					icon: "success",
+					title: "تم تسجيل مشترك بنجاح ",
+				}).then(() => {
+					this.$router.push({ name: "listSubs" });
+				});
+			},
 		},
 	};
 </script>

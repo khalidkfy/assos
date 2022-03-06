@@ -40,7 +40,6 @@
 							<option>يوجد</option>
 							<option>لايوجد</option>
 							<option>اخرى</option>
-
 						</select>
 					</div>
 				</div>
@@ -52,17 +51,18 @@
 						>نوع السكن
 					</label>
 					<div class="col-sm-10">
-							<select
+						<select
 							class="form-select"
 							aria-label="Default select example"
-							 v-model="accommodation_type">
+							v-model="accommodation_type"
+						>
 							<option>باطون</option>
 							<option>اسبست</option>
 							<option>زينكو</option>
 							<option>خص</option>
-														<option>اخرى</option>
-
-						</select>					</div>
+							<option>اخرى</option>
+						</select>
+					</div>
 				</div>
 			</div>
 
@@ -102,8 +102,7 @@
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">العلاج</label>
 					<div class="col-sm-10">
-							<input type="text" class="form-control" v-model="treatment" />
-							
+						<input type="text" class="form-control" v-model="treatment" />
 					</div>
 				</div>
 			</div>
@@ -131,8 +130,7 @@
 							<option>جيد</option>
 							<option>ممتاز</option>
 							<option>قديم</option>
-														<option>اخرى</option>
-
+							<option>اخرى</option>
 						</select>
 					</div>
 				</div>
@@ -272,7 +270,6 @@
 					/>
 					<label class="form-check-label" for="asdew"> منبوذ اناني </label>
 				</div>
-				
 			</div>
 
 			<div class="col-md-3 mt-4">
@@ -397,7 +394,6 @@
 				collaborating_with_researcher: "",
 				can_used: "",
 				cooperation_notes: "",
-			
 			};
 		},
 
@@ -410,7 +406,6 @@
 					.post(
 						"api/home/update",
 						{
-							
 							beneficiary_id: af1,
 							housing_possession: this.housing_possession,
 							other_housing_possession: this.other_housing_possession,
@@ -448,33 +443,32 @@
 						}
 					)
 					.then(() => {
-							this.show()
-
+						this.show();
 					})
 					.catch(() => {
-							this.failed()
-
+						this.failed();
 					});
 			},
-			    show(){
-      this.$swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'تمت الاضافة بنجاح ',
-  showConfirmButton: false,
-  timer: 1500
-}).then(() => {
-					location.reload();
-        });
-
-    },
-    failed(){
-       this.$swal.fire({
-  icon: 'error',
-  title: 'هناك خطأ ما !',
-  text: 'تأكد من المدخلات المطلوبة',
-})
-    }
+			show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						location.reload();
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
 		},
 	};
 </script>
@@ -484,8 +478,8 @@
 	textarea {
 		background-color: #f5f8fa;
 	}
-	.relat{
+	.relat {
 		color: red;
 		font-weight: 700;
-		}
+	}
 </style>

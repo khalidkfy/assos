@@ -36,7 +36,9 @@ import showman from "../views/aid/showman.vue";
 import addsubs from "../views/subscriptions/addsubs.vue";
 import adds from "../views/subscriptions/new.vue";
 import shwsubs from "../views/subscriptions/shwsubs.vue";
-
+// end subsc 
+// start edit 
+import incoedit from "../views/beneficiary/edit/incoedit.vue";
 
 const routes = [
   {
@@ -49,6 +51,12 @@ const routes = [
     path: "/addsubs",
     name: "addsubs",
     component: addsubs,
+  },
+  
+  {
+    path: "/incoedit",
+    name: "incoedit",
+    component: incoedit,
   },
 
   

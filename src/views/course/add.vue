@@ -1,23 +1,19 @@
 <template>
-        <container>
-            <div class="d-flex justify-content-end" >
-               </div>
+	<container>
+		<div class="d-flex justify-content-end"></div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<div class="col-sm-9">
-						
 						<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم الفعالية
-
-					</label>
-					<div class="col-sm-12">
-						<input type="text" class="form-control"	v-model="effectiveness_number"/>
-					</div>
+							>رقم الفعالية
+						</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" v-model="effectiveness_number" />
+						</div>
 					</div>
 				</div>
 			</div>
-
 
 			<div class="col-md-6">
 				<div class="m-3 row">
@@ -30,13 +26,10 @@
 				</div>
 			</div>
 
-		
-
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
 						>المشرف الممول
-
 					</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" v-model="funded_side" />
@@ -78,9 +71,7 @@
 
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>المشرف
-					</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label">المشرف </label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" v-model="supervisor" />
 					</div>
@@ -104,7 +95,11 @@
 						>عدد المتفاعلين
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="number_of_effectiveness" />
+						<input
+							type="text"
+							class="form-control"
+							v-model="number_of_effectiveness"
+						/>
 					</div>
 				</div>
 			</div>
@@ -141,35 +136,31 @@
 					</div>
 				</div>
 			</div>
-				<div class="col-md-6 d-flex">
-				<div class=" row">
-					<label for="flexCheckDefault" class="col-sm-5 col-form-label"
-						>دورة
-					</label>
-					<div class="col-sm-6 mt-2">
-						<input type="checkbox" class="form-check-input" id="flexCheckDefault"
-						 v-model="course" />
+				<div class="col-md-6">
+				<div class="m-3 row">
+				<label for="inputPassword" class="col-sm-12 col-form-label"
+						>مصدر الدخل</label
+					>
+					<div class="col-sm-9">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="source_of_income"
+						>
+							<option value="0">دورة</option>
+							<option value="1">رحلة</option>
+					
+				
+						
+						</select>
 					</div>
-				</div>
-				<div class=" row">
-					<label  for="flexCheckDefault2" class="col-sm-5 col-form-label"
-						>رحلة
-					</label>
-					<div class="col-sm-6 mt-2">
-						<input type="checkbox" class="form-check-input"  id="flexCheckDefault2"
-						 v-model="trip" />
-					</div>
-				</div>
-			</div>
-
 		
-
+				</div></div>
 			<div class="row justify-content-center mt-4">
 				<button @click.prevent="source" class="btn w-25">اضافة</button>
 			</div>
 		</div>
-
-        </container>
+	</container>
 </template>
 <script>
 	import axios from "axios";
@@ -177,7 +168,7 @@
 
 	export default {
 		components: { container },
-        		data() {
+		data() {
 			return {
 				effectiveness_number: "",
 				effectiveness_name: "",
@@ -193,7 +184,6 @@
 				cost: "",
 				total_cost: "",
 				notes: "",
-				
 			};
 		},
 
@@ -225,23 +215,33 @@
 							},
 						}
 					)
-					.then((res) => {
-						console.log(res.data);
-						// const token = res.data.data.token;
-						// sessionStorage.setItem("token", token);
-						// this.$router.push({ name: "dashboard" });
-						location.reload();
+					.then(() => {
+						this.show();
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch(() => {
+						this.failed();
 					});
 			},
-
-
-
-
-
-
+			show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة  بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						this.$router.push({ name: "showcorse" });
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},	
 		},
 	};
 </script>

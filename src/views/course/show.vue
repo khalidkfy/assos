@@ -102,7 +102,6 @@
 					style="width: 40%"
 					v-model="page"
 					@change="basicdata"
-					placeholder="رقم الهوية"
 				/>
 				<small class="mx-2">عدد الصفحات {{ nums }}</small>
 			</div>

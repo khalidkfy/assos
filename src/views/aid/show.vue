@@ -1,11 +1,10 @@
 <template>
 	<container>
-			<div class="row justify-content-around">
-	
+		<div class="row justify-content-around">
 			<input
 				type="text"
 				class="form-control m-2"
-					style="width: 40%"
+				style="width: 40%"
 				aria-label="Default select example"
 				v-model="project_number"
 				@change="basicdata"
@@ -40,7 +39,7 @@
 		</div>
 
 		<hr />
-						<router-link class="btn ms-3" :to="{ name: 'addaid' }">
+		<router-link class="btn ms-3" :to="{ name: 'addaid' }">
 			اضافة مساعدات
 		</router-link>
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
@@ -58,7 +57,6 @@
 						<th scope="col">الجهة الممولة</th>
 						<th scope="col">#</th>
 						<th scope="col">#</th>
-
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
@@ -73,52 +71,52 @@
 						<th>{{ informat.value_per_person }}</th>
 						<th>{{ informat.funded_side }}</th>
 						<th>
-							<router-link class="btn ms-3" :to="{ name: 'showman' ,  query: { q: informat.id } }">
+							<router-link
+								class="btn ms-3"
+								:to="{ name: 'showman', query: { q: informat.id } }"
+							>
 								عرض
 							</router-link>
 						</th>
 						<th>
-							<router-link class="btn ms-3" :to="{ name: 'addmanaid' ,  query: { q: informat.id }  }">
+							<router-link
+								class="btn ms-3"
+								:to="{ name: 'addmanaid', query: { q: informat.id } }"
+							>
 								اضافة
 							</router-link>
 						</th>
 					</tr>
 				</tbody>
 			</table>
-	
-
 		</div>
 		<div class="d-flex align-items-center justify-content-between">
-			<div class="d-flex align-items-center ">
-<input
-				type="number"
-				class="form-control m-2"
-				style="width: 40%"
-				v-model="page"
-				@change="basicdata"
-				placeholder="رقم الهوية"
-			/>
-						<small class="mx-2">عدد الصفحات {{nums}}</small>
-
+			<div class="d-flex align-items-center">
+				<input
+					type="number"
+					class="form-control m-2"
+					style="width: 40%"
+					v-model="page"
+					@change="basicdata"
+					placeholder="رقم الهوية"
+				/>
+				<small class="mx-2">عدد الصفحات {{ nums }}</small>
 			</div>
 
-				<div class="d-flex align-items-center">
-<select
-				type="number"
-				class="form-control m-2"
-				style="width:100%"
-				v-model="per"
-				@change="basicdata"
-			>		
-				<option value="10">10</option>
-			<option value="20">20</option>
-			<option value="50">50</option>
-			<option value="100">100</option>
-			</select>
-
+			<div class="d-flex align-items-center">
+				<select
+					type="number"
+					class="form-control m-2"
+					style="width: 100%"
+					v-model="per"
+					@change="basicdata"
+				>
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
 			</div>
-
-			
 		</div>
 	</container>
 </template>
@@ -137,10 +135,9 @@
 				funded_side: "",
 				project_amount: "",
 				informats: [],
-				           page: 1,
-						   nums:null,
-						   per:10
-
+				page: 1,
+				nums: null,
+				per: 10,
 			};
 		},
 		created() {
@@ -150,20 +147,22 @@
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios
-					.get(`api/aid/index?project_number=${this.project_number}&project_name=${this.project_name}&funded_side=${this.funded_side}&project_amount=${this.project_amount}`, {
-						headers: {
-							Authorization: "Bearer " + token,
-						},
-					params: {
-								page: this.page,
-								 per_page:this.per
+					.get(
+						`api/aid/index?project_number=${this.project_number}&project_name=${this.project_name}&funded_side=${this.funded_side}&project_amount=${this.project_amount}`,
+						{
+							headers: {
+								Authorization: "Bearer " + token,
 							},
-					})
+							params: {
+								page: this.page,
+								per_page: this.per,
+							},
+						}
+					)
 					.then((res) => {
 						console.log(res.data.data);
 						this.informats = res.data.data;
 						this.nums = res.data.paging.last_page;
-
 					})
 					.catch((e) => {
 						console.log(e);

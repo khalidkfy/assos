@@ -1,6 +1,27 @@
 <template>
 	<container>
-
+	<div class="row justify-content-around">
+	
+			<input
+				type="text"
+				class="form-control m-2"
+					style="width: 40%"
+				aria-label="Default select example"
+				v-model="nme"
+				@change="basicdata"
+				placeholder="الاسم"
+			/>
+				<input
+				type="text"
+				class="form-control m-2"
+					style="width: 40%"
+				aria-label="Default select example"
+				v-model="affilt"
+				@change="basicdata"
+				placeholder="رقم المستفيد"
+			/>
+		
+		</div>			
 		<div class="row align-items-center justify-content-center">
 			<div class="col-11 my-5">
 				<table class="table ">
@@ -14,6 +35,9 @@
 							<th scope="col"> التكلفة</th>
 							<th scope="col">رقم الجوال</th>
 							<th scope="col">العام</th>
+							<th scope="col">الاشتراك</th>
+														<th scope="col">الطباعة</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -25,13 +49,17 @@
 							<td>{{ item.cost}}</td>
 							<td>{{ item.mobile_number }}</td>
 							<td>{{ item.year }}</td>
+							<td v-if="item.is_payment == 0">غير مشترك</td>
+							<td v-else>مشترك</td>
+							<td v-if="item.is_printed == 0 ">غير مطبوع</td>
+							<td v-else> مطبوع</td>
 			
 						</tr>
 					</tbody>
 				</table>
 				
 			</div>
-			       <div><router-link class="btn nw w-25 mx-5"  :to="{name:'print', query:{q:selcted }}">  طباعة</router-link></div>  
+			       <div><router-link class="btn nw w-25 mx-5"  :to="{name:'print', query: { q:selcted }}">  طباعة</router-link></div>  
 
 		</div>
 	</container>
@@ -50,6 +78,8 @@
 				affiliate: "",
 				id_nu: "",
 				informats: [],
+				nme:"",
+				affilt:"",
 				selcted: [],
 			};
 		},
@@ -61,7 +91,7 @@
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios
-					.get(`api/subsc/show?subsc_id=${this.$route.query.q}`, {
+					.get(`api/subsc/show?subsc_id=${this.$route.query.q}&affiliate_no=${this.affilt}&name=${this.nme}`, {
 						headers: {
 							Authorization: "Bearer " + token,
 						},

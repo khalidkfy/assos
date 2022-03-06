@@ -128,9 +128,9 @@
 			upload() {
 				const token = sessionStorage.getItem("token");
 				axios.post(
-						"api/subscription/toggleprint",
+						"api/subscriptionpeople/toggleprint",
 						{
-							subscription_id: this.nums,
+								subscription_people_id: this.nums	,
 						},
 						{
 							headers: {

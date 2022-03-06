@@ -1343,8 +1343,26 @@
 								<td>{{ item.project_date }}</td>
 								<td>{{ item.value_per_person }}</td>
 							</tr>
+							
 						</tbody>
 					</table>
+					
+					<div
+						class="d-flex justify-content-evenly"
+						style="background: #009879; color: white"
+					>
+						<p class="mt-3">إجمالي الدخل المالي:</p>
+
+						<div class="mt-3" v-for="(item, index) in aid2" :key="index">
+							<a>{{ item.total_number }}</a>
+						</div>
+						<p class="mt-3">التقييم المالي الإجمالي:</p>
+
+						<div class="mt-3" v-for="(item, index) in aid2" :key="index">
+							<a>{{ item.total_value }}</a>
+						</div>
+					
+					</div>
 				</div>
         		<div
 					class="tab-pane fade"
@@ -1360,6 +1378,8 @@
 						<th scope="col">نوع الاشتراك</th>
 						<th scope="col">تاريخ البداية</th>
 						<th scope="col">تاريخ النهاية</th>
+						<th scope="col">الاشتراك</th>
+						<th scope="col">الطباعة </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -1371,6 +1391,10 @@
 
 						<th scope="row">{{ item.start_subscription }}</th>
 						<th scope="row">{{ item.end_subscription }}</th>
+						<td v-if="item.is_payment == 0">غير مشترك</td>
+							<td v-else>مشترك</td>
+							<td v-if="item.is_printed == 0 ">غير مطبوع</td>
+							<td v-else> مطبوع</td>
 					
 							</tr>
 						</tbody>
@@ -1472,6 +1496,7 @@
 				typeneed: "",
 				noteneed: "",
 				aid:[],
+				aid2:[],
 				course:[],	
 				subscs:[]	
 						};
@@ -1512,9 +1537,10 @@
 						},
 					})
 					.then((res) => {
-						console.log(res.data.data.aid);
+						console.log(res.data.data);
 						console.log("aid ");
 						this.aid = res.data.data.aid;
+						this.aid2 = res.data;
 					})
 					.catch((e) => {
 						console.log(e);
@@ -1645,14 +1671,15 @@
 			source() {
 				const token = sessionStorage.getItem("token");
 				axios
-					.get(`api/sourcepeople/show?beneficiary_id=${this.$route.query.q}`, {
+					.get(`api/sourcesofincome/show?beneficiary_id=${this.$route.query.q}`, {
 						headers: {
 							Authorization: "Bearer " + token,
 						},
 					})
 					.then((res) => {
-						console.log(res.data.data);
-						(this.informats = res.data.data.source), (this.informats2 = res.data);
+						console.log(res);
+						this.informats = res.data.data.data , 
+						this.informats2 = res.data;
 					})
 					.catch((e) => {
 						console.log(e);

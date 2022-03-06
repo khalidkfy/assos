@@ -1,6 +1,5 @@
 <template>
 	<container>
-		<h5 class="mx-5 mt-3 text-secondary">{{ name }}</h5>
 		<div class="d-flex back mt-5 h-100 flex-column">
 			<div class="row me-1">
 				<input

@@ -1,10 +1,5 @@
 <template>
-	<div
-		class="tab-pane fade"
-		id="pills-income"
-		role="tabpanel"
-		aria-labelledby="pills-income-tab"
-	>
+	<container>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="m-3 row">
@@ -93,19 +88,19 @@
 			</div>
 
 			<div class="row justify-content-center mt-4">
-				<button @click.prevent="source" class="btn w-25">اضافة</button>
+				<button @click.prevent="save" class="btn w-25">اضافة</button>
 			</div>
-		</div>
-	</div>
+		</div>	</container>
 </template>
 <script>
 	import axios from "axios";
+	import container from "@/components/containers/container.vue";
 
 	export default {
+		components: { container },
 		data() {
 			return {
-				fllat: "",
-				source_of_income: "",
+					source_of_income: "",
 				financial_value: "",
 				income_source_details: "",
 				in_kind_assistance: "",
@@ -113,23 +108,24 @@
 				notes: "",
 			};
 		},
+	
 
 		methods: {
-			source() {
+		
+			save() {
 				const token = sessionStorage.getItem("token");
-				const af1 = sessionStorage.getItem("af1");
-
 				axios
 					.post(
-						"api/sourcesofincome/store",
+						"api/sourcesofincome/update",
 						{
-							beneficiary_id: af1,
-							source_of_income: this.source_of_income,
-							financial_value: this.financial_value,
-							income_source_details: this.income_source_details,
-							in_kind_assistance: this.in_kind_assistance,
-							financial_evaluation: this.financial_evaluation,
-							notes: this.notes,
+							beneficiary_id: this.$route.query.q,
+                            source_of_income:this.source_of_income , 
+                            financial_value:this.financial_value, 
+                            income_source_details:this.income_source_details,
+                            in_kind_assistance:this.in_kind_assistance,
+                            financial_evaluation:this.financial_evaluation,
+                            notes:this.notes                            
+
 						},
 						{
 							headers: {
@@ -137,36 +133,15 @@
 							},
 						}
 					)
-					.then(() => {
-						this.show();
-					})
-					.catch(() => {
-						this.failed();
-					});
+			
 			},
-			show() {
-				this.$swal
-					.fire({
-						position: "top-end",
-						icon: "success",
-						title: "تمت الاضافة بنجاح ",
-						showConfirmButton: false,
-						timer: 1500,
-					})
-					.then(() => {
-						location.reload();
-					});
-			},
-			failed() {
-				this.$swal.fire({
-					icon: "error",
-					title: "هناك خطأ ما !",
-					text: "تأكد من المدخلات المطلوبة",
-				});
-			},
+		
+
+		
 		},
 	};
 </script>
+
 <style scoped>
 	.form-control,
 	.form-select,

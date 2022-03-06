@@ -151,17 +151,34 @@
 							},
 						}
 					)
-					.then((res) => {
-						console.log(res.data);
-						// const token = res.data.data.token;
-						// sessionStorage.setItem("token", token);
-						// this.$router.push({ name: "dashboard" });
-						location.reload();
+						.then(() => {
+						this.show();
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch(() => {
+						this.failed();
 					});
 			},
+			show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						this.$router.push({ name: "showaid" });
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
+
 		},
 	};
 </script>

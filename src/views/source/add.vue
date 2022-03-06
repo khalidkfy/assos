@@ -1,32 +1,37 @@
 <template>
-        <container>
-            <div class="d-flex justify-content-end" >
-    	<router-link class="btn float-left ms-3"  :to="{name:'addman', }"> اضافة شخص </router-link>
-               </div>
+	<container>
+		<div class="d-flex justify-content-end">
+			<router-link class="btn float-left ms-3" :to="{ name: 'addman' }">
+				اضافة شخص
+			</router-link>
+		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">مصدر الدخل</label>
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>مصدر الدخل</label
+					>
 					<div class="col-sm-9">
 						<select
-						class="form-select"
-						aria-label="Default select example"
-						v-model="source_of_income">
+							class="form-select"
+							aria-label="Default select example"
+							v-model="source_of_income"
+						>
 							<option selected>عمل خاص</option>
-							<option>راتب تقاعد </option>
-							<option>وزارة التنمية الاجتماعية </option>
+							<option>راتب تقاعد</option>
+							<option>وزارة التنمية الاجتماعية</option>
 							<option>وكالة الغوث للاجئين</option>
-							<option>جمعية خيرية اهلية /دولية-1 </option>
-							<option>جمعية خيرية اهلية /دولية-2 </option>
-							<option>جمعية خيرية اهلية /دولية-3 </option>
-							<option>جمعية خيرية اهلية /دولية-4 </option>
-							<option>جمعية خيرية اهلية /دولية-5 </option>
-							<option>جمعية خيرية اهلية /دولية-6 </option>
-							<option>املاك وعقارات مدرة للدخل </option>
-							<option>مساعدات شهرية/اسرى </option>
-							<option>مساعدات شهرية/جرحى </option>
-							<option>مساعدات شهرية/شهداء </option>
-							<option>كفالات ايتام </option>
+							<option>جمعية خيرية اهلية /دولية-1</option>
+							<option>جمعية خيرية اهلية /دولية-2</option>
+							<option>جمعية خيرية اهلية /دولية-3</option>
+							<option>جمعية خيرية اهلية /دولية-4</option>
+							<option>جمعية خيرية اهلية /دولية-5</option>
+							<option>جمعية خيرية اهلية /دولية-6</option>
+							<option>املاك وعقارات مدرة للدخل</option>
+							<option>مساعدات شهرية/اسرى</option>
+							<option>مساعدات شهرية/جرحى</option>
+							<option>مساعدات شهرية/شهداء</option>
+							<option>كفالات ايتام</option>
 							<option>اعالة الابناء الاقارب</option>
 						</select>
 					</div>
@@ -91,8 +96,7 @@
 				<button @click.prevent="source" class="btn w-25">اضافة</button>
 			</div>
 		</div>
-
-        </container>
+	</container>
 </template>
 <script>
 	import axios from "axios";
@@ -100,7 +104,7 @@
 
 	export default {
 		components: { container },
-        		data() {
+		data() {
 			return {
 				fllat: "",
 				source_of_income: "",
@@ -132,22 +136,34 @@
 							},
 						}
 					)
-					.then((res) => {
-						console.log(res.data);
-						// const token = res.data.data.token;
-						// sessionStorage.setItem("token", token);
-						this.$router.push({ name: "showsource" });
+
+					.then(() => {
+						this.show();
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch(() => {
+						this.failed();
 					});
 			},
-
-
-
-
-
-
+			show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت اضافة اشتراك بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						this.$router.push({ name: "showsource" });
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
 		},
 	};
 </script>

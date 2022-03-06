@@ -35,48 +35,55 @@
 					</div>
 				</div>
 			</div>
-				<div class="col-md-6">
+			<div class="col-md-6">
 				<div class="m-3 row">
 					<div class="col-sm-9">
-						<label for="inputPassword" class="col-sm-12 col-form-label">السنة السابقة </label>
+						<label for="inputPassword" class="col-sm-12 col-form-label"
+							>السنة السابقة
+						</label>
 						<div class="col-sm-12">
 							<input type="text" class="form-control" v-model="last_year" />
 						</div>
 					</div>
 				</div>
 			</div>
-			
-				<div class="col-md-6">
+
+			<div class="col-md-6">
 				<div class="m-3 row">
 					<div class="col-sm-9">
-						<label for="inputPassword" class="col-sm-12 col-form-label">رسوم الاشتراك </label>
+						<label for="inputPassword" class="col-sm-12 col-form-label"
+							>رسوم الاشتراك
+						</label>
 						<div class="col-sm-12">
 							<input type="text" class="form-control" v-model="subscription_fees" />
 						</div>
 					</div>
 				</div>
 			</div>
-				<div class="col-md-6">
+			<div class="col-md-6">
 				<div class="m-3 row">
 					<div class="col-sm-9">
-						<label for="inputPassword" class="col-sm-12 col-form-label">رسزم الطلب </label>
+						<label for="inputPassword" class="col-sm-12 col-form-label"
+							>رسوم الطلب
+						</label>
 						<div class="col-sm-12">
 							<input type="text" class="form-control" v-model="order_fees" />
 						</div>
 					</div>
 				</div>
 			</div>
-				<div class="col-md-6">
+			<div class="col-md-6">
 				<div class="m-3 row">
 					<div class="col-sm-9">
-						<label for="inputPassword" class="col-sm-12 col-form-label">وصف الاشتراك </label>
+						<label for="inputPassword" class="col-sm-12 col-form-label"
+							>وصف الاشتراك
+						</label>
 						<div class="col-sm-12">
 							<input type="text" class="form-control" v-model="description" />
 						</div>
 					</div>
 				</div>
 			</div>
-		
 		</div>
 
 		<button @click.prevent="upload" class="btn mx-4">تسجيل اشتراك</button>
@@ -96,10 +103,10 @@
 				start_subscription: "",
 				end_subscription: "",
 				code: "",
-				last_year:"",
-				subscription_fees:"",
-				order_fees:"",
-				description:""
+				last_year: "",
+				subscription_fees: "",
+				order_fees: "",
+				description: "",
 			};
 		},
 		methods: {
@@ -112,11 +119,10 @@
 							start_subscription: this.start_subscription,
 							end_subscription: this.end_subscription,
 							code: this.code,
-							last_year:this.last_year,
-							subscription_fees:this.subscription_fees,
-							order_fees:this.order_fees,
-							description:this.description
-							
+							last_year: this.last_year,
+							subscription_fees: this.subscription_fees,
+							order_fees: this.order_fees,
+							description: this.description,
 						},
 						{
 							headers: {
@@ -124,12 +130,32 @@
 							},
 						}
 					)
-					.then((res) => {
-						console.log(res.data);
+					.then(() => {
+						this.show();
 					})
-					.catch((e) => {
-						console.log(e);
+					.catch(() => {
+						this.failed();
 					});
+			},
+			show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت اضافة اشتراك بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+					.then(() => {
+						this.$router.push({ name: "listSubs" });
+					});
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
 			},
 		},
 	};
