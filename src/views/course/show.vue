@@ -81,19 +81,20 @@
 								<router-link
 								:to="{ name: 'showpcorse', query: { q: informat.id } }"
 								class="icons"
-								><i class="fas fa-user"></i>  </router-link
+								>																<i class="fa fa-user"></i>
+ </router-link
 							>
 				
 							<router-link
 								:to="{ name: 'addmanc', query: { q: informat.id } }"
 								class="icons"
-								>	<i class="fas fa-user-plus"></i></router-link
+								>		<i class="fa fa-user-plus" ></i></router-link
 							>
 							
 							<router-link
 								:to="{ name: 'upcourse', query: { q: informat.id } }"
 								class="icons"
-								><i class="fas fa-pen"></i></router-link
+								><i class="fa fa-pencil" aria-hidden="true"></i></router-link
 							>
 							
 						</th>

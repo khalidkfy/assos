@@ -75,20 +75,24 @@
 								class="icons"
 								:to="{ name: 'showman', query: { q: informat.id } }"
 							>
-																<i class="fas fa-user"></i>
+																<i class="fa fa-user"></i>
+
 							</router-link>
 					
 							<router-link
 								class="icons"
 								:to="{ name: 'addmanaid', query: { q: informat.id } }"
 							>
-									<i class="fas fa-user-plus"></i>
+						<i class="fa fa-user-plus" ></i>
 							</router-link>
 							
 							<router-link
 								:to="{ name: 'upaid', query: { q: informat.id } }"
 								class="icons"
-								>	<i class="fas fa-pen"></i></router-link
+								><i class="fa fa-pencil" aria-hidden="true"></i>
+
+
+</router-link
 							>
 							
 						</th>

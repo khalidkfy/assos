@@ -59,13 +59,13 @@
 								class="icons"
 								:to="{ name: 'adds', query: { q: informat.id } }"
 							>
-								<i class="fas fa-user-plus"></i>
+								<i class="fa fa-user-plus"></i>
 							</router-link>
 							<router-link
 								class="icons"
 								:to="{ name: 'shwsubs', query: { q: informat.id } }"
 							>
-																<i class="fas fa-user"></i>
+																<i class="fa fa-user"></i>
 </router-link
 							>
 						
@@ -73,7 +73,7 @@
 								class="icons"
 								:to="{ name: 'update', query: { q: informat.id } }"
 							>
-								<i class="fas fa-pen"></i></router-link
+								<i class="fa fa-pencil"></i></router-link
 							>
 												</th>
 

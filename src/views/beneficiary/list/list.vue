@@ -67,8 +67,7 @@
 								:to="{ name: 'show', query: { q: informat.id } }"
 								style="color: black"
 							>
-								<i class="fas fa-user"></i>
-
+	<i class="fa fa-user"></i>
 </router-link
 							>
 								<router-link
@@ -76,7 +75,7 @@
 								:to="{ name: 'edit', query: { q: informat.id } }"
 								style="color: black"
 							>
-								<i class="fas fa-pen"></i></router-link
+								<i class="fa fa-pencil" aria-hidden="true"></i></router-link
 							>
 						</th>
 						
