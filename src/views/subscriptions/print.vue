@@ -153,7 +153,7 @@
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios
-					.get(`api/subsc/show?subsc_id=${this.$route.query.q}`, {
+					.get(`api/subsc/show?subsc_id=${this.$route.query.c}`, {
 						headers: {
 							Authorization: "Bearer " + token,
 						},
@@ -162,7 +162,7 @@
 						},
 					})
 					.then((res) => {
-						console.log(res.data.data);
+						console.log(res.data.data.SubscriptionPeople);
 						this.informats = res.data.data.SubscriptionPeople;
 					})
 					.catch((e) => {

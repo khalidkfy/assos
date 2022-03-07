@@ -20,6 +20,8 @@
 				placeholder="رقم المستفيد"
 			/>
 		</div>
+		<hr>
+		<h5 class="text-secondary">{{code}}</h5>
 		<div class="row align-items-center justify-content-center">
 			<div class="col-11 my-5">
 				<table class="table">
@@ -33,10 +35,10 @@
 							<th scope="col">التكلفة</th>
 							<th scope="col">رقم الجوال</th>
 							<th scope="col">العام</th>
+							<th scope="col">مشترك</th>
+							<th scope="col">مطبوع</th>
 							
-							<th scope="col">الكود</th>
-							<th scope="col">تاريخ البداية</th>
-							<th scope="col">تاريخ النهاية</th>
+						
 							
 						</tr>
 					</thead>
@@ -55,15 +57,7 @@
 							<td>{{ item.mobile_number }}</td>
 							<td>{{ item.year }}</td>
 						
-							<td>
-								{{ code }}
-							</td>
-							<td>
-								{{ start }}
-							</td>
-							<td>
-								{{ end }}
-							</td>
+						
 								<td v-if="item.is_payment == 0">غير مشترك</td>
 							<td v-else>مشترك</td>
 							<td v-if="item.is_printed == 0">غير مطبوع</td>
@@ -75,7 +69,7 @@
 			<div>
 				<router-link
 					class="btn nw w-25 mx-5"
-					:to="{ name: 'print', query: { q: selcted } }"
+					:to="{ name: 'print', query: { q: selcted , c:$route.query.q} }"
 				>
 					طباعة</router-link
 				>
