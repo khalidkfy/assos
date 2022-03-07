@@ -23,6 +23,7 @@ import addcourse from "../views/course/add.vue";
 import addmanc from "../views/course/addman.vue";
 import showcorse from "../views/course/show.vue";
 import showpcorse from "../views/course/showcorse.vue";
+import upcourse from "../views/course/upcourse.vue";
 
 // END COURSE 
 
@@ -31,12 +32,17 @@ import addaid from "../views/aid/add.vue";
 import addmanaid from "../views/aid/addman.vue";
 import showaid from "../views/aid/show.vue";
 import showman from "../views/aid/showman.vue";
+import upaid from "../views/aid/upaid.vue";
 // END AID 
 // start subscription
 import addsubs from "../views/subscriptions/addsubs.vue";
 import adds from "../views/subscriptions/new.vue";
 import shwsubs from "../views/subscriptions/shwsubs.vue";
+import update from "../views/subscriptions/upsub.vue";
+
 // end subsc 
+import sources from "../views/beneficiary/list/sources.vue";
+
 // start edit 
 import incoedit from "../views/beneficiary/edit/incoedit.vue";
 
@@ -47,10 +53,33 @@ const routes = [
     component: login,
   }, 
 
+
+  {
+    path: "/update",
+    name: "update",
+    component: update,
+  },
+  
   {
     path: "/addsubs",
     name: "addsubs",
     component: addsubs,
+  },
+  {
+    path: "/sources",
+    name: "sources",
+    component: sources,
+  },
+
+  {
+    path: "/upaid",
+    name: "upaid",
+    component: upaid,
+  },
+  {
+    path: "/upcourse",
+    name: "upcourse",
+    component: upcourse,
   },
   
   {

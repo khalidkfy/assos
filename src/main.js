@@ -7,6 +7,16 @@ import "bootstrap"
 import 'bootstrap/dist/js/bootstrap.bundle';
 import  Axios from 'axios'
 
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import specific icons */
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+library.add(faUserSecret)
+
+/* add font awesome icon component */
+
+
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 

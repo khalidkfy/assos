@@ -1213,6 +1213,14 @@
 					role="tabpanel"
 					aria-labelledby="pills-fourth-tab"
 				>
+<router-link
+								class="btn"
+								:to="{ name: 'sources', query: { q: $route.query.q} }"
+								style="color: black"
+							>
+								اضافة مصدر</router-link
+							>
+							<hr>
 					<table class="table ">
 						<thead>
 							<tr>
@@ -1235,6 +1243,9 @@
 							</tr>
 						</tbody>
 					</table>
+					
+
+
 
 					<div
 						class="d-flex justify-content-evenly"
@@ -1321,7 +1332,9 @@
 					role="tabpanel"
 					aria-labelledby="pills-seven-tab"
 				>
+				
 					<table class="table ">
+							
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -1341,10 +1354,13 @@
 								<td>{{ item.project_number }}</td>
 								<td>{{ item.type }}</td>
 								<td>{{ item.project_date }}</td>
-								<td>{{ item.value_per_person }}</td>
+								<td>{{ item.value_per_person }}
+									
+								</td>
 							</tr>
-							
+								
 						</tbody>
+					
 					</table>
 					
 					<div
@@ -1363,6 +1379,7 @@
 						</div>
 					
 					</div>
+					
 				</div>
         		<div
 					class="tab-pane fade"

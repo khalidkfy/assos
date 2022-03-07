@@ -1,7 +1,6 @@
 <template>
-	<container>					
-		
-				<div class="row justify-content-around">
+	<container>
+		<div class="row justify-content-around">
 			<input
 				type="text"
 				class="form-control m-2"
@@ -40,61 +39,71 @@
 		</div>
 
 		<hr />
-		
-		
-		
-				<th><router-link class="btn" to="addcourse">اضافة دورة</router-link></th>
+
+		<th><router-link class="btn" to="addcourse">اضافة دورة</router-link></th>
 
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
-			<table class="table ">
+			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">المشرف</th>
-						<th scope="col">الدورة</th>
-						<th scope="col">اسم الدورة</th>
 						<th scope="col">رقم الدورة</th>
-						<th scope="col">التاريخ</th>
+						<th scope="col">اسم الدورة</th>
 						<th scope="col">وقت البداية</th>
 						<th scope="col">وقت النهاية</th>
-						<th scope="col">عدد المشتركين </th>
+						<th scope="col">التاريخ</th>
+						<th scope="col">المشرف</th>
+						<th scope="col">الجهة الممولة</th>
+						<th scope="col">عدد المشتركين</th>
 						<th scope="col">تكلفة المشرف</th>
 						<th scope="col">المبلغ الاجمالي</th>
-						<th scope="col">الجهة الممولة</th>
+						<th scope="col">النشاط</th>
 						<th scope="col">*</th>
-						<th scope="col">*</th>
-
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
 					<tr>
 						<th>{{ informat.id }}</th>
-						<th>{{ informat.supervisor }}</th>
-						<th>{{ informat.course }}</th>
+						<th>{{ informat.number_of_effectiveness }}</th>
 						<th>{{ informat.effectiveness_name }}</th>
-						<th>{{ informat.effectiveness_number }}</th>
-						<th>{{ informat.date }}</th>
 						<th>{{ informat.start }}</th>
 						<th>{{ informat.end }}</th>
-						<th>{{ informat.number_of_effectiveness }}</th>
+						<th>{{ informat.date }}</th>
+						<th>{{ informat.supervisor }}</th>
+						<th>{{ informat.funded_side }}</th>
+						<th>{{ informat.effectiveness_number }}</th>
 						<th>{{ informat.supervisor_cost }}</th>
 						<th>{{ informat.total_cost }}</th>
-						<th>{{ informat.funded_side }}</th>
+						<th v-if=" informat.activity_type == 0 ">دورة</th>
+						<th v-else>رحلة</th>
+						<th class="d-flex justify-content-between">
 						
-						<th>
-							<router-link :to="{name:'showpcorse' , query: { q: informat.id }}" class="btn">عرض</router-link>						</th>
-						<th>
-
-						<router-link  :to="{name:'addmanc' , query: { q: informat.id }}"  class="btn">اضافة</router-link>
+								<router-link
+								:to="{ name: 'showpcorse', query: { q: informat.id } }"
+								class="icons"
+								><i class="fas fa-user"></i>  </router-link
+							>
+				
+							<router-link
+								:to="{ name: 'addmanc', query: { q: informat.id } }"
+								class="icons"
+								>	<i class="fas fa-user-plus"></i></router-link
+							>
+							
+							<router-link
+								:to="{ name: 'upcourse', query: { q: informat.id } }"
+								class="icons"
+								><i class="fas fa-pen"></i></router-link
+							>
+							
 						</th>
-					
-
-					
+						
 					</tr>
 				</tbody>
 			</table>
+			
 		</div>
-			<div class="d-flex align-items-center justify-content-between">
+		<div class="d-flex align-items-center justify-content-between">
 			<div class="d-flex align-items-center">
 				<input
 					type="number"
@@ -138,10 +147,10 @@
 				affiliate: "",
 				id_nu: "",
 				informats: [],
-				effectiveness_number:"",
-				effectiveness_name:"",
-				funded_side:"",
-				supervisor:"",
+				effectiveness_number: "",
+				effectiveness_name: "",
+				funded_side: "",
+				supervisor: "",
 			};
 		},
 		created() {
@@ -166,8 +175,7 @@
 					.then((res) => {
 						console.log(res.data);
 						this.informats = res.data.data;
-												this.nums = res.data.paging.last_page;
-
+						this.nums = res.data.paging.last_page;
 					})
 					.catch((e) => {
 						console.log(e);

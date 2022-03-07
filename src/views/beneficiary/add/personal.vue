@@ -189,10 +189,10 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>تاريخ الميلاد <span class="text-danger">*</span></label
+						>تاريخ الميلاد  <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="birth_date" />
+						<input type="date" class="form-control" v-model="birth_date" />
 						<small class="text-danger">
 							{{ errbirth }}
 						</small>

@@ -163,7 +163,7 @@
 					})
 					.then((res) => {
 						console.log(res.data.data);
-						this.informats = res.data.data;
+						this.informats = res.data.data.SubscriptionPeople;
 					})
 					.catch((e) => {
 						console.log(e);

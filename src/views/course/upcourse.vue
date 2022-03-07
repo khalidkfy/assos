@@ -193,12 +193,11 @@
 				const token = sessionStorage.getItem("token");
 				axios
 					.post(
-						"api/course/store",
+						"api/course/update",
 						{
+							course_id:this.$route.query.q,
 							effectiveness_number: this.effectiveness_number,
 							effectiveness_name: this.effectiveness_name,
-							course: this.course ? 1 : 0,
-							trip: this.trip ? 1 : 0,
 							funded_side: this.funded_side,
 							date: this.date,
 							start: this.start,

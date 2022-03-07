@@ -47,44 +47,50 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
+						<th scope="col">رقم المشروع</th>
 						<th scope="col">اسم المشروع</th>
+						<th scope="col">الجهة الممولة</th>
+						<th scope="col">تاريخ المشروع</th>
+						<th scope="col">القيمة للشخص</th>
 						<th scope="col">العدد المتبرع به</th>
 						<th scope="col">مبلغ المشروع</th>
-						<th scope="col">تاريخ المشروع</th>
-						<th scope="col">رقم المشروع</th>
 						<th scope="col">النوع</th>
-						<th scope="col">القيمة للشخص</th>
-						<th scope="col">الجهة الممولة</th>
 						<th scope="col">#</th>
-						<th scope="col">#</th>
+					
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
 					<tr>
 						<th>{{ informat.id }}</th>
+						<th>{{ informat.project_number }}</th>
 						<th>{{ informat.project_name }}</th>
+						<th>{{ informat.funded_side }}</th>
+						<th>{{ informat.project_date }}</th>
+						<th>{{ informat.value_per_person }}</th>
 						<th>{{ informat.donated_number }}</th>
 						<th>{{ informat.project_amount }}</th>
-						<th>{{ informat.project_date }}</th>
-						<th>{{ informat.project_number }}</th>
 						<th>{{ informat.type }}</th>
-						<th>{{ informat.value_per_person }}</th>
-						<th>{{ informat.funded_side }}</th>
-						<th>
+						<th class="d-flex justify-content-between">
 							<router-link
-								class="btn ms-3"
+								class="icons"
 								:to="{ name: 'showman', query: { q: informat.id } }"
 							>
-								عرض
+																<i class="fas fa-user"></i>
 							</router-link>
-						</th>
-						<th>
+					
 							<router-link
-								class="btn ms-3"
+								class="icons"
 								:to="{ name: 'addmanaid', query: { q: informat.id } }"
 							>
-								اضافة
+									<i class="fas fa-user-plus"></i>
 							</router-link>
+							
+							<router-link
+								:to="{ name: 'upaid', query: { q: informat.id } }"
+								class="icons"
+								>	<i class="fas fa-pen"></i></router-link
+							>
+							
 						</th>
 					</tr>
 				</tbody>

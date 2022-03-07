@@ -50,7 +50,6 @@
 						<th scope="col">رقم الهوية</th>
 						<th scope="col">رقم المنتسب </th>
 						<th scope="col">السنة</th>
-						<th scope="col">عرض البيانات</th>
 						<th scope="col">الاجراء</th>
 					</tr>
 				</thead>
@@ -64,22 +63,23 @@
 						<th>{{ informat.year }}</th>
 						<th>
 							<router-link
-								class="links"
+								class="links icons"
 								:to="{ name: 'show', query: { q: informat.id } }"
 								style="color: black"
 							>
-								عرض</router-link
+								<i class="fas fa-user"></i>
+
+</router-link
 							>
-						</th>
-						<th>
-							<router-link
-								class="links"
+								<router-link
+								class="links icons"
 								:to="{ name: 'edit', query: { q: informat.id } }"
 								style="color: black"
 							>
-								تعديل</router-link
+								<i class="fas fa-pen"></i></router-link
 							>
 						</th>
+						
 
 						
 					</tr>
@@ -122,7 +122,7 @@
 		</div>
 	
 	</container>
-</template>
+</template>#968f8f
 <script>
 	import axios from "axios";
 	import container from "@/components/containers/container.vue";
