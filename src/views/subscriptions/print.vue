@@ -63,7 +63,7 @@
 	.year {
 		position: absolute;
 		top: 70px;
-		right: 60px;
+		right: 45px;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		color: #4992F2;
 		font-weight: 700;

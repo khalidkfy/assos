@@ -2,6 +2,13 @@
 	<container>
 		<div class="d-flex back mt-2 h-100 flex-column">
 			<div class="row me-1 justify-content-around">
+					<input
+					type="text"
+					v-model="search2"
+					placeholder="الكود"
+					class="form-control m-1 w-25"
+					@change="basicdata"
+				/>
 				<input
 					type="date"
 					v-model="search"
@@ -18,13 +25,7 @@
 					@change="basicdata"
 				/>
 
-				<input
-					type="text"
-					v-model="search2"
-					placeholder="الكود"
-					class="form-control m-1 w-25"
-					@change="basicdata"
-				/>
+			
 			</div>
 			<hr />
 			<router-link class="btn my-2 w-25" :to="{ name: 'addsubs' }">

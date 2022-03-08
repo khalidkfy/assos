@@ -1,6 +1,16 @@
 <template>
 	<container>
-				<div class="row justify-content-around">
+			
+				
+		<h5 class="text-secondary mx-5">{{ name }}</h5>
+		<hr class="mx-5" />
+			<a class="btn me-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+   بحث <i class="fa fa-search mx-2" aria-hidden="true"></i>
+
+  </a>
+   <div class="collapse" id="collapseExample">
+  <div class=" card-body">
+			<div class="row justify-content-around">
 	
 			<input
 				type="text"
@@ -21,10 +31,8 @@
 				placeholder="رقم المستفيد"
 			/>
 		
-		</div>			
-				
-		<h5 class="text-secondary mx-5">{{ name }}</h5>
-		<hr class="mx-5" />
+		</div>	
+  </div></div>		
 		<div class="d-flex justify-content-center align-items-start mt-2 mx-5 h-100">
 			<table class="table">
 				<thead>
@@ -39,8 +47,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="text-center" v-for="item in informats" :key="item.id">
-						<td>{{ item.beneficiary_id }}</td>
+					<tr class="text-center" v-for="(item , index) in informats" :key="item.id">
+						<td>{{ index + 1 }}</td>
 
 						<td>{{ item.affiliate_no }}</td>
 						<td>{{ item.beneficiary_name }}</td>

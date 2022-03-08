@@ -1,5 +1,14 @@
 <template>
-	<container>				
+	<container>			
+
+		<h4 class="text-secondary mx-5">{{name}}</h4>
+			<hr class="mx-5">	
+			<a class="btn me-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+   البحث <i class="fa fa-search mx-2" aria-hidden="true"></i>
+
+  </a>
+   <div class="collapse" id="collapseExample">
+  <div class=" card-body">
 			<div class="row justify-content-around">
 	
 			<input
@@ -22,30 +31,29 @@
 			/>
 		
 		</div>			
-				
-			<h5 class="text-secondary mx-5">{{name}}</h5>
-			<hr class="mx-5">
+  </div></div>
+			
 		<div class="d-flex justify-content-center align-items-start mx-5 mt-2 h-100">
 			<table class="table">
 				<thead>
 					<tr class="text-center">
 						<th scope="col">#</th>
-						<th scope="col">رقم المنتسب</th>
 						<th scope="col">اسم المنتسب</th>
 						<th scope="col">رقم الجوال </th>
 						<th scope="col">اسم الدورة </th>
 						<th scope="col">رقم الدورة </th>
+						<th>تاريخ الميلاد</th>
 						<th scope="col">العام </th>
 					</tr>
 				</thead>
-				<tbody v-for="informat in informats" :key="informat.id" class="text-center">
+				<tbody v-for="(informat , index ) in informats" :key="informat.id" class="text-center">
 					<tr>
-						<th>{{ informat.id }}</th>
-						<th>{{ informat.beneficiary_id }}</th>
+						<th>{{ index + 1 }}</th>
 						<th>{{ informat.beneficiary_name }}</th>
 						<th>{{ informat.mobile_number }}</th>
 						<th>{{ informat.effectiveness_name }}</th>
 						<th>{{ informat.effectiveness_number }}</th>
+						<th>{{ informat.birth_date }}</th>
 						<th>{{ informat.year }}</th>
 						
 					

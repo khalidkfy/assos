@@ -83,18 +83,13 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>العام <span class="text-danger">*</span></label
+						>العام </label
 					>
 					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="year"
-						>
-							<option>2021</option>
-							<option>2022</option>
-						</select>
-						<small class="text-danger">
+							<input type="text" class="form-control" v-model="year" required 
+						/>
+					
+												<small class="text-danger">
 							{{ erryear }}
 						</small>
 					</div>
@@ -205,7 +200,7 @@
 						>الهاتف<span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="phone_number" />
+						<input type="text" class="form-control" v-model="phone_number" />
 						<small class="text-danger">
 							{{ errphone }}
 						</small>
@@ -232,7 +227,7 @@
 						>رقم القريب<span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="near_number" />
+						<input type="text" class="form-control" v-model="near_number" />
 						<small class="text-danger">
 							{{ errnear }}
 						</small>
@@ -245,7 +240,7 @@
 						>رقم الجوال <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="mobile_number" />
+						<input type="text" class="form-control" v-model="mobile_number" />
 						<small class="text-danger">
 							{{ errphone }}
 						</small>
@@ -503,6 +498,7 @@
 			this.countr2();
 		},
 		methods: {
+
 			uploadFile() {
 				this.file = this.$refs.file.files[0];
 			},

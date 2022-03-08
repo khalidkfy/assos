@@ -1,9 +1,18 @@
 <template>
 	<container>
+		
+		<h4 class="text-secondary mx-5">{{code}}</h4>
+				<hr>
+  <a class="btn me-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+   البحث<i class="fa fa-search mx-2" aria-hidden="true"></i>
+
+  </a>
+  <div class="collapse" id="collapseExample">
+  <div class=" card-body">
 		<div class="row justify-content-around">
 			<input
 				type="text"
-				class="form-control m-2"
+				class="form-control m-1"
 				style="width: 40%"
 				aria-label="Default select example"
 				v-model="nme"
@@ -12,56 +21,59 @@
 			/>
 			<input
 				type="text"
-				class="form-control m-2"
+				class="form-control m-1"
 				style="width: 40%"
 				aria-label="Default select example"
 				v-model="affilt"
 				@change="basicdata"
 				placeholder="رقم المستفيد"
 			/>
-		</div>
-		<hr>
-		<h5 class="text-secondary">{{code}}</h5>
+		</div>  </div>
+</div>
+
 		<div class="row align-items-center justify-content-center">
-			<div class="col-11 my-5">
+			<div class="col-11 my-4">
 				<table class="table">
 					<thead>
 						<tr class="text-center">
+													<th scope="col">#</th>
+
 							<th scope="col"><input type="checkbox" v-model="selectAll" /></th>
 
 							<th scope="col">رقم المستفيد</th>
-							<th scope="col">الرقم</th>
 							<th scope="col">الاسم</th>
 							<th scope="col">التكلفة</th>
 							<th scope="col">رقم الجوال</th>
 							<th scope="col">العام</th>
-							<th scope="col">مشترك</th>
-							<th scope="col">مطبوع</th>
-							
-						
-							
+							<th scope="col">الطباعة</th>
+														<th scope="col">تاريخ الطباعة</th>
+
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="text-center" v-for="item in informats" :key="item.id">
+						<tr class="text-center" v-for="(item , index  ) in informats" :key="item.id">
+																				<td>{{ index + 1 }}</td>
+
 							<input
 								type="checkbox"
 								class="mt-3"
 								:value="item.beneficiary_id"
 								v-model="selcted"
 							/>
+
 							<td>{{ item.affiliate_no }}</td>
-							<td>{{ item.beneficiary_id }}</td>
 							<td>{{ item.beneficiary_name }}</td>
 							<td>{{ item.cost }}</td>
 							<td>{{ item.mobile_number }}</td>
 							<td>{{ item.year }}</td>
 						
-						<a href="https://icons8.com/icon/undefined/undefined">undefined icon by Icons8</a>
-								<td v-if="item.is_payment == 0">غير مشترك</td>
-							<td v-else>مشترك</td>
-							<td v-if="item.is_printed == 0">غير مطبوع</td>
-							<td v-else>مطبوع</td>
+							<td v-if="item.is_printed == 0">
+
+</td>
+							<td v-else><i class="fa fa-check" aria-hidden="true" style="color:green"></i>
+</td>
+							<td>{{ item.printing_date }}</td>
+
 						</tr>
 					</tbody>
 				</table>
