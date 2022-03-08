@@ -14,8 +14,8 @@
 				type="text"
 				class="form-control m-2"
 				style="width: 40%"
-				v-model="name"
-				@change="project_name"
+				v-model="project_name"
+				@change="basicdata"
 				placeholder="اسم المشروع"
 			/>
 		</div>

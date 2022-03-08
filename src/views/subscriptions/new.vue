@@ -2,15 +2,10 @@
 	<container>
 		<div class="container">
 			<div class="row">
-				<table class="table mt-5">
-					<thead>
-						<tr>
-							<th>رقم المستفيد</th>
-							<th>الاسم</th>
-							<th>الرقم</th>
-							<th>حذف</th>
-						</tr>
-					</thead>
+				<div class="d-flex">
+
+				<table class=" my-4 bg-none shadow-none  mt-5 w-25">
+					
 					<tbody>
 						<tr v-for="(input, index) in people" :key="index" class="text-center">
 							<th>
@@ -19,25 +14,38 @@
 									v-model="people[index]['beneficiary_id']"
 									class="form-control"
 									placeholder="رقم المستفيد "
-									@change="ret"
 								/>
 							</th>
-							<th>
-							<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.name}}</p>
+						
 							
-							</div>
-								</th>
-									<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.phone_number}}</p>
-							
-							</div>
-									</th>
+						</tr>
+					</tbody>
+				</table>
+										<button type="button" class="btn  mt-5 me-3" style="height:35%" @click.prevent="ret">اضف مستفيد</button>
+
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+														<th>#</th>
+
+							<th>رقم المستفيد</th>
+							<th>الاسم</th>
+							<th>رقم الجوال</th>
+							<th>حذف </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(no , index) in informats" :key="index"> 
+							<th>{{index + 1}}</th>
+							<th>{{no.affiliate_no}}</th>
+							<th>{{no.name}}</th>
+							<th>{{no.phone_number}}</th>
 							<th>
 								<button
 									type="button"
-									@click="deleteRow(index)"
+									@click="deleteRow()"
 									style="background: none; border: none"
 								>
 									<svg
@@ -105,7 +113,6 @@
 
 				<div class="form-group row">
 					<div class="col-lg-12">
-						<button type="button" @click="addRow" class="btn ms-4">اضف مستفيد</button>
 						<button class="btn btn-primary" @click="save">حفظ</button>
 					</div>
 				</div>
@@ -135,9 +142,12 @@
 					beneficiary_id: "",
 				});
 			},
-			deleteRow(index) {
-				this.people.splice(index, 1);
-			},
+				deleteRow(index) {
+
+				this.informats.splice(index, 1);
+				if(index !== 0 ){
+								this.people[index].splice(index, 0);
+			}},
 			save() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -179,9 +189,8 @@
 					)
 					.then((res) => {
 						console.log(res.data);
-						this.informats = res.data;
-
-					})
+				   this.informats.push(res.data.data); 
+										})
 					.catch((e) => {
 						console.log(e);
 					});

@@ -3,72 +3,66 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<button type="button" @click="addRow" class="btn m-3">اضف مستفيد</button>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>رقم المستفيد</th>
-								<th>تاريخ الاستلام</th>
-								<th>عدد المساعدات</th>
-								<th>اسم مستفيد</th>
-								<th>رقم الجوال</th>
-								<th>العام</th>
-																<th>حذف مستفيد</th>
-
-							</tr>
-						</thead>
+					<div class="d-flex">
+					<table class="bg-none shadow-none">
+					
 						<tbody>
-							<tr v-for="(input, index) in people" :key="index" class="text-center">
+							<tr v-for="(input, index) in people" :key="index" class="text-center d-flex justify-content-between">
 		
-								<th>
+								<th class="mx-4 my-3">
 									<input
 										type="text"
 										v-model="people[index]['beneficiary_id']"
-										class="form-control"
+										class="form-control ms-5"
 										placeholder="رقم المستفيد "
-										@change="ret"									/>
+																	/>
 								</th>
-								<th>
+								<th class="mx-4 my-3">
 									<input
-										type="text"
+										type="date"
 										v-model="people[index]['received_date']"
-										class="form-control"
+										class="form-control  ms-5"
 										placeholder="تاريخ الاستلام "
 									/>
 								</th>
-								<th>
+								<th class="mx-4 my-3">
 									<input
 										type="text"
 										v-model="people[index]['count_of_aids']"
-										class="form-control"
+										class="form-control  ms-5"
 										placeholder="عدد المساعدات  "
 									/>
 								</th>
+								
 								<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.name}}</p>
-							
-							</div>
+									
 								</th>
+							</tr>
+						</tbody>
+					</table>
+										<button type="button" @click="ret" class="btn h-25 mt-3">اضف مستفيد</button>
 
-									<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.phone_number}}</p>
-							
-							</div>
-								</th>
-
-
-									<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.year}}</p>
-							
-							</div>
-								</th>
-								<th>
+					</div>
+							<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>رقم المستفيد</th>
+								<th>اسم المستفيد</th>
+								<th>رقم الجوال</th>
+								<th>حذف </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(ins, index) in informats" :key="index" class="text-center">
+								<th>{{ index + 1 }}</th>
+								<th>{{ ins.affiliate_no }}</th>
+								<th>{{ ins.name }}</th>
+								<th>{{ ins.phone_number }}</th>
+														<th>
 									<button
 										type="button"
-										@click="deleteRow(index)"
+										@click="deleteRow()"
 										style="background: none; border: none"
 									>
 										<svg
@@ -133,7 +127,6 @@
 							</tr>
 						</tbody>
 					</table>
-
 					<div class="form-group row">
 						<div class="col-lg-12">
 							<button class="btn btn-primary" @click="save">حفظ</button>
@@ -169,8 +162,11 @@
 				});
 			},
 			deleteRow(index) {
-				this.people.splice(index, 1);
-			},
+
+				this.informats.splice(index, 1);
+				if(index !== 0 ){
+								this.people[index].splice(index, 0);
+			}},
 			save() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -231,7 +227,7 @@
 					)
 					.then((res) => {
 						console.log(res.data);
-						this.informats = res.data;
+						this.informats.push(res.data.data);
 
 					})
 					.catch((e) => {

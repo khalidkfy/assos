@@ -3,86 +3,112 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-						<button
-										type="button"
-										@click="addRow"
-										class="btn m-3"
-									>
-										اضف مستفيد
-									</button>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>رقم المستفيد</th>
-								<th>اسم المستفيد</th>
-								<th>رقم الجوال</th>
-								<th>السنة </th>
-								<th>حذف المستفيد  </th>
-				
-							</tr>
-						</thead>
-						<tbody >
+					<div class="d-flex">
+					<table class="bg-none shadow-none">
+					
+						<tbody>
 							<tr v-for="(input, index) in people" :key="index" class="text-center">
-
 								<th>
 									<input
 										type="text"
-										v-model="people[index]['beneficiary_id'] "
-										class="form-control "
-										@change="ret"
+										v-model="people[index]['beneficiary_id']"
+										class="form-control"
 										placeholder="رقم المستفيد "
 									/>
 								</th>
-								<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.name}}</p>
-							
-							</div>
-								</th>
 
-									<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.phone_number}}</p>
-							
-							</div>
-								</th>
-
-
-									<th>
-									<div v-for=" (s , index) in informats" :key="index">
-								<p>{{s.year}}</p>
-							
-							</div>
-								</th>
-								
-								<th>
-										<button
-										type="button"
-										@click="deleteRow(index)"
-										style="background:none; border:none"
-											>
-
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="mt-1" viewBox="0 0 16 16">
-  <g id="Group_3408" data-name="Group 3408" transform="translate(-1443 -326)">
-    <g id="Group_2461" data-name="Group 2461" transform="translate(1411 -152)">
-      <g id="Ellipse_127" data-name="Ellipse 127" transform="translate(32 478)" fill="#ff5746" stroke="#ff5746" stroke-width="1">
-        <circle cx="8" cy="8" r="8" stroke="none"/>
-        <circle cx="8" cy="8" r="7.5" fill="none"/>
-      </g>
-      <g id="Group_608" data-name="Group 608" transform="translate(36.571 482.571)">
-        <line id="Line_141" data-name="Line 141" y2="9.697" transform="translate(6.857 0) rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.2"/>
-        <line id="Line_142" data-name="Line 142" y2="9.697" transform="translate(0.001) rotate(-45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.2"/>
-      </g>
-    </g>
-  </g>
-</svg>									</button>
-								</th>
-								
+		
 							</tr>
 						</tbody>
 					</table>
-	
-						
+										<button type="button" @click="ret" class="btn m-3">اضف مستفيد</button>
+
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>رقم المستفيد</th>
+								<th>اسم المستفيد</th>
+								<th>رقم الجوال</th>
+								<th>حذف </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(ins, index) in informats" :key="index" class="text-center">
+								<th>{{ index + 1 }}</th>
+								<th>{{ ins.affiliate_no }}</th>
+								<th>{{ ins.name }}</th>
+								<th>{{ ins.phone_number }}</th>
+														<th>
+									<button
+										type="button"
+										@click="deleteRow()"
+										style="background: none; border: none"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="25"
+											height="25"
+											class="mt-1"
+											viewBox="0 0 16 16"
+										>
+											<g
+												id="Group_3408"
+												data-name="Group 3408"
+												transform="translate(-1443 -326)"
+											>
+												<g
+													id="Group_2461"
+													data-name="Group 2461"
+													transform="translate(1411 -152)"
+												>
+													<g
+														id="Ellipse_127"
+														data-name="Ellipse 127"
+														transform="translate(32 478)"
+														fill="#ff5746"
+														stroke="#ff5746"
+														stroke-width="1"
+													>
+														<circle cx="8" cy="8" r="8" stroke="none" />
+														<circle cx="8" cy="8" r="7.5" fill="none" />
+													</g>
+													<g
+														id="Group_608"
+														data-name="Group 608"
+														transform="translate(36.571 482.571)"
+													>
+														<line
+															id="Line_141"
+															data-name="Line 141"
+															y2="9.697"
+															transform="translate(6.857 0) rotate(45)"
+															fill="none"
+															stroke="#fff"
+															stroke-linecap="round"
+															stroke-width="1.2"
+														/>
+														<line
+															id="Line_142"
+															data-name="Line 142"
+															y2="9.697"
+															transform="translate(0.001) rotate(-45)"
+															fill="none"
+															stroke="#fff"
+															stroke-linecap="round"
+															stroke-width="1.2"
+														/>
+													</g>
+												</g>
+											</g>
+										</svg>
+									</button>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+
 					<div class="form-group row">
 						<div class="col-lg-12">
 							<button class="btn btn-primary" @click="save">حفظ</button>
@@ -103,7 +129,7 @@
 			return {
 				informats: [],
 				people: [],
-				pe2:[]
+				pe2: [],
 			};
 		},
 		created() {
@@ -117,7 +143,11 @@
 				});
 			},
 			deleteRow(index) {
-				this.people.splice(index, 1);
+
+				this.informats.splice(index, 1);
+				if(index !== 0 ){
+								this.people[index].splice(index, 0);
+			}
 			},
 			save() {
 				const token = sessionStorage.getItem("token");
@@ -141,31 +171,24 @@
 						this.failed();
 					});
 			},
-			ret(){
-						
+			ret() {
 				const token = sessionStorage.getItem("token");
-				const nums = this.people.length - 1 ;
+				const nums = this.people.length - 1;
 				const arr = this.people[nums].beneficiary_id;
-				
+
 				axios
-					.get(
-						`api/return/returndata?affiliate_no=${arr}`,
-						{
-							headers: {
-								Authorization: "Bearer " + token,
-							},
-						
-						}
-					)
+					.get(`api/return/returndata?affiliate_no=${arr}`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
 					.then((res) => {
 						console.log(res.data);
-						this.informats = res.data;
-
+						this.informats.push(res.data.data);
 					})
 					.catch((e) => {
 						console.log(e);
 					});
-		
 			},
 
 			show() {
@@ -188,7 +211,6 @@
 					text: "تأكد من المدخلات المطلوبة",
 				});
 			},
-
 		},
 	};
 </script>
