@@ -616,25 +616,25 @@
 					.catch((error) => {
 						this.failed();
 						console.log(error.response.data.errors);
-						this.err = error.response.data.errors.name[0];
-						this.errname = error.response.data.errors.name[0];
-						this.ereaddres = error.response.data.errors.address[0];
-						this.errbirth = error.response.data.errors.birth_date[0];
-						this.errcitizn = error.response.data.errors.citizenship[0];
-						this.errdistrict = error.response.data.errors.district_id[0];
-						this.erraffili = error.response.data.errors.affiliate_no[0];
-						this.errclass = error.response.data.errors.class[0];
-						this.errgender = error.response.data.errors.gender[0];
-						this.errgovern = error.response.data.errors.governorate_id[0];
-						this.errimage = error.response.data.errors.id_image[0];
-						this.errid = error.response.data.errors.id_number[0];
-						this.errnear = error.response.data.errors.near_number[0];
-						this.errnumof = error.response.data.errors.number_of_people[0];
-						this.errphone = error.response.data.errors.phone_number[0];
-						this.errqualification = error.response.data.errors.qualification[0];
-						this.errsocial = error.response.data.errors.social_status[0];
-						this.errspecialty = error.response.data.errors.specialty[0];
-						this.erryear = error.response.data.errors.year[0];
+						this.err = error.response.data.errors.name;
+						this.errname = error.response.data.errors.name;
+						this.ereaddres = error.response.data.errors.address;
+						this.errbirth = error.response.data.errors.birth_date;
+						this.errcitizn = error.response.data.errors.citizenship;
+						this.errdistrict = error.response.data.errors.district_id;
+						this.erraffili = error.response.data.errors.affiliate_no;
+						this.errclass = error.response.data.errors.class;
+						this.errgender = error.response.data.errors.gender;
+						this.errgovern = error.response.data.errors.governorate_id;
+						this.errimage = error.response.data.errors.id_image;
+						this.errid = error.response.data.errors.id_number;
+						this.errnear = error.response.data.errors.near_number;
+						this.errnumof = error.response.data.errors.number_of_people;
+						this.errphone = error.response.data.errors.phone_number;
+						this.errqualification = error.response.data.errors.qualification;
+						this.errsocial = error.response.data.errors.social_status;
+						this.errspecialty = error.response.data.errors.specialty;
+						this.erryear = error.response.data.errors.year;
 					});
 			},
 			showtrue() {
@@ -647,7 +647,8 @@
 						timer: 1500,
 					})
 					.then(() => {
-						location.reload();
+																	this.$router.push({ name: "lists" });
+
 					});
 			},
 			failed() {

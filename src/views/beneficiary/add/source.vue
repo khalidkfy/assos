@@ -75,9 +75,7 @@
 						showConfirmButton: false,
 						timer: 1500,
 					})
-					.then(() => {
-						location.reload();
-					});
+				
 			},
 			failed() {
 				this.$swal.fire({
