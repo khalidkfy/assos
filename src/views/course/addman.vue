@@ -143,6 +143,7 @@
 			deleteRow(index) {
 					this.people.splice(index, 1);
 				this.informats.splice(index, 1);
+
 							
 			},
 			save() {
@@ -180,6 +181,7 @@
 					.then((res) => {
 						console.log(res.data);
 						this.informats.push(res.data.data);
+				   this.news = "";
 
 					})
 					.catch((e) => {

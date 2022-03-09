@@ -187,6 +187,7 @@
 					.then((res) => {
 						console.log(res.data);
 				   this.informats.push(res.data.data); 
+				   this.news = ""
 										})
 					.catch((e) => {
 						console.log(e);

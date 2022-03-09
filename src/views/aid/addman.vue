@@ -165,7 +165,7 @@
 			deleteRow(index) {
 
 				this.informats.splice(index, 1);
-								this.people.splice(index, 0);
+								this.people.splice(index, 1);
 		},
 			save() {
 				const token = sessionStorage.getItem("token");
@@ -227,6 +227,11 @@
 					.then((res) => {
 						console.log(res.data);
 						this.informats.push(res.data.data);
+										   this.nums = "";
+										   this.date = "";
+										   this.count = "";
+								
+
 
 					})
 					.catch((e) => {
