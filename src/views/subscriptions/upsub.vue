@@ -109,7 +109,40 @@
 				description: "",
 			};
 		},
+			created() {
+			this.basicdata();
+		},
+
 		methods: {
+				basicdata() {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(
+						`api/subsc/show?subsc_id=${this.$route.query.q}`,
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+							params: {
+								per_page: 3500,
+							},
+						}
+					)
+					.then((res) => {
+						console.log(res.data.data);
+						this.start_subscription = res.data.data.Subsc.start_subscription;
+						this.end_subscription = res.data.data.Subsc.end_subscription;
+						this.code = res.data.data.Subsc.code;
+						this.last_year = res.data.data.Subsc.last_year;
+						this.subscription_fees = res.data.data.Subsc.subscription_fees;
+						this.order_fees = res.data.data.Subsc.order_fees;
+						this.description = res.data.data.Subsc.description;
+					
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
 			upload() {
 				const token = sessionStorage.getItem("token");
 				axios

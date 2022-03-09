@@ -128,7 +128,37 @@
 			};
 		},
 
+				created() {
+			this.basicdata();
+		},
 		methods: {
+			basicdata() {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(`api/aid/show?aid_id=${this.$route.query.q}`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					
+					})
+					.then((res) => {
+						console.log(res.data.data);
+						this.project_number = res.data.data.Aid.project_number;
+						this.project_name = res.data.data.Aid.project_name;
+						this.funded_side = res.data.data.Aid.funded_side;
+						this.project_date = res.data.data.Aid.project_date;
+						this.value_per_person = res.data.data.Aid.value_per_person;
+						this.donated_number = res.data.data.Aid.donated_number;
+						this.project_amount = res.data.data.Aid.project_amount;
+						this.notes = res.data.data.Aid.notes;
+						this.type = res.data.data.Aid.type;
+						
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+	
 			source() {
 				const token = sessionStorage.getItem("token");
 				axios

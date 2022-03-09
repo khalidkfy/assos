@@ -7,12 +7,12 @@
 					<table class="bg-none shadow-none">
 					
 						<tbody>
-							<tr v-for="(input, index) in people" :key="index" class="text-center d-flex justify-content-between">
+							<tr class="text-center d-flex justify-content-between">
 		
 								<th class="mx-4 my-3">
 									<input
 										type="text"
-										v-model="people[index]['beneficiary_id']"
+										v-model="nums"
 										class="form-control ms-5"
 										placeholder="رقم المستفيد "
 																	/>
@@ -20,7 +20,7 @@
 								<th class="mx-4 my-3">
 									<input
 										type="date"
-										v-model="people[index]['received_date']"
+										v-model="date"
 										class="form-control  ms-5"
 										placeholder="تاريخ الاستلام "
 									/>
@@ -28,7 +28,7 @@
 								<th class="mx-4 my-3">
 									<input
 										type="text"
-										v-model="people[index]['count_of_aids']"
+										v-model="count"
 										class="form-control  ms-5"
 										placeholder="عدد المساعدات  "
 									/>
@@ -40,7 +40,7 @@
 							</tr>
 						</tbody>
 					</table>
-										<button type="button" @click="ret" class="btn h-25 mt-3">اضف مستفيد</button>
+										<button type="button" @click="addRow() , ret()" class="btn h-25 mt-3">اضف مستفيد</button>
 
 					</div>
 							<table class="table">
@@ -62,7 +62,7 @@
 														<th>
 									<button
 										type="button"
-										@click="deleteRow()"
+										@click="deleteRow(index)"
 										style="background: none; border: none"
 									>
 										<svg
@@ -147,26 +147,26 @@
 			return {
 				informats: [],
 				people: [],
+				nums : "" , 
+				date : "" , 
+				count : ""
 			};
 		},
-		created() {
-			this.addRow();
-		},
+
 
 		methods: {
 			addRow() {
 				this.people.push({
-					beneficiary_id: "",
-					received_date: "",
-					count_of_aids: "",
+					beneficiary_id: this.nums,
+					received_date: this.date,
+					count_of_aids: this.count,
 				});
 			},
 			deleteRow(index) {
 
 				this.informats.splice(index, 1);
-				if(index !== 0 ){
-								this.people[index].splice(index, 0);
-			}},
+								this.people.splice(index, 0);
+		},
 			save() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -212,12 +212,11 @@
 			ret(){
 						
 				const token = sessionStorage.getItem("token");
-				const nums = this.people.length - 1 ;
-				const arr = this.people[nums].beneficiary_id;
+			
 				
 				axios
 					.get(
-						`api/return/returndata?affiliate_no=${arr}`,
+						`api/return/returndata?affiliate_no=${this.nums}`,
 						{
 							headers: {
 								Authorization: "Bearer " + token,

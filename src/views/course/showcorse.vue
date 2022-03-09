@@ -38,6 +38,7 @@
 				<thead>
 					<tr class="text-center">
 						<th scope="col">#</th>
+						<th scope="col">رقم المنتسب</th>
 						<th scope="col">اسم المنتسب</th>
 						<th scope="col">رقم الجوال </th>
 						<th scope="col">اسم الدورة </th>
@@ -49,6 +50,8 @@
 				<tbody v-for="(informat , index ) in informats" :key="informat.id" class="text-center">
 					<tr>
 						<th>{{ index + 1 }}</th>
+												<th>{{ informat.affiliate_no }}</th>
+
 						<th>{{ informat.beneficiary_name }}</th>
 						<th>{{ informat.mobile_number }}</th>
 						<th>{{ informat.effectiveness_name }}</th>

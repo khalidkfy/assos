@@ -7,11 +7,11 @@
 				<table class=" my-4 bg-none shadow-none  mt-5 w-25">
 					
 					<tbody>
-						<tr v-for="(input, index) in people" :key="index" class="text-center">
+						<tr  class="text-center">
 							<th>
 								<input
 									type="text"
-									v-model="people[index]['beneficiary_id']"
+									v-model="news"
 									class="form-control"
 									placeholder="رقم المستفيد "
 								/>
@@ -21,7 +21,7 @@
 						</tr>
 					</tbody>
 				</table>
-										<button type="button" class="btn  mt-5 me-3" style="height:35%" @click.prevent="ret">اضف مستفيد</button>
+										<button type="button" class="btn  mt-5 me-3" style="height:35%" @click.prevent=" addRow() , ret()">اضف مستفيد</button>
 
 				</div>
 
@@ -45,7 +45,7 @@
 							<th>
 								<button
 									type="button"
-									@click="deleteRow()"
+									@click="deleteRow(index)"
 									style="background: none; border: none"
 								>
 									<svg
@@ -113,7 +113,7 @@
 
 				<div class="form-group row">
 					<div class="col-lg-12">
-						<button class="btn btn-primary" @click="save">حفظ</button>
+						<button class="btn btn-primary" @click="save ">حفظ</button>
 					</div>
 				</div>
 			</div>
@@ -130,24 +130,22 @@
 			return {
 				informats: [],
 				people: [],
+				news: ""
 			};
 		},
-		created() {
-			this.addRow();
-		},
+
 
 		methods: {
 			addRow() {
 				this.people.push({
-					beneficiary_id: "",
+					beneficiary_id:this.news,
 				});
 			},
 				deleteRow(index) {
-
+					this.people.splice(index, 1);
 				this.informats.splice(index, 1);
-				if(index !== 0 ){
-								this.people[index].splice(index, 0);
-			}},
+							
+			},
 			save() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -174,12 +172,11 @@
 				ret(){
 						
 				const token = sessionStorage.getItem("token");
-				const nums = this.people.length - 1 ;
-				const arr = this.people[nums].beneficiary_id;
+			
 				
 				axios
 					.get(
-						`api/return/returndata?affiliate_no=${arr}`,
+						`api/return/returndata?affiliate_no=${this.news}`,
 						{
 							headers: {
 								Authorization: "Bearer " + token,

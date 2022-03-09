@@ -172,8 +172,7 @@
 			return {
 				effectiveness_number: "",
 				effectiveness_name: "",
-				course: 0,
-				trip: 0,
+			
 				funded_side: "",
 				date: "",
 				start: "",
@@ -187,8 +186,48 @@
 				source_of_income:""
 			};
 		},
-
+	created() {
+			this.basicdata();
+		},
 		methods: {
+
+		
+			basicdata() {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(
+						`api/course/show?course_id=${this.$route.query.q}`,
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+							params: {
+								per_page: 3500,
+							},
+						}
+					)
+					.then((res) => {
+						console.log(res.data.data);
+						this.informats = res.data.data.PersonCourse;
+							this.effectiveness_number = res.data.data.Course.effectiveness_number;				
+							this.effectiveness_name = res.data.data.Course.effectiveness_name;				
+							this.funded_side = res.data.data.Course.funded_side;				
+							this.date = res.data.data.Course.date;				
+							this.start = res.data.data.Course.start;				
+							this.end = res.data.data.Course.end;				
+							this.supervisor = res.data.data.Course.supervisor;				
+							this.supervisor_cost = res.data.data.Course.supervisor_cost;				
+							this.number_of_effectiveness = res.data.data.Course.number_of_effectiveness;				
+							this.cost = res.data.data.Course.cost;				
+							this.total_cost = res.data.data.Course.total_cost;				
+							this.notes = res.data.data.Course.notes;				
+							this.source_of_income = res.data.data.Course.activity_type;				
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+
 			source() {
 				const token = sessionStorage.getItem("token");
 				axios
