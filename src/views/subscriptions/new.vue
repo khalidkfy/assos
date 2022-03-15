@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		اضافة مشتركين
+	</div>
 	<container>
 		<div class="container">
 			<div class="row">

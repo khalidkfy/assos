@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+تعديل الاشتراكات
+	</div>
 	<container>
 		<div class="row">
 			<div class="col-md-6">

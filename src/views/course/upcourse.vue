@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+	تعديل الدورات
+	</div>
 	<container>
 		<div class="d-flex justify-content-end"></div>
 		<div class="row">

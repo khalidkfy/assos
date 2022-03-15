@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+تعديل الاشتراكات
+	</div>
 	<container>
 	
 		<div class="d-flex flex-column align-items-center">

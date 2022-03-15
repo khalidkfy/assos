@@ -1,4 +1,6 @@
 <template>
+<div class="heade">
+المساعدات	</div>
 	<container>
 		<div class="row justify-content-around">
 			<input

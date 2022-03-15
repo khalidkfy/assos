@@ -5,7 +5,10 @@
 		role="tabpanel"
 		aria-labelledby="pills-home-tab"
 	>
+	
 		<div class="row">
+			<div class="separator">معلومات شخصية</div>
+
 			<div class="col-md-6">
 				<div class="m-3 mt-4 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -52,6 +55,61 @@
 					</div>
 				</div>
 			</div>
+					<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الجنس <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="gender"
+						>
+							<option value="1">ذكر</option>
+							<option value="2">أنثى</option>
+						</select>
+						<small class="text-danger">
+							{{ errgender }}
+						</small>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>تاريخ الميلاد  <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" v-model="birth_date" />
+						<small class="text-danger">
+							{{ errbirth }}
+						</small>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الحالة الاجتماعية <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="social_status"
+						>
+							<option>اعزب</option>
+							<option>متزوج</option>
+							<option>اخرى</option>
+						</select>
+						<small class="text-danger">
+							{{ errsocial }}
+						</small>
+					</div>
+				</div>
+			</div>
+			
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -80,173 +138,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>العام </label
-					>
-					<div class="col-sm-10">
-							<input type="text" class="form-control" v-model="year" required 
-						/>
-					
-												<small class="text-danger">
-							{{ erryear }}
-						</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الجنس <span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="gender"
-						>
-							<option value="1">ذكر</option>
-							<option value="2">أنثى</option>
-						</select>
-						<small class="text-danger">
-							{{ errgender }}
-						</small>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>المحافظة <span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="rec"
-							@change="countr2"
-						>
-							<option v-for="item in informats" :key="item.id" :value="item.id">
-								{{ item.governorate }}
-							</option>
-						</select>
-						<small class="text-danger">
-							{{ errgovern }}
-						</small>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الحالة الاجتماعية <span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="social_status"
-						>
-							<option>اعزب</option>
-							<option>متزوج</option>
-							<option>اخرى</option>
-						</select>
-						<small class="text-danger">
-							{{ errsocial }}
-						</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الحي<span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="district"
-						>
-							<option v-for="items in informats2" :key="items.id" :value="items.id">
-								{{ items.district }}
-							</option>
-						</select>
-						<small class="text-danger">
-							{{ errdistrict }}
-						</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>تاريخ الميلاد  <span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<input type="date" class="form-control" v-model="birth_date" />
-						<small class="text-danger">
-							{{ errbirth }}
-						</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الهاتف<span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="phone_number" />
-						<small class="text-danger">
-							{{ errphone }}
-						</small>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>العنوان<span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="address" />
-						<small class="text-danger">
-							{{ ereaddres }}
-						</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم القريب<span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="near_number" />
-						<small class="text-danger">
-							{{ errnear }}
-						</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم الجوال <span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="mobile_number" />
-						<small class="text-danger">
-							{{ errphone }}
-						</small>
-					</div>
-				</div>
-			</div>
+			
+	
 
 			<div class="col-md-6">
 				<div class="m-3 row">
@@ -278,6 +171,110 @@
 					</div>
 				</div>
 			</div>
+<div class="separator">العنوان</div>
+
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>المحافظة <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="rec"
+							@change="countr2"
+						>
+							<option v-for="item in informats" :key="item.id" :value="item.id">
+								{{ item.governorate }}
+							</option>
+						</select>
+						<small class="text-danger">
+							{{ errgovern }}
+						</small>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الحي<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="district"
+						>
+							<option v-for="items in informats2" :key="items.id" :value="items.id">
+								{{ items.district }}
+							</option>
+						</select>
+						<small class="text-danger">
+							{{ errdistrict }}
+						</small>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>العنوان<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" v-model="address" />
+						<small class="text-danger">
+							{{ ereaddres }}
+						</small>
+					</div>
+				</div>
+			</div>
+<div class="separator">معلومات الاتصال</div>
+
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>رقم الجوال <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" v-model="mobile_number" />
+						<small class="text-danger">
+							{{ errphone }}
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الهاتف<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" v-model="phone_number" />
+						<small class="text-danger">
+							{{ errphone }}
+						</small>
+					</div>
+				</div>
+			</div>
+
+		
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>رقم القريب<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" v-model="near_number" />
+						<small class="text-danger">
+							{{ errnear }}
+						</small>
+					</div>
+				</div>
+			</div>
+<div class="separator">معلومات العامة</div>
+
 
 			<div class="col-md-6">
 				<div class="m-3 row flex-column">
@@ -371,6 +368,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="col-md-10">
 
 			
@@ -415,6 +413,7 @@
 							class="btn d-none"
 							id="img"
 							@change="uploadFile()
+							
 							"
 							ref="file"
 						/>
@@ -424,6 +423,21 @@
 				</div>
 
 			</div>
+			<div class="container">
+	<div class="row">
+		<div class="col">
+					<img v-if="show2" :src="show2" alt="" class="h-75  w-50 mx-4">
+				</div>
+				<div class="col">
+					<img v-if="show3" :src="show3" alt="" class="h-75  w-50 mx-4">
+				</div>
+				
+				<div class="col">
+					<img v-if="show" :src="show" alt="" class="h-75  w-50 mx-4">
+				</div>
+			</div>
+			</div>
+		
 			
 			<div class="row justify-content-center">
 				<button type="submit" class="btn w-25 mt-4" v-on:click.prevent="upload">
@@ -488,7 +502,7 @@
 				errsocial: "",
 				errspecialty: "",
 				erryear: "",
-				show: "",
+				show:"",
 				show2: "",
 				show3: "",
 			};
@@ -501,18 +515,16 @@
 
 			uploadFile() {
 				this.file = this.$refs.file.files[0];
+				this.show  = URL.createObjectURL(this.file);
 			},
 			uploadFile2() {
 				this.file2 = this.$refs.file2.files[0];
+								this.show2  = URL.createObjectURL(this.file2);
+
 			},
 			uploadFile3() {
 				this.file3 = this.$refs.file3.files[0];
-			},
-			uploadFile4() {
-				this.show = URL.createObjectURL(this.$refs.file.files[0]);
-								this.show2= URL.createObjectURL(this.$refs.file2.files[0]);
-												this.show3 = URL.createObjectURL(this.$refs.file3.files[0]);
-
+								this.show3  = URL.createObjectURL(this.file3);
 
 			},
 		

@@ -1,4 +1,6 @@
 <template>
+<div class="heade">
+عرض المستفيدين	</div>
 	<container>
 		<div class="row justify-content-around">
 	

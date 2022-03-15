@@ -1,4 +1,6 @@
 <template>
+<div class="heade">
+اضافة مستفيدين	</div>
 	<container>
 		<div class="container">
 			<div class="row">
@@ -50,6 +52,7 @@
 								<th>رقم المستفيد</th>
 								<th>اسم المستفيد</th>
 								<th>رقم الجوال</th>
+								<th>العام </th>
 								<th>حذف </th>
 							</tr>
 						</thead>
@@ -59,6 +62,7 @@
 								<th>{{ ins.affiliate_no }}</th>
 								<th>{{ ins.name }}</th>
 								<th>{{ ins.phone_number }}</th>
+								<th>{{ ins.year }}</th>
 														<th>
 									<button
 										type="button"

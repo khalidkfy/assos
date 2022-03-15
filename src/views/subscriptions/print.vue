@@ -2,7 +2,7 @@
 		<div class="back">
 			<div class="new" id="printableArea">
 				<div class="hd1" style="width: 50%; " v-for="(item, index) in informats" :key="index">
-					<div v-if="nums[index]" class="cont">
+					<div v-if="nums[index] " class="cont">
 						<img src="../../assets/img/bacg.jpeg" class="amg" alt="" />
 						<p class="abs0">{{ item.affiliate_no }}</p>
 						<p class="abs">{{ item.beneficiary_name }}</p>
@@ -20,15 +20,25 @@
 			</div>
 		</div>
 
-		<button
+	
+		<div class="d-flex justify-content-start mx-5">
+				<button
 			@click.prevent="		
 				printDiv();
-				upload();
 			"
-			class="btn btn-primary d-print-none"
+			class="btn  d-print-none mx-3"
 		>
 			طباعة
 		</button>
+				<button
+			@click.prevent="		
+				upload();
+			"
+			class="btn  d-flex justify-content-center d-print-none"
+		>
+اعتماد الطباعة		</button>
+		</div>
+		
 </template>
 <style scoped>
 	.cont {
@@ -138,7 +148,7 @@
 							},
 							
 						}
-					)
+					)	
 					.then((res) => {
 						console.log(res.data);
 						

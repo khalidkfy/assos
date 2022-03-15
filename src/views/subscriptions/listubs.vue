@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		 الاشتركات
+	</div>
 	<container>
 		<div class="d-flex back mt-2 h-100 flex-column">
 			<div class="row me-1 justify-content-around">
@@ -158,7 +161,7 @@
 				axios
 					.get(
 						`api/subsc/index?&start_subscription=${this.search}&end_subscription=${this.search1}&code=${this.search2}`,
-						{
+					{
 							headers: {
 								Authorization: "Bearer " + token,
 							},

@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		 اضافة مستفيد
+	</div>
 	<Container>
 		<div>
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

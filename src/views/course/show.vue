@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		الدورات
+	</div>
 	<container>
 		<div class="row justify-content-around">
 			<input

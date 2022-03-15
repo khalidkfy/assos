@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		عرض المنتسبين للدورة
+	</div>
 	<container>			
 
 		<h4 class="text-secondary mx-5">{{name}}</h4>

@@ -1,7 +1,9 @@
 <template>
+	<div class="heade">
+		عرض المشتركين
+	</div>
 	<container>
-		
-		<h4 class="text-secondary mx-5">{{code}}</h4>
+		<h4 class="text-secondary mx-5 " >{{code}}</h4>
 				<hr>
   <a class="btn me-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
    البحث<i class="fa fa-search mx-2" aria-hidden="true"></i>
@@ -9,11 +11,13 @@
   </a>
   <div class="collapse" id="collapseExample">
   <div class=" card-body">
+	  <div class="container">
+
 		<div class="row justify-content-around">
 			<input
 				type="text"
-				class="form-control m-1"
-				style="width: 40%"
+				class="form-control "
+				style="width: 31%"
 				aria-label="Default select example"
 				v-model="nme"
 				@change="basicdata"
@@ -21,14 +25,25 @@
 			/>
 			<input
 				type="text"
-				class="form-control m-1"
-				style="width: 40%"
+				class="form-control "
+				style="width: 31%"
 				aria-label="Default select example"
 				v-model="affilt"
 				@change="basicdata"
 				placeholder="رقم المستفيد"
 			/>
-		</div>  </div>
+			<input
+				type="text"
+				class="form-control "
+				style="width: 31%"
+				aria-label="Default select example"
+				v-model="printed"
+				@change="basicdata"
+				placeholder="الطباعة"
+			/>
+		</div>  
+		</div>
+		</div>
 </div>
 
 		<div class="row align-items-center justify-content-center">
@@ -106,6 +121,7 @@
 				code: "",
 				nme: "",
 				start:"",
+				printed:"",
 				end:"",
 				affilt: "",
 				selcted: [],
@@ -119,8 +135,9 @@
 				const token = sessionStorage.getItem("token");
 				axios
 					.get(
-						`api/subsc/show?subsc_id=${this.$route.query.q}&affiliate_no=${this.affilt}&name=${this.nme}`,
-						{
+	`api/subsc/show?subsc_id=${this.$route.query.q}&affiliate_no=${this.affilt}&name=${this.nme}&is_printed=${this.printed}`,
+
+					{
 							headers: {
 								Authorization: "Bearer " + token,
 							},
@@ -149,7 +166,7 @@
 						// A informats array exists with at least one item
 						let allChecked = true;
 						for (const user of this.informats) {
-							if (!this.selcted.includes(user.id)) {
+							if (!this.selcted.includes(user.beneficiary_id)) {
 								allChecked = false; // If even one is not included in array
 							}
 
@@ -164,7 +181,7 @@
 					const checked = [];
 					if (value) {
 						this.informats.forEach((user) => {
-							checked.push(user.id);
+							checked.push(user.beneficiary_id);
 						});
 					}
 					this.selcted = checked;

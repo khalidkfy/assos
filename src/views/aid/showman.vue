@@ -1,4 +1,6 @@
 <template>
+<div class="heade">
+عرض المستفيدين	</div>
 	<container>
 			
 				
@@ -43,20 +45,24 @@
 						<th scope="col">رقم الهاتف</th>
 						<th scope="col">رقم المشروع</th>
 						<th scope="col">تاريخ الاستلام</th>
+						<th scope="col">بيانات التنمية</th>
+						<th scope="col">بيانات العمل</th>
 						<th scope="col">العام</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="text-center" v-for="(item , index) in informats" :key="item.id">
 						<td>{{ index + 1 }}</td>
-
+				
 						<td>{{ item.affiliate_no }}</td>
 						<td>{{ item.beneficiary_name }}</td>
 						<td>{{ item.mobile_number }}</td>
 
 						<td>{{ item.project_number }}</td>
 						<td>{{ item.received_date }}</td>
-
+						<td>{{ item.income_development }}</td>
+						<td>{{ item.income_work }}</td>
+									
 						<td>{{ item.year }}</td>
 					</tr>
 				</tbody>

@@ -1,4 +1,5 @@
 <template>
+
 	<container>
 			<h5 class="my-3 mx-5 text-secondary">{{name}}</h5>
 			<hr class=" mx-5">

@@ -147,8 +147,8 @@
 							aria-label="Default select example"
 							v-model="source_of_income"
 						>
-							<option value="0">دورة</option>
-							<option value="1">رحلة</option>
+							<option value="1">دورة</option>
+							<option value="2">رحلة</option>
 					
 				
 						

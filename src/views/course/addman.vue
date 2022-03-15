@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		اضافة منتسبين للدورة
+	</div>
 	<container>
 		<div class="container">
 			<div class="row">

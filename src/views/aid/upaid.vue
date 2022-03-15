@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+تعديل المصادر
+	</div>
 	<container>
 		<div class="d-flex justify-content-end">
 			<!-- <router-link class="btn float-left ms-3" :to="{ name: 'addman' }">

@@ -1,4 +1,6 @@
 <template>
+<div class="heade">
+اضافة متسفيدين	</div>
 	<container>
 		<div class="d-flex justify-content-end">
 			<!-- <router-link class="btn float-left ms-3" :to="{ name: 'addman' }">

@@ -133,3 +133,31 @@ body {
     color: #009879 !important;
     
   }
+  .heade{
+      padding-right: 299px !important;
+      background-color: white;
+      width: 100%;
+      padding:18px;
+      border-bottom : 1px dashed rgb(231, 230, 230);
+
+  }
+  .separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgb(190, 190, 190);
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: .25em;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: .25em;
+  }

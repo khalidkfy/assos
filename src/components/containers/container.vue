@@ -3,6 +3,9 @@
 
 	<div class="home">
 		<div class="row fex-side-bar">
+				<div class="header">
+					<slot name="header"></slot>
+				</div>
 			<!--begin::Dashboard-->
 			<div class="dash">
 				<slot> </slot>
