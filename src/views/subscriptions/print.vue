@@ -1,7 +1,7 @@
 <template>
 		<div class="back">
 			<div class="new" id="printableArea">
-				<div class="hd1" style="width: 50%; " v-for="(item, index) in informats" :key="index">
+				<div class="hd1" style="width: 50%; " v-for="(item, index) in nuuuu" :key="index">
 					<div v-if="nums[index] " class="cont">
 						<img src="../../assets/img/bacg.jpeg" class="amg" alt="" />
 						<p class="abs0">{{ item.affiliate_no }}</p>
@@ -129,7 +129,7 @@
 			this.basicdata();
 		},
 		methods: {
-			upload() {
+upload() {
 				const token = sessionStorage.getItem("token");
 				axios.post(
 						"api/subscriptionpeople/toggleprint",
@@ -174,5 +174,10 @@
 					});
 			},
 		},
+		 computed: {
+    nuuuu(){
+        return this.informats.filter(x => this.nums.includes(x.affiliate_no))
+    }
+  }
 	};
 </script>

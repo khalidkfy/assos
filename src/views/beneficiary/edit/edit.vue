@@ -120,14 +120,8 @@
 									>العام</label
 								>
 								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										v-model="year"
-									>
-										<option>2021</option>
-										<option>2022</option>
-									</select>
+									<input type="text" class="form-control" v-model="year"/>
+							
 								</div>
 							</div>
 						</div>
@@ -162,7 +156,7 @@
 										@change="countr2"
 									>
 										<option v-for="item in informats1" :key="item.id" :value="item.id">
-											{{ item.governorate }}
+											{{ item.governorate_id }}
 										</option>
 									</select>
 								</div>
@@ -1052,10 +1046,11 @@
 			editpersonal() {
 				const token = sessionStorage.getItem("token");
 				let formData = new FormData();
+								formData.append("beneficiary_id", this.$route.query.q);
 				formData.append("id_image", this.file);
 				formData.append("affiliate_image", this.file2);
 				formData.append("image", this.file3);
-				formData.append("id_number", this.$route.query.q);
+				formData.append("id_number", this.id_number);
 				formData.append("name", this.name);
 				formData.append("affiliate_no", this.affiliate_no);
 				formData.append("mobile_number", this.mobile_number);
@@ -1074,11 +1069,9 @@
 				formData.append("qualification", this.qualification);
 				formData.append("year", this.year);
 				formData.append("social_status", this.social_status);
-				formData.append("district", this.district);
 				formData.append("district_id", this.district);
 				formData.append("address", this.address);
 				formData.append("near_number", this.near_number);
-				formData.append("beneficiary_id", this.$route.query.q);
 				axios
 					.post(
 						"api/beneficiary/update",
@@ -1093,13 +1086,32 @@
 					)
 					.then((res) => {
 						console.log(res.data);
-						location.reload();
-					})
+this.show()			
+		})
 					.catch((e) => {
 						console.log(e);
+						this.failed()
 					});
 			},
 		},
+				show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+				
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
 	};
 </script>
 <style scoped>
