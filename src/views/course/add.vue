@@ -2,6 +2,26 @@
 	<container>
 		<div class="d-flex justify-content-end"></div>
 		<div class="row">
+				<div class="col-md-6">
+				<div class="m-3 row">
+				<label for="inputPassword" class="col-sm-12 col-form-label"
+						>النشاط</label
+					>
+					<div class="col-sm-9">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="source_of_income"
+						>
+							<option value="1">دورة</option>
+							<option value="2">رحلة</option>
+					
+				
+						
+						</select>
+					</div>
+		
+				</div></div>
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<div class="col-sm-9">
@@ -136,26 +156,7 @@
 					</div>
 				</div>
 			</div>
-				<div class="col-md-6">
-				<div class="m-3 row">
-				<label for="inputPassword" class="col-sm-12 col-form-label"
-						>النشاط</label
-					>
-					<div class="col-sm-9">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="source_of_income"
-						>
-							<option value="1">دورة</option>
-							<option value="2">رحلة</option>
-					
-				
-						
-						</select>
-					</div>
-		
-				</div></div>
+			
 			<div class="row justify-content-center mt-4">
 				<button @click.prevent="source" class="btn w-25">اضافة</button>
 			</div>
