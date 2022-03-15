@@ -30,13 +30,7 @@
 		>
 			طباعة
 		</button>
-				<button
-			@click.prevent="		
-				upload();
-			"
-			class="btn  d-flex justify-content-center d-print-none"
-		>
-اعتماد الطباعة		</button>
+			
 		</div>
 		
 </template>
@@ -140,7 +134,7 @@
 				axios.post(
 						"api/subscriptionpeople/toggleprint",
 						{
-								subscription_people_id: this.nums	,
+								subscription_people_id :  this.$route.query.q	,
 						},
 						{
 							headers: {

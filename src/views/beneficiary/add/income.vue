@@ -18,7 +18,7 @@
 							v-model="source_of_income"
 						>					
 							<option v-for="sorc in informats " :key="sorc.id">
-														<th>{{ sorc }}</th>
+														<th>{{ sorc.income }}</th>
 
 							</option>
 						</select>
@@ -120,7 +120,7 @@
 						}
 					)
 					.then((res) => {
-						console.log(res);
+						console.log(res.data);
 						this.informats = res.data;
 					})
 					.catch((e) => {

@@ -93,13 +93,23 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="d-flex justify-content-start">
 			<div>
 				<router-link
-					class="btn nw w-25 mx-5"
+					class="btn nw px-4 mx-5"
 					:to="{ name: 'print', query: { q: selcted , c:$route.query.q} }"
 				>
 					طباعة</router-link
 				>
+			</div>
+				<div>
+				<button
+					class="btn nw px-4 mx-1"
+					@click.prevent="upload"
+				>
+					اعتماد الطباعة </button
+				>
+			</div>
 			</div>
 		</div>
 	</container>
@@ -131,6 +141,28 @@
 			this.basicdata();
 		},
 		methods: {
+	upload() {
+				const token = sessionStorage.getItem("token");
+				axios.post(
+						"api/subscriptionpeople/toggleprint",
+						{
+								subscription_people_id :  this.selcted	,
+						},
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+							
+						}
+					)	
+					.then((res) => {
+						console.log(res.data);
+						
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -156,6 +188,7 @@
 					.catch((e) => {
 						console.log(e);
 					});
+					
 			},
 		},
 
