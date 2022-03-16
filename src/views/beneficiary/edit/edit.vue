@@ -811,7 +811,24 @@
 						console.log(e);
 					});
 			},
-
+	show() {
+				this.$swal
+					.fire({
+						position: "top-end",
+						icon: "success",
+						title: "تمت الاضافة بنجاح ",
+						showConfirmButton: false,
+						timer: 1500,
+					})
+				
+			},
+			failed() {
+				this.$swal.fire({
+					icon: "error",
+					title: "هناك خطأ ما !",
+					text: "تأكد من المدخلات المطلوبة",
+				});
+			},
 			// SHOW DATA
 			basicdata() {
 				const token = sessionStorage.getItem("token");
@@ -1094,24 +1111,7 @@ this.show()
 					});
 			},
 		},
-				show() {
-				this.$swal
-					.fire({
-						position: "top-end",
-						icon: "success",
-						title: "تمت الاضافة بنجاح ",
-						showConfirmButton: false,
-						timer: 1500,
-					})
-				
-			},
-			failed() {
-				this.$swal.fire({
-					icon: "error",
-					title: "هناك خطأ ما !",
-					text: "تأكد من المدخلات المطلوبة",
-				});
-			},
+			
 	};
 </script>
 <style scoped>

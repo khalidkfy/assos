@@ -30,7 +30,16 @@
 		>
 			طباعة
 		</button>
-			
+
+
+<button
+			@click.prevent="		
+				upload();
+			"
+			class="btn  d-print-none mx-3"
+		>
+			اعتماد الطباعة
+		</button>
 		</div>
 		
 </template>
@@ -151,9 +160,8 @@ upload() {
 						console.log(e);
 					});
 			},
-			printDiv() {
-				window.print();
-			},
+			printDiv() {window.print();	},
+			
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios

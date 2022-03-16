@@ -97,16 +97,12 @@
 				<div>
 					<router-link
 						class="btn nw px-4 mx-5"
-						:to="{ name: 'print', query: { q: selcted, c: $route.query.q } }"
+						:to="{ name: 'print', query: { q: selcted, c: $route.query.q ,  } }"
 					>
 						طباعة</router-link
 					>
 				</div>
-				<div>
-					<button class="btn nw px-4 mx-1" @click.prevent="upload">
-						اعتماد الطباعة
-					</button>
-				</div>
+			
 			</div>
 		</div>
 	</container>
