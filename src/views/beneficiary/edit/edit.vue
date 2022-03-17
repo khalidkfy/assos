@@ -156,7 +156,7 @@
 										@change="countr2"
 									>
 										<option v-for="item in informats1" :key="item.id" :value="item.id">
-											{{ item.governorate_id }}
+											{{ item.governorate }}
 										</option>
 									</select>
 								</div>
@@ -787,6 +787,7 @@
 					})
 					.then((res) => {
 						console.log(res.data);
+						console.log('dsasdasdasdasdasdasdasdasdasdsad');
 						this.informats1 = res.data;
 						this.num_plac = res.data;
 					})

@@ -10,9 +10,14 @@
 						<p class="abs4">{{ item.birth_date }}</p>
 						<p class="abs3">{{ item.start_subscription }}</p>
 						<p class="year">{{ item.year }}</p>
-							<div v-for="(s, index) in item.district " :key="index">
+								
+							<div v-for="(s, index) in item.dist" :key="index">
+															<p class="abs9">{{ s }}</p>
+	
+							</div>
+								<div v-for="(s, index) in item.gover " :key="index">
 															<p class="abs5">{{ s }}</p>
-
+	
 							</div>
 						 <img :src="'https://associationapi.awtar-tech.com/' + item.image" class="imgs" alt="">
 					</div>
@@ -119,6 +124,13 @@
 		font-size: 13px;
 		right: 100px;
 	}
+	.abs9 {
+		position: absolute;
+		z-index: 999;
+		top: 205px;	
+		font-size: 13px;
+		right: 150px;
+	}
 </style>
 
 <script>
@@ -174,7 +186,7 @@ upload() {
 						},
 					})
 					.then((res) => {
-						console.log(res.data.data.SubscriptionPeople);
+						console.log(res.data.data.SubscriptionPeople.dist);
 						this.informats = res.data.data.SubscriptionPeople;
 					})
 					.catch((e) => {
@@ -185,7 +197,8 @@ upload() {
 		 computed: {
     nuuuu(){
         return this.informats.filter(x => this.nums.includes(x.affiliate_no))
-    }
+    },
+
   }
 	};
 </script>

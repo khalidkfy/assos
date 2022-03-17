@@ -135,8 +135,10 @@ body {
   }
   .heade{
       padding-right: 299px !important;
-      background-color: white;
+      background-color: #009879;
       width: 100%;
+      color: white;
+      font-weight: 700;
       padding:18px;
       border-bottom : 1px dashed rgb(231, 230, 230);
 
