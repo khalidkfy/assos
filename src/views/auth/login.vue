@@ -3,7 +3,7 @@
           <div class="col-md-6 logo">
           <img src="../../assets/img/log.jpeg" alt="">
       </div>
-      <div class="col-md-6 px-4">
+      <div class="col-md-6 px-4 nod">
           <h1>تسجيل الدخول</h1>
   <form>
       <div class="mb-3">
@@ -46,6 +46,10 @@ form {
 }
 input{
   background-color: whitesmoke;
+
+}
+.nod{
+  background-color: white !important;
 
 }
 .logo{

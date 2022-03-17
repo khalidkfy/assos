@@ -10,15 +10,8 @@
 						<p class="abs4">{{ item.birth_date }}</p>
 						<p class="abs3">{{ item.start_subscription }}</p>
 						<p class="year">{{ item.year }}</p>
-								
-							<div v-for="(s, index) in item.dist" :key="index">
-															<p class="abs9">{{ s }}</p>
+						<p class="abs5">{{ item.dist_gover_name }}</p>
 	
-							</div>
-								<div v-for="(s, index) in item.gover " :key="index">
-															<p class="abs5">{{ s }}</p>
-	
-							</div>
 						 <img :src="'https://associationapi.awtar-tech.com/' + item.image" class="imgs" alt="">
 					</div>
 				</div>
