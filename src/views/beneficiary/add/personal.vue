@@ -10,19 +10,16 @@
 			<div class="separator">معلومات شخصية</div>
 
 			<div class="col-md-6">
-				<div class="m-3 mt-4 row">
+				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم المستفيد <span class="text-danger">*</span>
-					</label>
+						>الهوية <span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
-						<input
-							type="number"
-							class="form-control"
-							v-model="affiliate_no"
-							required
+						<input type="number" class="form-control" v-model="id_number" required 
+						@change="inform"
 						/>
 						<small class="text-danger">
-							{{ erraffili }}
+							{{ errid }}
 						</small>
 					</div>
 				</div>
@@ -40,21 +37,25 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
+				<div class="col-md-6">
+				<div class="m-3 mt-4 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الهوية <span class="text-danger">*</span></label
-					>
+						>رقم المستفيد <span class="text-danger">*</span>
+					</label>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="id_number" required 
-						@change="inform"
+						<input
+							type="number"
+							class="form-control"
+							v-model="affiliate_no"
+							required
 						/>
 						<small class="text-danger">
-							{{ errid }}
+							{{ erraffili }}
 						</small>
 					</div>
 				</div>
 			</div>
+		
 					<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"

@@ -67,6 +67,18 @@
 					aria-labelledby="pills-home-tab"
 				>
 					<div class="row">
+						
+
+							<div class="col-md-6">
+							<div class="m-3 row">
+								<label for="inputPassword" class="col-sm-12 col-form-label"
+									>الهوية
+								</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" v-model="id_number" />
+								</div>
+							</div>
+						</div>
 						<div class="col-md-6">
 							<div class="m-3 row">
 								<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -87,16 +99,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>الهوية
-								</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" v-model="id_number" />
-								</div>
-							</div>
-						</div>
+					
 						<div class="col-md-6">
 							<div class="m-3 row">
 								<label for="inputPassword" class="col-sm-12 col-form-label"

@@ -1,6 +1,6 @@
 <template>
 <div class="heade">
-تعديل المصادر
+تعديل المساعدات
 	</div>
 	<container>
 		<div class="d-flex justify-content-end">

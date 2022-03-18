@@ -1,4 +1,7 @@
 <template>
+<div class="heade">
+		اضافة دورة
+	</div>
 	<container>
 		<div class="d-flex justify-content-end"></div>
 		<div class="row">

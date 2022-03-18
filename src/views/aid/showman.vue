@@ -1,6 +1,6 @@
 <template>
 <div class="heade">
-عرض المستفيدين	</div>
+عرض المساعدة	</div>
 	<container>
 			
 				

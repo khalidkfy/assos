@@ -37,7 +37,7 @@
 				style="width: 40%"
 				v-model="supervisor"
 				@change="basicdata"
-				placeholder="المشرف"
+				placeholder="النشاط"
 			/>
 		</div>
 
@@ -50,34 +50,36 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">رقم الدورة</th>
+						<th scope="col">رقم الفعالية</th>
+												<th scope="col">رقم الدورة</th>
+
 						<th scope="col">اسم الدورة</th>
 						<th scope="col">وقت البداية</th>
 						<th scope="col">وقت النهاية</th>
 						<th scope="col">التاريخ</th>
 						<th scope="col">المشرف</th>
 						<th scope="col">الجهة الممولة</th>
-						<th scope="col">عدد المشتركين</th>
 						<th scope="col">تكلفة المشرف</th>
 						<th scope="col">المبلغ الاجمالي</th>
 						<th scope="col">النشاط</th>
-						<th scope="col">*</th>
+						<th scope="col">الاجراءات</th>
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
 					<tr>
 						<th>{{ informat.id }}</th>
 						<th>{{ informat.number_of_effectiveness }}</th>
+												<th>{{ informat.effectiveness_number }}</th>
+
 						<th>{{ informat.effectiveness_name }}</th>
 						<th>{{ informat.start }}</th>
 						<th>{{ informat.end }}</th>
 						<th>{{ informat.date }}</th>
 						<th>{{ informat.supervisor }}</th>
 						<th>{{ informat.funded_side }}</th>
-						<th>{{ informat.effectiveness_number }}</th>
 						<th>{{ informat.supervisor_cost }}</th>
 						<th>{{ informat.total_cost }}</th>
-						<th v-if=" informat.activity_type == 0 ">دورة</th>
+						<th v-if=" informat.activity_type == 1 ">دورة</th>
 						<th v-else>رحلة</th>
 						<th class="d-flex justify-content-between">
 						
@@ -165,7 +167,7 @@
 				const token = sessionStorage.getItem("token");
 				axios
 					.get(
-						`api/course/index?effectiveness_number=${this.effectiveness_number}&effectiveness_name=${this.effectiveness_name}&funded_side=${this.funded_side}&supervisor=${this.supervisor}`,
+						`api/course/index?effectiveness_number=${this.effectiveness_number}&effectiveness_name=${this.effectiveness_name}&funded_side=${this.funded_side}&activity_type=${this.supervisor}`,
 						{
 							headers: {
 								Authorization: "Bearer " + token,

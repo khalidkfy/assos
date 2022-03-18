@@ -42,7 +42,7 @@
 
 		<hr />
 		<router-link class="btn ms-3" :to="{ name: 'addaid' }">
-			اضافة مساعدات
+			اضافة مساعدة
 		</router-link>
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
 			<table class="table">
@@ -57,7 +57,7 @@
 						<th scope="col">العدد المتبرع به</th>
 						<th scope="col">مبلغ المشروع</th>
 						<th scope="col">النوع</th>
-						<th scope="col">#</th>
+						<th scope="col">الاجراءات</th>
 					
 					</tr>
 				</thead>
