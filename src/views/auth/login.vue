@@ -89,7 +89,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("https://associationapi.awtar-tech.com/api/auth/login", {
+        .post("api/auth/login", {
           username: this.username,
           password: this.password,
         })
