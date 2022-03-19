@@ -21,6 +21,6 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 // basic URL for this page 
-Axios.defaults.baseURL = 'https://associationapi.awtar-tech.com/';
+Axios.defaults.baseURL = 'http://134.122.119.130:8080/';
 
 createApp(App).use(store).use(router).use(VueSweetalert2).mount("#app");
