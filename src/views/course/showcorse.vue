@@ -44,8 +44,8 @@
 						<th scope="col">رقم المنتسب</th>
 						<th scope="col">اسم المنتسب</th>
 						<th scope="col">رقم الجوال </th>
-						<th scope="col">اسم الدورة </th>
-						<th scope="col">رقم الدورة </th>
+						<th scope="col">اسم الفعالية </th>
+						<th scope="col">رقم الفعالية </th>
 						<th>تاريخ الميلاد</th>
 						<th scope="col">العام </th>
 					</tr>

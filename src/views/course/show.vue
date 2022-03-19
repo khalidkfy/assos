@@ -31,14 +31,25 @@
 				@change="basicdata"
 				placeholder="الجهة الممولة"
 			/>
-			<input
+
+				<select
+					type="number"
+					class="form-control m-2"
+				style="width: 40%"
+				v-model="supervisor"
+					@change="basicdata"
+				>					<option></option>
+
+					<option value="1">دورة</option>
+					<option value="2">رحلة</option>
+				
+				</select>
+			<!-- <input
 				type="text"
 				class="form-control m-2"
 				style="width: 40%"
 				v-model="supervisor"
-				@change="basicdata"
-				placeholder="النشاط"
-			/>
+			/> -->
 		</div>
 
 		<hr />
@@ -50,13 +61,13 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">رقم الفعالية</th>
-												<th scope="col">رقم الدورة</th>
+																		<th scope="col">رقم الفعالية</th>
 
-						<th scope="col">اسم الدورة</th>
+						<th scope="col">اسم الفعالية</th>
 						<th scope="col">وقت البداية</th>
 						<th scope="col">وقت النهاية</th>
 						<th scope="col">التاريخ</th>
+
 						<th scope="col">المشرف</th>
 						<th scope="col">الجهة الممولة</th>
 						<th scope="col">تكلفة المشرف</th>
@@ -65,16 +76,16 @@
 						<th scope="col">الاجراءات</th>
 					</tr>
 				</thead>
-				<tbody v-for="informat in informats" :key="informat.id">
+				<tbody v-for="(informat , index ) in informats" :key="informat.id">
 					<tr>
-						<th>{{ informat.id }}</th>
-						<th>{{ informat.number_of_effectiveness }}</th>
-												<th>{{ informat.effectiveness_number }}</th>
+						<th>{{ index + 1 }}</th>
+																		<th>{{ informat.effectiveness_number }}</th>
 
 						<th>{{ informat.effectiveness_name }}</th>
 						<th>{{ informat.start }}</th>
 						<th>{{ informat.end }}</th>
 						<th>{{ informat.date }}</th>
+
 						<th>{{ informat.supervisor }}</th>
 						<th>{{ informat.funded_side }}</th>
 						<th>{{ informat.supervisor_cost }}</th>

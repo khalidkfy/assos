@@ -25,19 +25,7 @@
 					</div>
 		
 				</div></div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<div class="col-sm-9">
-						<label for="inputPassword" class="col-sm-12 col-form-label"
-							>رقم الفعالية
-						</label>
-						<div class="col-sm-12">
-							<input type="text" class="form-control" v-model="effectiveness_number" />
-						</div>
-					</div>
-				</div>
-			</div>
-
+		
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"

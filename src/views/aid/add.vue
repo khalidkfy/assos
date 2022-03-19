@@ -8,16 +8,7 @@
 			</router-link> -->
 		</div>
 		<div class="row">
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>رقم المشروع
-					</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="project_number" />
-					</div>
-				</div>
-			</div>
+		
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">النوع </label>
