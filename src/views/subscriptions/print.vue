@@ -12,7 +12,7 @@
 						<p class="year">{{ item.year }}</p>
 						<p class="abs5">{{ item.dist_gover_name }}</p>
 	
-						 <img :src="'https://associationapi.awtar-tech.com/' + item.image" class="imgs" alt="">
+						 <img :src="'http://134.122.119.130:8080/' + item.image" class="imgs" alt="">
 					</div>
 				</div>
 			</div>
