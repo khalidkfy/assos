@@ -156,7 +156,7 @@
 						>هوية الزوج
 					</label>
 					<div class="col-sm-10">
-						<input type="text" maxlength="9"  class="form-control" v-model="wife_identity" />
+						<input type="text" maxlength="9"  class="form-control" v-model="wife_identity" @change="wifes" />
 					</div>
 				</div>
 			</div>
@@ -590,6 +590,27 @@
 						this.name = res.data.data.name;
 						this.gender = res.data.data.gender;
 						this.address = res.data.data.address;
+						
+						
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+				wifes(){
+					const token = sessionStorage.getItem("token");
+				axios
+					.get(`api/return/returnid?id_number=${this.wife_identity}`, {
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					})
+					.then((res) => {
+						console.log(res.data);
+						// this.birth_date = res.data.data.birth_date;
+						this.wife_name = res.data.data.name;
+						// this.gender = res.data.data.gender;
+						// this.address = res.data.data.address;
 						
 						
 					})
