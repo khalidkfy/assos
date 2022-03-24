@@ -79,8 +79,9 @@
 							>
 								<i class="fa fa-pencil" aria-hidden="true"></i></router-link
 							>
-						</th>
 						
+						</th>
+
 
 						
 					</tr>
@@ -140,6 +141,7 @@
 				name: "",
 				affiliate: "",
 				id_nu: "",
+				delte: "",
 				informats: [],
 				page: 1,
 				nums:null,
@@ -176,6 +178,9 @@
 						console.log(e);
 					});
 			},
+
+
 		},
 	};
 </script>
+//

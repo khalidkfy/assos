@@ -65,6 +65,7 @@
 							<th scope="col">العام</th>
 							<th scope="col">الطباعة</th>
 							<th scope="col">تاريخ الطباعة</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -89,6 +90,8 @@
 								<i class="fa fa-check" aria-hidden="true" style="color: green"></i>
 							</td>
 							<td>{{ item.printing_date }}</td>
+							<td><button class="delete" @click="delt(item.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -97,7 +100,7 @@
 				<div>
 					<router-link
 						class="btn nw px-4 mx-5"
-						:to="{ name: 'print', query: { q: selcted, c: $route.query.q ,  } }"
+						:to="{ name: 'print', query: { q: selcted, c: $route.query.q  } }"
 					>
 						طباعة</router-link
 					>
@@ -176,6 +179,27 @@
 						this.code = res.data.data.Subsc.code;
 						this.start = res.data.data.Subsc.start_subscription;
 						this.end = res.data.data.Subsc.end_subscription;
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+
+				delt(id) {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(
+						`api/subscriptionpeople/destroy?subscription_people_id=`+ id ,
+
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						
+						}
+					)
+					.then(() => {
+						location.reload();
 					})
 					.catch((e) => {
 						console.log(e);

@@ -1,4 +1,25 @@
 <template>
+<div class="heade d-flex justify-content-around">
+	<div>
+		الاسم : 
+	{{name}}
+
+	</div>
+	<div>
+		رقم المستفيد :
+		{{affiliate_no}}
+		</div>
+		<div>
+			رقم الهوية : 
+	{{id_number}}
+
+		</div>
+		<div>
+			العام : 
+{{year}}	
+
+		</div>
+</div>
 	<container>
 		<div>
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -133,352 +154,376 @@
 					aria-labelledby="pills-home-tab"
 				>
 					<div class="row">
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>رقم المستفيد
-								</label>
-								<div class="col-sm-10">
-									<input
-										type="text"
-										class="form-control"
-										disabled
-										v-model="affiliate_no"
-									/>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>الاسم
-								</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" disabled v-model="name" />
-								</div>
-							</div>
-						</div>
+									
+<div class="line row	">
+ <div class="fieldset row ">
+	 <p class="title">معلومات شخصية</p>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الهوية <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" maxlength="9" class="form-control" v-model="id_number"  
+					 disabled
+						/>
+						<small class="text-danger">
+							{{ errid }}
+						</small>
+					</div>
+				</div>
+			</div>
 
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>الهوية
-								</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" disabled v-model="id_number" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>التصنيف</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="classe"
-									>
-										<option>A</option>
-										<option>B</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>العام</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="year"
-									>
-										<option>2021</option>
-										<option>2022</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>الجنس
-								</label>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="gender"
-									>
-										<option>ذكر</option>
-										<option>أنثى</option>
-									</select>
-								</div>
-							</div>
-						</div>
+			<div class="col-md-6">
+				<div class="m-3 mt-4 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الاسم<span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" v-model="name" disabled />
+						<small class="text-danger">
+							{{ errname }}
+						</small>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 mt-4 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>رقم المستفيد <span class="text-danger">*</span>
+					</label>
+					<div class="col-sm-10">
+						<input
+							type="text"
+							maxlength="5" 
+							class="form-control"
+							v-model="affiliate_no"
+							required
+							disabled
+						/>
+						<small class="text-danger">
+							{{ erraffili }}
+						</small>
+					</div>
+				</div>
+			</div>
+		
+					<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الجنس <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="gender"
+							disabled
+						>
+							<option value="2">ذكر</option>
+							<option value="1">أنثى</option>
+						</select>
+						<small class="text-danger">
+							{{ errgender }}
+						</small>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>تاريخ الميلاد  <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" v-model="birth_date" disabled />
+						<small class="text-danger">
+							{{ errbirth }}
+						</small>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>التصنيف <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="classe"
+							disabled
+						>
+							<option>A</option>
+							<option>B</option>
+							<option>C</option>
+							<option>D</option>
+							<option>متوفي</option>
+							<option>منقطع A</option>
+							<option>منقطع B</option>
+							<option>منقطع C</option>
+							<option>منقطع E</option>
+							<option>اخرى</option>
+						</select>
+						<small class="text-danger">
+							{{ errclass }}
+						</small>
+					</div>
+				</div>
+			</div>
+			
+	
+</div>			
+	  </div>
+<div class="fieldset row ">
+	 <p class="title">معلومات الاسرة</p>
+	 	<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الحالة الاجتماعية <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="social_status"
+							disabled
+						>
+							<option>اعزب</option>
+							<option>متزوج</option>
+							<option>اخرى</option>
+						</select>
+						<small class="text-danger">
+							{{ errsocial }}
+						</small>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>هوية الزوج
+					</label>
+					<div class="col-sm-10">
+						<input type="text" maxlength="9"  disabled class="form-control" v-model="wife_identity" />
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>اسم الزوج
+					</label>
+					<div class="col-sm-10">
+						<input type="text" disabled class="form-control" v-model="wife_name" />
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>عدد الافراد
+					</label>
+					<div class="col-sm-10">
+						<input type="text" disabled class="form-control" v-model="number_of_people" />
+					</div>
+				</div>
+			</div>
+			</div>
+<div class="fieldset row ">
+	 <p class="title">العنوان</p>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>المحافظة <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" disabled class="form-control" v-model="governorate" />
+						<small class="text-danger">
+							{{ errgovern }}
+						</small>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الحي<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" disabled class="form-control" v-model="district" />
+						<small class="text-danger">
+							{{ errdistrict }}
+						</small>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>العنوان<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" disabled class="form-control" v-model="address" />
+						<small class="text-danger">
+							{{ ereaddres }}
+						</small>
+					</div>
+				</div>
+			</div>
+			</div>
+<div class="fieldset row ">
+	 <p class="title">معلومات الاتصال</p>
 
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>المحافظة</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="governorate"
-									>
-										<option>غزة</option>
-										<option>الشمال</option>
-										<option>خانيونس</option>
-										<option>دير البلح</option>
-										<option>رفح</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>الحالة الاجتماعية</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="social_status"
-									>
-										<option>اعزب</option>
-										<option>متزوج</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label">الحي</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" disabled v-model="district" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>تاريخ الميلاد</label
-								>
-								<div class="col-sm-10">
-									<input
-										type="date"
-										class="form-control"
-										disabled
-										v-model="birth_date"
-									/>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>الهاتف</label
-								>
-								<div class="col-sm-10">
-									<input
-										type="text"
-										class="form-control"
-										disabled
-										v-model="phone_number"
-									/>
-								</div>
-							</div>
-						</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>رقم الجوال <span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" maxlength="10" disabled  class="form-control" v-model="mobile_number" />
+						<small class="text-danger">
+							{{ errphone }}
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>الهاتف<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" maxlength="9"  disabled class="form-control" v-model="phone_number" />
+						<small class="text-danger">
+							{{ errphone }}
+						</small>
+					</div>
+				</div>
+			</div>
 
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>العنوان</label
-								>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" disabled v-model="address" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>رقم القريب</label
-								>
-								<div class="col-sm-10">
-									<input
-										type="text"
-										class="form-control"
-										disabled
-										v-model="near_number"
-									/>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>رقم الجوال</label
-								>
-								<div class="col-sm-10">
-									<input
-										type="text"
-										class="form-control"
-										disabled
-										v-model="mobile_number"
-									/>
-								</div>
-							</div>
-						</div>
+		
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>رقم القريب<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<input type="text" maxlength="10" disabled  class="form-control" v-model="near_number" />
+						<small class="text-danger">
+							{{ errnear }}
+						</small>
+					</div>
+				</div>
+			</div>
+			</div>
+<div class="fieldset row ">
+	 <p class="title">معلومات عامة</p>
 
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>اسم الزوج - الزوجة</label
-								>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" disabled v-model="wife_name" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>هوية الزوج - الزوجة
-								</label>
-								<div class="col-sm-10">
-									<input
-										type="text"
-										class="form-control"
-										disabled
-										v-model="wife_identity"
-									/>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>العدد
-								</label>
-								<div class="col-sm-10">
-									<input
-										type="text"
-										class="form-control"
-										disabled
-										v-model="number_of_people"
-									/>
-								</div>
-							</div>
-						</div>
 
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>المؤهل</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="qualification"
-									>
-										<option>اقل من ثانوي</option>
-										<option>ثانوي</option>
-										<option>دبلوم</option>
-										<option>بكالوريس</option>
-										<option>دراسات عليا</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>التخصص</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="specialty"
-									>
-										<option>عربي</option>
-										<option>انجليزي</option>
-										<option>صحة</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>المواطنة</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="citizenship"
-									>
-										<option>مواطن</option>
-										<option>لاجئ</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>العمل الحالي
-								</label>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="current_work"
-									>
-										<option>مزارع</option>
-										<option>حكومة</option>
-										<option>خاص</option>
-										<option>أخرى</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="m-3 row">
-								<label for="inputPassword" class="col-sm-12 col-form-label"
-									>العمل السابق</label
-								>
-								<div class="col-sm-10">
-									<select
-										class="form-select"
-										aria-label="Default select example"
-										disabled
-										v-model="previous_work"
-									>
-										<option>مزارع</option>
-									</select>
-								</div>
-							</div>
-						</div>
+			<div class="col-md-6">
+				<div class="m-3 row flex-column">
+					<label for="inputPassword" class="col-sm-12 col-form-label">المؤهل</label>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="qualification"
+							disabled
+						>
+							<option>اقل من ثانوي</option>
+							<option>ثانوي</option>
+							<option>دبلوم</option>
+							<option>بكالوريس</option>
+							<option>دراسات عليا</option>
+							<option>اخرى</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label">التخصص</label>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="specialty"
+							disabled
+						>
+							<option>عربي</option>
+							<option>انجليزي</option>
+							<option>صحة</option>
+							<option>اخرى</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>المواطنة<span class="text-danger">*</span></label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="citizenship"
+							disabled
+						>
+							<option>مواطن</option>
+							<option>لاجئ</option>
+						</select>
+						<small class="text-danger">
+							{{ errcitizn }}
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>العمل الحالي
+					</label>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="current_work"
+							disabled
+						>
+							<option>مزارع</option>
+							<option>حكومة</option>
+							<option>خاص</option>
+							<option>أخرى</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>العمل السابق</label
+					>
+					<div class="col-sm-10">
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="previous_work"
+							disabled
+						>
+							<option>مزارع</option>
+							<option>اخرى</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			</div>
+					
 						<div class="col-md-6">
 							<button
 								class="btn"
@@ -1392,26 +1437,26 @@
 							<tr>
 								<th scope="col">#</th>
 									<th scope="col">الكود</th>
-						<th scope="col">نوع الاشتراك</th>
 						<th scope="col">تاريخ البداية</th>
 						<th scope="col">تاريخ النهاية</th>
-						<th scope="col">الاشتراك</th>
 						<th scope="col">الطباعة </th>
+						<th scope="col">تاريخ الطباعة  </th>
+						
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center" v-for="item in subscs" :key="item.id">
-										<th scope="row">{{ item.id }}</th>
+							<tr class="text-center" v-for="(item , index) in subscs" :key="item.id">
+										<th scope="row">{{ index + 1 }}</th>
 										<th scope="row">{{ item.code }}</th>
-						<th v-if="item.subscription_type == 1">غير مجاني</th>
-						<th v-else-if="item.subscription_type == 0">مجاني</th>
+					
 
 						<th scope="row">{{ item.start_subscription }}</th>
 						<th scope="row">{{ item.end_subscription }}</th>
-						<td v-if="item.is_payment == 0">غير مشترك</td>
-							<td v-else>مشترك</td>
+					
 							<td v-if="item.is_printed == 0 ">غير مطبوع</td>
 							<td v-else> مطبوع</td>
+													<th scope="row">{{ item.printed_date }}</th>
+
 					
 							</tr>
 						</tbody>

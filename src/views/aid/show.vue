@@ -57,7 +57,9 @@
 						<th scope="col">العدد المتبرع به</th>
 						<th scope="col">مبلغ المشروع</th>
 						<th scope="col">النوع</th>
+						<th scope="col">الحالة</th>
 						<th scope="col">الاجراءات</th>
+						<th scope="col"></th>
 					
 					</tr>
 				</thead>
@@ -72,6 +74,8 @@
 						<th>{{ informat.donated_number }}</th>
 						<th>{{ informat.project_amount }}</th>
 						<th>{{ informat.type }}</th>
+						<th v-if="informat.status == 2">تمت</th>
+						<th v-if="informat.status == 1">مقترح</th>
 						<th class="d-flex justify-content-between">
 							<router-link
 								class="icons"
@@ -156,6 +160,27 @@
 			this.basicdata();
 		},
 		methods: {
+							delt(id) {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(
+						`api/subscriptionpeople/destroy?subscription_people_id=`+ id ,
+
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						
+						}
+					)
+					.then((res) => {
+						console.log(res);
+					
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios

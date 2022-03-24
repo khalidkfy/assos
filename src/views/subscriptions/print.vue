@@ -148,7 +148,8 @@ upload() {
 				axios.post(
 						"api/subscriptionpeople/toggleprint",
 						{
-								subscription_people_id :  this.$route.query.q	,
+								subscription_people_id :  this.$route.query.q,
+								subsc_id:  this.$route.query.c,
 						},
 						{
 							headers: {

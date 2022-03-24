@@ -32,7 +32,8 @@
 						>القيمة المالية للدخل
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="financial_value" />
+						<input type="text" class="form-control"   v-model="financial_value" />
+
 					</div>
 				</div>
 			</div>
@@ -65,7 +66,7 @@
 						>التقييم المالي
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="financial_evaluation" />
+						<input type="text"  class="form-control" v-model="financial_evaluation"  />
 					</div>
 				</div>
 			</div>
@@ -100,6 +101,8 @@
 				financial_evaluation: "",
 				notes: "",
 				informats: [],
+				    maxLength: 10,
+
 			};
 		},
 			created() {

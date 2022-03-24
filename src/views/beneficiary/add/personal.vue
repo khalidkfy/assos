@@ -7,15 +7,16 @@
 	>
 	
 		<div class="row">
-			<div class="separator">معلومات شخصية</div>
-
+		<div class="line row	">
+ <div class="fieldset row ">
+	 <p class="title">معلومات شخصية</p>
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
 						>الهوية <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="id_number" required 
+						<input type="text" maxlength="9" class="form-control" v-model="id_number"  
 						@change="inform"
 						/>
 						<small class="text-danger">
@@ -24,6 +25,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="col-md-6">
 				<div class="m-3 mt-4 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -44,7 +46,8 @@
 					</label>
 					<div class="col-sm-10">
 						<input
-							type="number"
+							type="text"
+							maxlength="5" 
 							class="form-control"
 							v-model="affiliate_no"
 							required
@@ -67,8 +70,8 @@
 							aria-label="Default select example"
 							v-model="gender"
 						>
-							<option value="1">ذكر</option>
-							<option value="2">أنثى</option>
+							<option value="2">ذكر</option>
+							<option value="1">أنثى</option>
 						</select>
 						<small class="text-danger">
 							{{ errgender }}
@@ -89,27 +92,7 @@
 					</div>
 				</div>
 			</div>
-				<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الحالة الاجتماعية <span class="text-danger">*</span></label
-					>
-					<div class="col-sm-10">
-						<select
-							class="form-select"
-							aria-label="Default select example"
-							v-model="social_status"
-						>
-							<option>اعزب</option>
-							<option>متزوج</option>
-							<option>اخرى</option>
-						</select>
-						<small class="text-danger">
-							{{ errsocial }}
-						</small>
-					</div>
-				</div>
-			</div>
+			
 			
 			<div class="col-md-6">
 				<div class="m-3 row">
@@ -141,24 +124,49 @@
 			</div>
 			
 	
-
-			<div class="col-md-6">
+</div>			
+	  </div>
+<div class="fieldset row ">
+	 <p class="title">معلومات الاسرة</p>
+	 	<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>اسم الزوج
-					</label>
+						>الحالة الاجتماعية <span class="text-danger">*</span></label
+					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="wife_name" />
+						<select
+							class="form-select"
+							aria-label="Default select example"
+							v-model="social_status"
+						>
+							<option>اعزب</option>
+							<option>متزوج</option>
+							<option>اخرى</option>
+						</select>
+						<small class="text-danger">
+							{{ errsocial }}
+						</small>
 					</div>
 				</div>
 			</div>
+		
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
 						>هوية الزوج
 					</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="wife_identity" />
+						<input type="text" maxlength="9"  class="form-control" v-model="wife_identity" />
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+				<div class="m-3 row">
+					<label for="inputPassword" class="col-sm-12 col-form-label"
+						>اسم الزوج
+					</label>
+					<div class="col-sm-10">
+						<input type="text"  class="form-control" v-model="wife_name" />
 					</div>
 				</div>
 			</div>
@@ -168,12 +176,13 @@
 						>عدد الافراد
 					</label>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" v-model="number_of_people" />
+						<input type="text" class="form-control" v-model="number_of_people" />
 					</div>
 				</div>
 			</div>
-<div class="separator">العنوان</div>
-
+			</div>
+<div class="fieldset row ">
+	 <p class="title">العنوان</p>
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
@@ -231,7 +240,9 @@
 					</div>
 				</div>
 			</div>
-<div class="separator">معلومات الاتصال</div>
+			</div>
+<div class="fieldset row ">
+	 <p class="title">معلومات الاتصال</p>
 
 			<div class="col-md-6">
 				<div class="m-3 row">
@@ -239,7 +250,7 @@
 						>رقم الجوال <span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="mobile_number" />
+						<input type="text" maxlength="10"  class="form-control" v-model="mobile_number" />
 						<small class="text-danger">
 							{{ errphone }}
 						</small>
@@ -252,7 +263,7 @@
 						>الهاتف<span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="phone_number" />
+						<input type="text" maxlength="9"  class="form-control" v-model="phone_number" />
 						<small class="text-danger">
 							{{ errphone }}
 						</small>
@@ -267,14 +278,16 @@
 						>رقم القريب<span class="text-danger">*</span></label
 					>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="near_number" />
+						<input type="text" maxlength="10"  class="form-control" v-model="near_number" />
 						<small class="text-danger">
 							{{ errnear }}
 						</small>
 					</div>
 				</div>
 			</div>
-<div class="separator">معلومات العامة</div>
+			</div>
+<div class="fieldset row ">
+	 <p class="title">معلومات عامة</p>
 
 
 			<div class="col-md-6">
@@ -423,6 +436,7 @@
 				
 				</div>
 
+			</div>
 			</div>
 			<div class="container">
 	<div class="row">

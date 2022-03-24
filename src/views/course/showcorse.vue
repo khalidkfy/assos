@@ -48,6 +48,7 @@
 						<th scope="col">رقم الفعالية </th>
 						<th>تاريخ الميلاد</th>
 						<th scope="col">العام </th>
+						<th scope="col"> </th>
 					</tr>
 				</thead>
 				<tbody v-for="(informat , index ) in informats" :key="informat.id" class="text-center">
@@ -62,8 +63,8 @@
 						<th>{{ informat.birth_date }}</th>
 						<th>{{ informat.year }}</th>
 						
-					
-					
+	<td><button class="delete" @click="delt(informat.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+</button></td>					
 					</tr>
 				</tbody>
 			</table>
@@ -93,6 +94,29 @@
 			this.basicdata();
 		},
 		methods: {
+				delt(id) {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(
+						`api/personcourse/destroy?person_courses_id=`+ id ,
+
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						
+						}
+					)
+					.then((res) => {
+						console.log(res);
+												location.reload();
+
+					
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios

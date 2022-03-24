@@ -40,6 +40,7 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
+						<th scope="col">#</th>
 						<th scope="col">رقم المستفيد</th>
 						<th scope="col">اسم المستفيد</th>
 						<th scope="col">رقم الهاتف</th>
@@ -48,10 +49,18 @@
 						<th scope="col">بيانات التنمية</th>
 						<th scope="col">بيانات العمل</th>
 						<th scope="col">العام</th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="text-center" v-for="(item , index) in informats" :key="item.id">
+				<input
+								type="checkbox"
+								class="mt-3"
+								:value="item.affiliate_no"
+								v-model="selcted"
+							/>
+
 						<td>{{ index + 1 }}</td>
 				
 						<td>{{ item.affiliate_no }}</td>
@@ -64,10 +73,15 @@
 						<td>{{ item.income_work }}</td>
 									
 						<td>{{ item.year }}</td>
+							<td><button class="delete" @click="delt(item.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+</button></td>
 					</tr>
 				</tbody>
 			</table>
+
 		</div>
+									<button class="btn mx-5" @click="upload" >اعتماد</button>
+
 			<div class="d-flex align-items-center justify-content-between">
 			<div class="d-flex align-items-center">
 				<input
@@ -119,12 +133,36 @@
 				nme:"",
 				affilt:"",
 				per: 10,
+				selcted: [],
 			};
 		},
 		created() {
 			this.basicdata();
 		},
 		methods: {
+			upload() {
+				const token = sessionStorage.getItem("token");
+				axios.post(
+						"api/aidpeople/toggle",
+						{
+								aid_id :  this.$route.query.q,
+								aid_people_id :  this.selcted
+						},
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+							
+						}
+					)	
+					.then((res) => {
+						console.log(res.data);
+						
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
 			basicdata() {
 				const token = sessionStorage.getItem("token");
 				axios
@@ -142,6 +180,29 @@
 						this.informats = res.data.data.AidPeople;
 						this.name = res.data.data.Aid.project_name;
 												this.nums = res.data.paging.last_page;
+
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			},
+			
+				delt(id) {
+				const token = sessionStorage.getItem("token");
+				axios
+					.get(
+						`api/aidpeople/destroy?aid_people_id=`+ id ,
+
+						{
+							headers: {
+								Authorization: "Bearer " + token,
+							},
+						
+						}
+					)
+					.then((res) => {
+						console.log(res);
+											location.reload();
 
 					})
 					.catch((e) => {
