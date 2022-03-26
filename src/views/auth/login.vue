@@ -62,6 +62,7 @@ input{
 }
 .hg{
  height: 100vh;
+ background: white ;
 }
 img{
 height: 300px;

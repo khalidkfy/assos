@@ -79,7 +79,7 @@
 						<th class="d-flex justify-content-between">
 							<router-link
 								class="icons"
-								:to="{ name: 'showman', query: { q: informat.id } }"
+								:to="{ name: 'showman', query: { q: informat.id , d:informat.status } }"
 							>
 																<i class="fa fa-user"></i>
 

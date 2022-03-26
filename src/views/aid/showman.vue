@@ -49,6 +49,7 @@
 						<th scope="col">بيانات التنمية</th>
 						<th scope="col">بيانات العمل</th>
 						<th scope="col">العام</th>
+						<th scope="col">الحالة</th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
@@ -73,6 +74,9 @@
 						<td>{{ item.income_work }}</td>
 									
 						<td>{{ item.year }}</td>
+						<td v-if="done==2">		<i class="fa fa-check" aria-hidden="true" style="color: green"></i></td>
+						<td v-else>	</td>
+
 							<td><button class="delete" @click="delt(item.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>
 </button></td>
 					</tr>
@@ -134,11 +138,13 @@
 				affilt:"",
 				per: 10,
 				selcted: [],
+				done: this.$route.query.d,
 			};
 		},
 		created() {
 			this.basicdata();
 		},
+
 		methods: {
 			upload() {
 				const token = sessionStorage.getItem("token");
