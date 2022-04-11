@@ -10,48 +10,52 @@ import print from "../views/subscriptions/print.vue";
 import setting from "../views/subscriptions/setting.vue";
 import setting2 from "../views/subscriptions/setting2.vue";
 import edit2 from "../views/subscriptions/edit.vue";
-// START source 
+// START source
 import addsurce from "../views/source/add.vue";
 import addman from "../views/source/addman.vue";
 import showsource from "../views/source/show.vue";
 import shwsorce from "../views/source/shwsorce.vue";
 
-// END source 
+// END source
 
-// START COURSE 
+// START COURSE
 import addcourse from "../views/course/add.vue";
 import addmanc from "../views/course/addman.vue";
 import showcorse from "../views/course/show.vue";
 import showpcorse from "../views/course/showcorse.vue";
 import upcourse from "../views/course/upcourse.vue";
 
-// END COURSE 
+// END COURSE
 
-// START AID 
+// START AID
 import addaid from "../views/aid/add.vue";
 import addmanaid from "../views/aid/addman.vue";
 import showaid from "../views/aid/show.vue";
 import showman from "../views/aid/showman.vue";
 import upaid from "../views/aid/upaid.vue";
-// END AID 
+// END AID
 // start subscription
 import addsubs from "../views/subscriptions/addsubs.vue";
 import adds from "../views/subscriptions/new.vue";
 import shwsubs from "../views/subscriptions/shwsubs.vue";
 import update from "../views/subscriptions/upsub.vue";
 
-// end subsc 
+// end subsc
 import sources from "../views/beneficiary/list/sources.vue";
 
-// start edit 
+// start edit
 import incoedit from "../views/beneficiary/edit/incoedit.vue";
+
+// start reports
+import ReportsIndex from "../views/reports/index";
+// end reports
 
 const routes = [
   {
     path: "/",
     name: "login",
     component: login,
-  }, 
+  },
 
 
   {
@@ -59,7 +63,7 @@ const routes = [
     name: "update",
     component: update,
   },
-  
+
   {
     path: "/addsubs",
     name: "addsubs",
@@ -81,39 +85,39 @@ const routes = [
     name: "upcourse",
     component: upcourse,
   },
-  
+
   {
     path: "/incoedit",
     name: "incoedit",
     component: incoedit,
   },
 
-  
+
   {
     path: "/shwsubs",
     name: "shwsubs",
     component: shwsubs,
   },
 
-  
+
   {
     path: "/adds",
     name: "adds",
     component: adds,
   },
-  
+
   {
     path: "/showpcorse",
     name: "showpcorse",
     component: showpcorse,
   },
-  
+
   {
     path: "/showsource",
     name: "showsource",
     component: showsource,
   },
-  
+
   {
     path: "/showman",
     name: "showman",
@@ -124,14 +128,14 @@ const routes = [
     name: "showcorse",
     component: showcorse,
   },
-  
-  
+
+
   {
     path: "/shwsorce",
     name: "shwsorce",
     component: shwsorce,
   },
-  
+
   {
     path: "/subs",
     name: "subs",
@@ -159,14 +163,14 @@ const routes = [
     component: addcourse,
   },
 
-  
-  
+
+
   {
     path: "/addmanc",
     name: "addmanc",
     component: addmanc,
   },
-  
+
   {
     path: "/addsurce",
     name: "addsurce",
@@ -221,6 +225,11 @@ const routes = [
     path: "/editsub",
     name: "editsub",
     component: edit2,
+  },
+  {
+    path: "/reports",
+    name: "reports",
+    component: ReportsIndex,
   },
 
 ];

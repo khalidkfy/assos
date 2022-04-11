@@ -4,10 +4,11 @@
     <router-link to="/table" active-class="actives">عرض المستفيدين</router-link>
      <router-link to="/add" active-class="actives">اضافة مستفيدين </router-link>
        <router-link to="listSubs" active-class="actives"> الاشتراكات</router-link>
-          <router-link to="showcorse" active-class="actives">الدورات</router-link> 
-          <router-link to="showaid" active-class="actives">المساعدات</router-link> 
+          <router-link to="showcorse" active-class="actives">الدورات</router-link>
+          <router-link to="showaid" active-class="actives">المساعدات</router-link>
+          <router-link to="reports" active-class="actives">التقارير</router-link>
 
-         <p v-on:click.prevent="logout" style="cursor: pointer;">تسجيل الخروج </p> 
+         <p v-on:click.prevent="logout" style="cursor: pointer;">تسجيل الخروج </p>
 
 </div>
 
