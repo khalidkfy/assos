@@ -85,6 +85,75 @@
         </tr>
         </tbody>
       </table>
+      <table v-if="report_type == 'helpers'" class="mt-3 table table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th v-if="projects_cols.project_number">رقم المشروع</th>
+          <th v-if="projects_cols.project_name">اسم المشروع</th>
+          <th v-if="projects_cols.funded_side">الجهة الممولة</th>
+          <th v-if="projects_cols.project_date">تاريخ المشروع</th>
+          <th v-if="projects_cols.value_per_person">القيمة للشخص</th>
+          <th v-if="projects_cols.donated_number">العدد المتبرع به</th>
+          <th v-if="projects_cols.project_amount">مبلغ المشروع</th>
+          <th v-if="projects_cols.type">النوع</th>
+          <th v-if="projects_cols.status">الحالة</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(project, index) in projects" :key="index">
+          <td>{{++ index}}</td>
+          <td v-if="projects_cols.project_number">{{ project.project_number }}</td>
+          <td v-if="projects_cols.project_name">{{ project.project_name }}</td>
+          <td v-if="projects_cols.funded_side">{{ project.funded_side }}</td>
+          <td v-if="projects_cols.project_date">{{ project.project_date }}</td>
+          <td v-if="projects_cols.value_per_person">{{ project.value_per_person }}</td>
+          <td v-if="projects_cols.donated_number">{{project.donated_number}}</td>
+          <td v-if="projects_cols.project_amount">{{ project.project_amount }}</td>
+          <td v-if="projects_cols.type">{{ project.type }}</td>
+          <td v-if="projects_cols.status && project.status == 1">مقترح</td>
+          <td v-if="projects_cols.status && project.status == 2">تمت</td>
+        </tr>
+        </tbody>
+      </table>
+      <table v-if="report_type == 'courses'" class="mt-3 table table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th v-if="courses_cols.effectiveness_number">رقم الفعالية</th>
+          <th v-if="courses_cols.effectiveness_name">اسم الفعالية</th>
+          <th v-if="courses_cols.date">التاريخ</th>
+          <th v-if="courses_cols.start">وقت البداية</th>
+          <th v-if="courses_cols.end">وقت النهاية</th>
+          <th v-if="courses_cols.funded_side">الجهة الممولة</th>
+          <th v-if="courses_cols.supervisor">المشرف</th>
+          <th v-if="courses_cols.supervisor_cost">تكلفة المشرف</th>
+          <th v-if="courses_cols.number_of_effectiveness">عدد المتفاعلين</th>
+          <th v-if="courses_cols.total_cost">التكلفة الإجمالية</th>
+          <th v-if="courses_cols.activity_type">النشاط</th>
+          <th v-if="courses_cols.notes">الملاحظات</th>
+
+        </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(course, index) in courses" :key="index">
+          <td>{{++ index}}</td>
+          <td v-if="courses_cols.effectiveness_number">{{ course.effectiveness_number }}</td>
+          <td v-if="courses_cols.effectiveness_name">{{ course.effectiveness_name }}</td>
+          <td v-if="courses_cols.date">{{ course.date }}</td>
+          <td v-if="courses_cols.start">{{ course.start }}</td>
+          <td v-if="courses_cols.end">{{ course.end }}</td>
+          <td v-if="courses_cols.funded_side">{{ course.funded_side }}</td>
+          <td v-if="courses_cols.supervisor">{{ course.supervisor }}</td>
+          <td v-if="courses_cols.supervisor_cost">{{ course.supervisor_cost }}</td>
+          <td v-if="courses_cols.number_of_effectiveness">{{ course.number_of_effectiveness }}</td>
+          <td v-if="courses_cols.total_cost">{{ course.total_cost }}</td>
+          <td v-if="courses_cols.activity_type && course.activity_type == 1">دورة</td>
+          <td v-if="courses_cols.activity_type && course.activity_type !== 1">رحلة</td>
+          <td v-if="courses_cols.notes">{{ course.notes }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div v-else>
@@ -288,6 +357,169 @@
             </div>
           </div>
         </div>
+        <div v-if="report_type === 'helpers'" class="row">
+          <div class="col-md-6">
+            <input
+                type="text"
+                class="form-control my-2"
+                aria-label="Default select example"
+                placeholder="رقم المشروع"
+                v-model="project_number"
+            />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="اسم المشروع"
+                v-model="project_name"
+            />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="مبلغ المشروع"
+                v-model="project_price"
+            />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="الجهة الممولة"
+                v-model="project_funded"
+            />
+          </div>
+          <div class="col-md-6">
+            <div class="cols">
+              <span>الأعمدة</span>
+              <div class="row">
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.project_number" id="project_number">
+                  <label for="project_number"  class="mx-2">رقم المشروع</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.project_name" id="project_name">
+                  <label for="project_name"  class="mx-2">اسم المشروع</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.funded_side" id="funded_side">
+                  <label for="funded_side"  class="mx-2">الجهة الممولة</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.project_date" id="project_date">
+                  <label for="project_date"  class="mx-2">تاريخ المشروع</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.value_per_person" id="value_per_person">
+                  <label for="value_per_person"  class="mx-2">القيمة للشخص</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.donated_number" id="donated_number">
+                  <label for="donated_number"  class="mx-2">العدد المتبرع به</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.project_amount" id="project_amount">
+                  <label for="project_amount"  class="mx-2">مبلغ المشروع</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.type" id="type">
+                  <label for="type"  class="mx-2">النوع</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="projects_cols.status" id="status">
+                  <label for="status"  class="mx-2">الحالة</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="report_type === 'courses'" class="row">
+          <div class="col-md-6">
+            <input
+                type="text"
+                class="form-control my-2"
+                aria-label="Default select example"
+                placeholder="اسم الدورة"
+                v-model="course_name"
+            />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="رقم الدورة"
+                v-model="course_number"
+            />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="الجهة الممولة"
+                v-model="course_funded"
+            />
+            <select
+                type="number"
+                class="form-control my-2"
+                v-model="activity_type"
+            >					<option></option>
+
+              <option value="1">دورة</option>
+              <option value="2">رحلة</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <div class="cols">
+              <span>الأعمدة</span>
+              <div class="row">
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.effectiveness_number" id="effectiveness_number">
+                  <label for="effectiveness_number"  class="mx-2">رقم الفعالية</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.effectiveness_name" id="effectiveness_name">
+                  <label for="effectiveness_name"  class="mx-2">اسم الفعالية</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.date" id="date">
+                  <label for="date"  class="mx-2">التاريخ</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.start" id="start">
+                  <label for="start"  class="mx-2">وقت البداية</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.end" id="end">
+                  <label for="end"  class="mx-2">وقت النهاية</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.funded_side" id="course_funded_side">
+                  <label for="course_funded_side"  class="mx-2">الجهة الممولة</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.supervisor" id="supervisor">
+                  <label for="supervisor"  class="mx-2">المشرف</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.supervisor_cost" id="supervisor_cost">
+                  <label for="supervisor_cost"  class="mx-2">تكلفة المشرف</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.number_of_effectiveness" id="number_of_effectiveness">
+                  <label for="number_of_effectiveness"  class="mx-2">عدد المتفاعلين</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.cost" id="cost">
+                  <label for="cost"  class="mx-2">التكلفة</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.total_cost" id="total_cost">
+                  <label for="total_cost"  class="mx-2">التكلفة الإجمالية</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.activity_type" id="activity_type">
+                  <label for="activity_type"  class="mx-2">النشاط</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_cols.notes" id="notes">
+                  <label for="notes"  class="mx-2">الملاحظات</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <div class="row justify-content-center mt-4">
@@ -341,8 +573,36 @@ export default {
         order_fees: true,
         description: true,
       },
+      projects_cols: {
+        project_number: true,
+        project_name: true,
+        funded_side: true,
+        project_date: true,
+        value_per_person: true,
+        donated_number: true,
+        project_amount: true,
+        type: true,
+        status: true,
+      },
+      courses_cols: {
+        effectiveness_number: true,
+        effectiveness_name: true,
+        activity_type: true,
+        funded_side: true,
+        date: true,
+        start: true,
+        end: true,
+        supervisor: true,
+        supervisor_cost: true,
+        number_of_effectiveness: true,
+        cost: true,
+        total_cost: true,
+        notes: true,
+      },
       benefits:[],
       subs:[],
+      projects:[],
+      courses:[],
       benefits_year: null,
       benefits_name: null,
       benefits_num: null,
@@ -350,6 +610,14 @@ export default {
       subs_code: null,
       subs_start_year: null,
       subs_end_year: null,
+      project_number : null,
+      project_name : null,
+      project_price : null,
+      project_funded : null,
+      course_name : null,
+      course_number : null,
+      course_funded : null,
+      activity_type : null,
     }
   },
   methods: {
@@ -392,6 +660,48 @@ export default {
             if (res.data.status) {
               this.show_report = true;
               this.subs = res.data.subs;
+            }
+          }).catch(err => {
+            console.log(err)
+          }).finally(() => {
+            this.loading = false;
+          })
+          break;
+        case "helpers":
+          axios.post('/api/reports/helpers', {
+            project_number: this.project_number,
+            project_name: this.project_name,
+            project_price: this.project_price,
+            project_funded: this.project_funded,
+          }, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }).then(res => {
+            if (res.data.status) {
+              this.show_report = true;
+              this.projects = res.data.projects;
+            }
+          }).catch(err => {
+            console.log(err)
+          }).finally(() => {
+            this.loading = false;
+          })
+          break;
+        case "courses":
+          axios.post('/api/reports/courses', {
+            course_name: this.course_name,
+            course_number: this.course_number,
+            course_funded: this.course_funded,
+            activity_type: this.activity_type,
+          }, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }).then(res => {
+            if (res.data.status) {
+              this.show_report = true;
+              this.courses = res.data.courses;
             }
           }).catch(err => {
             console.log(err)
