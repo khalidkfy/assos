@@ -1,9 +1,12 @@
 <template>
   <div v-if="show_report" class="p-3">
     <div class="row">
-      <div class="col-md-6 title"><h3>جمعية رعاية كبار السن</h3></div>
-      <div class="col-md-6" style="text-align: left">
-        <img src="../../assets/img/log.jpeg" alt="" class="logos">
+      <div class="col-md-4 title"><h3>جمعية رعاية كبار السن</h3></div>
+      <div class="col-md-4 text-center">
+        <h3>{{report_title}}</h3>
+      </div>
+      <div class="col-md-4" style="text-align: left">
+        <img v-if="show_logo" src="../../assets/img/log.jpeg" alt="" class="logos">
       </div>
       <div class="col-md-6">
         <button v-if="print_btn" @click="print()" class="btn btn-success mx-2">طباعة</button>
@@ -163,7 +166,7 @@
     <container>
       <div class="card p-3">
         <span>البحث عن:</span>
-        <div class="row mt-2 mb-5">
+        <div class="row mt-2 mb-3">
           <div class="col-md-3">
             <div class="radio">
               <input type="radio" v-model="report_type" value="benefits" name="report" id="benefits">
@@ -186,6 +189,20 @@
             <div class="radio">
               <input type="radio" v-model="report_type" value="courses" name="report" id="courses">
               <label for="courses" class="mx-2">الدورات</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 mb-5">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="report_title">عنوان التقرير</label>
+              <input v-model="report_title" id="report_title" type="text" class="form-control my-2">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="show_logo" class="mx-2">عرض الشعار</label>
+              <input v-model="show_logo" id="show_logo" type="checkbox">
             </div>
           </div>
         </div>
@@ -542,6 +559,8 @@ export default {
     return {
       report_type: "benefits",
       show_report: false,
+      show_logo: true,
+      report_title: null,
       print_btn: true,
       loading: false,
       benefits_cols: {
