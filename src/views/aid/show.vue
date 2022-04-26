@@ -41,7 +41,7 @@
 		</div>
 
 		<hr />
-		<router-link class="btn ms-3" :to="{ name: 'addaid' }">
+		<router-link v-if="hasPermission('helps_create')" class="btn ms-3" :to="{ name: 'addaid' }">
 			اضافة مساعدة
 		</router-link>
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
@@ -60,7 +60,7 @@
 						<th scope="col">الحالة</th>
 						<th scope="col">الاجراءات</th>
 						<th scope="col"></th>
-					
+
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
@@ -84,15 +84,16 @@
 																<i class="fa fa-user"></i>
 
 							</router-link>
-					
+
 							<router-link
 								class="icons"
 								:to="{ name: 'addmanaid', query: { q: informat.id } }"
 							>
 						<i class="fa fa-user-plus" ></i>
 							</router-link>
-							
-							<router-link
+
+							<router-link v-if="hasPermission('courses_edit')"
+
 								:to="{ name: 'upaid', query: { q: informat.id } }"
 								class="icons"
 								><i class="fa fa-pencil" aria-hidden="true"></i>
@@ -100,7 +101,7 @@
 
 </router-link
 							>
-							
+
 						</th>
 					</tr>
 				</tbody>
@@ -170,12 +171,12 @@
 							headers: {
 								Authorization: "Bearer " + token,
 							},
-						
+
 						}
 					)
 					.then((res) => {
 						console.log(res);
-					
+
 					})
 					.catch((e) => {
 						console.log(e);

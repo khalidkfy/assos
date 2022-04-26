@@ -50,20 +50,44 @@ import incoedit from "../views/beneficiary/edit/incoedit.vue";
 import ReportsIndex from "../views/reports/index";
 // end reports
 
+// start settings
+import SettingsIndex from "../views/settings/index";
+import GovernoratesIndex from "../views/settings/governorates/index";
+import GovernoratesForm from "../views/settings/governorates/form";
+import DistrictIndex from "../views/settings/districts/index";
+import DistrictForm from "../views/settings/districts/form";
+import IncomesIndex from "../views/settings/incomes/index";
+import IncomesForm from "../views/settings/incomes/form";
+import CategsIndex from "../views/settings/categories/index";
+import CategsForm from "../views/settings/categories/form";
+import SpecsIndex from "../views/settings/specs/index";
+import SpecsForm from "../views/settings/specs/form";
+import HousingIndex from "../views/settings/housing/index";
+import HousingForm from "../views/settings/housing/form";
+import HousingTypeIndex from "../views/settings/housing_types/index";
+import HousingTypeForm from "../views/settings/housing_types/form";
+import FurnitureCasesIndex from "../views/settings/furniture_cases/index";
+import FurnitureCasesForm from "../views/settings/furniture_cases/form";
+import JobsIndex from "../views/settings/jobs/index";
+import JobsForm from "../views/settings/jobs/form";
+import PermissionsIndex from "../views/settings/permissions/index";
+import PermissionsForm from "../views/settings/permissions/form";
+import EmployeesIndex from "../views/settings/employees/index";
+import EmployeesForm from "../views/settings/employees/form";
+import EmployeesShow from "../views/settings/employees/show";
+// end settings
+
 const routes = [
   {
     path: "/",
     name: "login",
     component: login,
   },
-
-
   {
     path: "/update",
     name: "update",
     component: update,
   },
-
   {
     path: "/addsubs",
     name: "addsubs",
@@ -231,7 +255,186 @@ const routes = [
     name: "reports",
     component: ReportsIndex,
   },
-
+  {
+    path: "/settings",
+    name: "settings",
+    component: SettingsIndex,
+  },
+  {
+    path: "/governorates",
+    name: "settings.governorates.index",
+    component: GovernoratesIndex,
+  },
+  {
+    path: "/add-governorates",
+    name: "settings.governorates.create",
+    component: GovernoratesForm,
+  },
+  {
+    path: "/edit-governorates",
+    name: "settings.governorates.edit",
+    component: GovernoratesForm,
+  },
+  {
+    path: "/districts",
+    name: "settings.districts.index",
+    component: DistrictIndex,
+  },
+  {
+    path: "/add-district",
+    name: "settings.districts.create",
+    component: DistrictForm,
+  },
+  {
+    path: "/edit-district",
+    name: "settings.districts.edit",
+    component: DistrictForm,
+  },
+  {
+    path: "/incomes",
+    name: "settings.incomes.index",
+    component: DistrictForm,
+  },
+  {
+    path: "/incomes",
+    name: "settings.incomes.index",
+    component: IncomesIndex,
+  },
+  {
+    path: "/add-incomes",
+    name: "settings.incomes.create",
+    component: IncomesForm,
+  },
+  {
+    path: "/edit-incomes",
+    name: "settings.incomes.edit",
+    component: IncomesForm,
+  },
+  {
+    path: "/categories",
+    name: "settings.categs.index",
+    component: CategsIndex,
+  },
+  {
+    path: "/add-category",
+    name: "settings.categs.create",
+    component: CategsForm,
+  },
+  {
+    path: "/edit-category",
+    name: "settings.categs.edit",
+    component: CategsForm,
+  },
+  {
+    path: "/specialities",
+    name: "settings.specs.index",
+    component: SpecsIndex,
+  },
+  {
+    path: "/add-speciality",
+    name: "settings.specs.create",
+    component: SpecsForm,
+  },
+  {
+    path: "/edit-speciality",
+    name: "settings.specs.edit",
+    component: SpecsForm,
+  },
+  {
+    path: "/housings",
+    name: "settings.housings.index",
+    component: HousingIndex,
+  },
+  {
+    path: "/add-housing",
+    name: "settings.housings.create",
+    component: HousingForm,
+  },
+  {
+    path: "/edit-housing",
+    name: "settings.housings.edit",
+    component: HousingForm,
+  },
+  {
+    path: "/housing_types",
+    name: "settings.housingTypes.index",
+    component: HousingTypeIndex,
+  },
+  {
+    path: "/add-housing_types",
+    name: "settings.housingTypes.create",
+    component: HousingTypeForm,
+  },
+  {
+    path: "/edit-housing_types",
+    name: "settings.housingTypes.edit",
+    component: HousingTypeForm,
+  },
+  {
+    path: "/furniture_cases",
+    name: "settings.fur_cases.index",
+    component: FurnitureCasesIndex,
+  },
+  {
+    path: "/add-furniture_case",
+    name: "settings.fur_cases.create",
+    component: FurnitureCasesForm,
+  },
+  {
+    path: "/edit-furniture_case",
+    name: "settings.fur_cases.edit",
+    component: FurnitureCasesForm,
+  },
+  {
+    path: "/jobs",
+    name: "settings.jobs.index",
+    component: JobsIndex,
+  },
+  {
+    path: "/add-jobs",
+    name: "settings.jobs.create",
+    component: JobsForm,
+  },
+  {
+    path: "/edit-jobs",
+    name: "settings.jobs.edit",
+    component: JobsForm,
+  },
+  {
+    path: "/permissions",
+    name: "settings.permissions.index",
+    component: PermissionsIndex,
+  },
+  {
+    path: "/add-permission",
+    name: "settings.permissions.create",
+    component: PermissionsForm,
+  },
+  {
+    path: "/edit-permission",
+    name: "settings.permissions.edit",
+    component: PermissionsForm,
+  },
+  {
+    path: "/employees",
+    name: "settings.employees.index",
+    component: EmployeesIndex,
+  },
+  {
+    path: "/add-employee",
+    name: "settings.employees.create",
+    component: EmployeesForm,
+  },
+  {
+    path: "/edit-employee",
+    name: "settings.employees.edit",
+    component: EmployeesForm,
+  },
+  {
+    path: "/show-employee",
+    name: "settings.employees.show",
+    component: EmployeesShow,
+  },
 ];
 
 const router = createRouter({

@@ -31,8 +31,8 @@
 
     </form>
       </div>
-  
-  
+
+
   </div>
 </template>
 <style scoped>
@@ -73,7 +73,7 @@ import axios from "axios";
 
 export default {
   name: "needs",
-  
+
 
   mounted() {
     console.log("Component mounted.");
@@ -97,6 +97,7 @@ export default {
         .then((res) => {
           const token = res.data.data.token;
           sessionStorage.setItem("token", token);
+          sessionStorage.setItem('permissions', res.data.data.User.permission ? JSON.stringify(res.data.data.User.permission.rules) : []);
           this.show()
           // this.$router.push({ name: "lists" });
         })
@@ -105,7 +106,7 @@ export default {
 });
     },
     show(){
-   const  Swal = this.$swal ; 
+   const  Swal = this.$swal ;
       const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -124,7 +125,7 @@ Toast.fire({
 }).then(() => {
           this.$router.push({ name: "lists" });
         });
-  
+
     },
     failed(){
        this.Swal.fire({

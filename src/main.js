@@ -15,13 +15,39 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 library.add(faUserSecret)
 
 /* add font awesome icon component */
-
-
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+
+
 
 // basic URL for this page
 Axios.defaults.baseURL = 'http://134.122.119.130:8080/';
 // http://134.122.119.130:8080/
 //http://association.test/
-createApp(App).use(store).use(router).use(VueSweetalert2).mount("#app");
+const app = createApp(App).use(store).use(router).use(VueSweetalert2);
+
+app.mixin({
+  mounted() {
+    this.permissions = JSON.parse(sessionStorage.getItem('permissions'));
+  },
+  data() {
+    return {
+      permissions:[]
+    }
+  },
+  methods: {
+    hasPermission(key) {
+      let status = false;
+      if (this.permissions) {
+        this.permissions.forEach((permission) => {
+          if (permission.name == key) {
+            status = true;
+          }
+        })
+      }
+      return status;
+    }
+  }
+});
+
+app.mount("#app");

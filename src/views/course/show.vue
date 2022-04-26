@@ -42,7 +42,7 @@
 
 					<option value="1">دورة</option>
 					<option value="2">رحلة</option>
-				
+
 				</select>
 			<!-- <input
 				type="text"
@@ -54,7 +54,7 @@
 
 		<hr />
 
-		<th><router-link class="btn" to="addcourse">اضافة دورة</router-link></th>
+		<th><router-link v-if="hasPermission('courses_create')" class="btn" to="addcourse">اضافة دورة</router-link></th>
 
 		<div class="d-flex justify-content-center align-items-start mt-5 h-100">
 			<table class="table">
@@ -93,32 +93,33 @@
 						<th v-if=" informat.activity_type == 1 ">دورة</th>
 						<th v-else>رحلة</th>
 						<th class="d-flex justify-content-between">
-						
+
 								<router-link
 								:to="{ name: 'showpcorse', query: { q: informat.id } }"
 								class="icons"
 								>																<i class="fa fa-user"></i>
  </router-link
 							>
-				
+
 							<router-link
 								:to="{ name: 'addmanc', query: { q: informat.id } }"
 								class="icons"
 								>		<i class="fa fa-user-plus" ></i></router-link
 							>
-							
+
 							<router-link
+                  v-if="hasPermission('courses_edit')"
 								:to="{ name: 'upcourse', query: { q: informat.id } }"
 								class="icons"
 								><i class="fa fa-pencil" aria-hidden="true"></i></router-link
 							>
-							
+
 						</th>
-						
+
 					</tr>
 				</tbody>
 			</table>
-			
+
 		</div>
 		<div class="d-flex align-items-center justify-content-between">
 			<div class="d-flex align-items-center">

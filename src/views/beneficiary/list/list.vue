@@ -3,7 +3,7 @@
 عرض المستفيدين	</div>
 	<container>
 		<div class="row justify-content-around">
-	
+
 			<input
 				type="text"
 				class="form-control m-2"
@@ -73,17 +73,18 @@
 </router-link
 							>
 								<router-link
+                    v-if="hasPermission('beneficiary_edit')"
 								class="links icons"
 								:to="{ name: 'edit', query: { q: informat.id } }"
 								style="color: black"
 							>
 								<i class="fa fa-pencil" aria-hidden="true"></i></router-link
 							>
-						
+
 						</th>
 
 
-						
+
 					</tr>
 				</tbody>
 
@@ -111,7 +112,7 @@
 				style="width:100%"
 				v-model="per"
 				@change="basicdata"
-			>		
+			>
 				<option value="10">10</option>
 			<option value="20">20</option>
 			<option value="50">50</option>
@@ -120,9 +121,9 @@
 
 			</div>
 
-			
+
 		</div>
-	
+
 	</container>
 </template>#968f8f
 <script>
@@ -131,7 +132,7 @@
 
 	export default {
 		components: { container
-		
+
 		},
 		name: "personal",
 
@@ -152,10 +153,10 @@
 			this.basicdata();
 		},
 		methods: {
-		
+
 			basicdata() {
 				const token = sessionStorage.getItem("token");
-				
+
 				axios
 					.get(
 						`api/beneficiary/index?year=${this.year}&name=${this.name}&affiliate_no=${this.affiliate}&id_number=${this.id_nu}`,

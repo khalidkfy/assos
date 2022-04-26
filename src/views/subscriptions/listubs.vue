@@ -1,6 +1,6 @@
 <template>
 <div class="heade">
-		 الاشتركات
+		 الاشتراكات
 	</div>
 	<container>
 		<div class="d-flex back mt-2 h-100 flex-column">
@@ -28,11 +28,11 @@
 					@change="basicdata"
 				/>
 
-			
+
 			</div>
 			<hr />
-			<router-link class="btn my-2 w-25" :to="{ name: 'addsubs' }">
-				اضافة اشتراك</router-link
+			<router-link v-if="hasPermission('subscriptions_create')" class="btn my-2 w-25" :to="{ name: 'addsubs' }">
+				إضافة اشتراك</router-link
 			>
 			<table class="table">
 				<thead>
@@ -45,7 +45,7 @@
 						<th scope="col">تكلفة الاشتراك</th>
 						<th scope="col">الوصف</th>
 						<th scope="col">الاجراءات</th>
-			
+
 					</tr>
 				</thead>
 				<tbody v-for="informat in informats" :key="informat.id">
@@ -72,7 +72,7 @@
 																<i class="fa fa-user"></i>
 </router-link
 							>
-						
+
 							<router-link
 								class="icons"
 								:to="{ name: 'update', query: { q: informat.id } }"
@@ -106,7 +106,7 @@
 				style="width:100%"
 				v-model="per"
 				@change="basicdata"
-			>		
+			>
 				<option value="10">10</option>
 			<option value="20">20</option>
 			<option value="50">50</option>
@@ -115,7 +115,7 @@
 
 			</div>
 
-			
+
 		</div>
 	</container>
 </template>
