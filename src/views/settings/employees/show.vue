@@ -82,7 +82,28 @@
                id="actions"
                role="tabpanel"
                aria-labelledby="actions-tab">
-            aactions
+            <div class="table-responsive">
+              <table v-if="logs.length" class="table">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th>المكان</th>
+                  <th>الحدث</th>
+                  <th>الوقت</th>
+                </tr>
+                </thead>
+                <tbody v-for="(log,index) in logs" :key="index">
+                <tr>
+                  <th>{{ log.id }}</th>
+                  <th>{{ log.place }}</th>
+                  <th :class="log.event">{{ getEvent(log.event) }}</th>
+                  <th>{{ log.time }}</th>
+                </tr>
+                </tbody>
+
+              </table>
+              <div v-else>لا يوجد أحداث</div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,6 +139,8 @@ export default {
           )
           .then((res) => {
             this.emp = res.data.emp;
+            this.logs = res.data.emp.logs;
+
           })
           .catch((e) => {
             console.log(e);
@@ -135,7 +158,8 @@ export default {
         ending_work: null,
         description: null,
         permission: null,
-      }
+      },
+      logs: [],
     }
   },
   methods: {
@@ -146,5 +170,13 @@ export default {
 </script>
 
 <style scoped>
-
+.created {
+  color: #009879;
+}
+.updated {
+  color: #4992F2;
+}
+.deleted {
+  color: crimson;
+}
 </style>

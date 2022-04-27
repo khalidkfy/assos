@@ -46,6 +46,21 @@ app.mixin({
         })
       }
       return status;
+    },
+    getEvent(event) {
+      let text = "";
+      switch (event) {
+        case "created":
+          text = "إضافة";
+          break;
+        case "updated":
+          text = "تعديل";
+          break;
+        case "deleted":
+          text = "حذف";
+          break;
+      }
+      return text;
     }
   }
 });

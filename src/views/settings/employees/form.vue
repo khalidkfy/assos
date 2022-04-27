@@ -118,10 +118,16 @@ export default {
     save() {
       const token = sessionStorage.getItem("token");
 
+      let url = "api/settings/employees/store";
+
+      if (this.$route.query.q) {
+        url = `api/settings/employees/${this.$route.query.q}/update`;
+      }
+
       axios
           .post(
-              "api/settings/employees/store",
-              {
+              url,
+                        {
                 name: this.name,
                 id: this.id,
                 username: this.username,

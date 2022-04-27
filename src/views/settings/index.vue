@@ -50,7 +50,7 @@
             <router-link class="link" :to="{name :'settings.employees.index'}">الموظفين</router-link>
           </div>
           <div class="mx-2 my-2">
-            <router-link class="link" to="settings">الأحداث</router-link>
+            <router-link class="link" :to="{name :'settings.logs.index'}">الأحداث</router-link>
           </div>
           <div class="mx-2 my-2">
             <router-link class="link" :to="{name :'settings.permissions.index'}">الصلاحيات</router-link>

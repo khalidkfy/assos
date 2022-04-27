@@ -75,6 +75,7 @@ import PermissionsForm from "../views/settings/permissions/form";
 import EmployeesIndex from "../views/settings/employees/index";
 import EmployeesForm from "../views/settings/employees/form";
 import EmployeesShow from "../views/settings/employees/show";
+import LogsShow from "../views/settings/logs/index";
 // end settings
 
 const routes = [
@@ -434,6 +435,11 @@ const routes = [
     path: "/show-employee",
     name: "settings.employees.show",
     component: EmployeesShow,
+  },
+  {
+    path: "/logs",
+    name: "settings.logs.index",
+    component: LogsShow,
   },
 ];
 
