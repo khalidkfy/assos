@@ -63,6 +63,9 @@
           <div class="mx-2 my-2">
             <router-link class="link" :to="{name: 'settings.incomes.index'}">مصادر الدخل</router-link>
           </div>
+          <div class="mx-2 my-2">
+            <router-link class="link" :to="{name: 'settings.aid_types.index'}">نوع المساعدة</router-link>
+          </div>
         </div>
       </div>
     </div>

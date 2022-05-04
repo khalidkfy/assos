@@ -76,6 +76,8 @@ import EmployeesIndex from "../views/settings/employees/index";
 import EmployeesForm from "../views/settings/employees/form";
 import EmployeesShow from "../views/settings/employees/show";
 import LogsShow from "../views/settings/logs/index";
+import AidTypesIndex from "../views/settings/aid_types/index";
+import AidTypesForm from "../views/settings/aid_types/form";
 // end settings
 
 const routes = [
@@ -440,6 +442,16 @@ const routes = [
     path: "/logs",
     name: "settings.logs.index",
     component: LogsShow,
+  },
+  {
+    path: "/aid-types",
+    name: "settings.aid_types.index",
+    component: AidTypesIndex,
+  },
+  {
+    path: "/logs",
+    name: "settings.aid_types.form",
+    component: AidTypesForm,
   },
 ];
 

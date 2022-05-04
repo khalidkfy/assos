@@ -73,7 +73,7 @@
 						<th>{{ informat.value_per_person }}</th>
 						<th>{{ informat.donated_number }}</th>
 						<th>{{ informat.project_amount }}</th>
-						<th>{{ informat.type }}</th>
+						<th>{{ informat.type ? informat.type.name : 'غير معروف' }}</th>
 						<th v-if="informat.status == 2">تمت</th>
 						<th v-if="informat.status == 1">مقترح</th>
 						<th class="d-flex justify-content-between">

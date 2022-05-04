@@ -8,12 +8,14 @@
 			</router-link> -->
 		</div>
 		<div class="row">
-		
+
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">النوع </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="type" />
+            <select class="form-control" v-model="type" >
+              <option v-for="(t, index) in types" :key="index" :value="t.id">{{t.name}}</option>
+            </select>
 					</div>
 				</div>
 			</div>
@@ -118,6 +120,7 @@
 				project_amount: "",
 				notes: "",
 				type: "",
+				types: [],
 			};
 		},
 
@@ -173,7 +176,27 @@
 			},
 
 		},
-	};
+    mounted() {
+      const token = sessionStorage.getItem("token");
+      axios
+          .get("api/aid/data",
+              {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+                params: {
+                  per_page: 3500,
+                },
+              }
+          )
+          .then((res) => {
+            this.types = res.data.types;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    }
+  };
 </script>
 <style scoped>
 	.form-control,
