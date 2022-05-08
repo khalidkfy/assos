@@ -89,6 +89,26 @@
           <td v-if="subs_cols.description">{{ sub.description }}</td>
         </tr>
         </tbody>
+        <tfoot>
+          <table class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>المجموع</th>
+                </tr>
+             </thead>
+            <tbody>
+              <tr>
+                <td>رسوم الاشتراك</td>
+                <td>{{ subs_total_subs_fees }}</td>
+              </tr>
+              <tr>
+                <td>رسوم الطلب</td>
+                <td>{{ subs_total_order_fees }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </tfoot>
       </table>
       <table id="helpers_table" v-if="report_type == 'helpers'" class="mt-3 table table-bordered">
         <thead>
@@ -120,6 +140,30 @@
           <td v-if="projects_cols.status && project.status == 2">تمت</td>
         </tr>
         </tbody>
+        <tfoot>
+        <table class="table table-bordered mt-2">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>المجموع</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>القيمة للشخص</td>
+            <td>{{ aids_total_value_person }}</td>
+          </tr>
+          <tr>
+            <td>العدد المتبرع به</td>
+            <td>{{ aids_total_donated }}</td>
+          </tr>
+          <tr>
+            <td>مبلغ المشروع</td>
+            <td>{{ aids_total_project_amount }}</td>
+          </tr>
+          </tbody>
+        </table>
+        </tfoot>
       </table>
       <table id="courses_table" v-if="report_type == 'courses'" class="mt-3 table table-bordered">
         <thead>
@@ -158,6 +202,30 @@
           <td v-if="courses_cols.notes">{{ course.notes }}</td>
         </tr>
         </tbody>
+        <tfoot>
+        <table class="table table-bordered mt-2">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>المجموع</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>تكلفة المشرف</td>
+            <td>{{ courses_total_supervisor_cost }}</td>
+          </tr>
+          <tr>
+            <td>عدد المتفاعلين</td>
+            <td>{{ courses_total_number_of_effectiveness }}</td>
+          </tr>
+          <tr>
+            <td>التكلفة الإجمالية</td>
+            <td>{{ courses_total_total_cost }}</td>
+          </tr>
+          </tbody>
+        </table>
+        </tfoot>
       </table>
       <div v-if="report_type == 'achievements'" class="mt-3">
         <div class="my-3">
@@ -1093,6 +1161,14 @@ export default {
       course_number : null,
       course_funded : null,
       activity_type : null,
+      subs_total_order_fees : 0,
+      subs_total_subs_fees : 0,
+      aids_total_value_person : 0,
+      aids_total_donated : 0,
+      aids_total_project_amount : 0,
+      courses_total_supervisor_cost : 0,
+      courses_total_number_of_effectiveness : 0,
+      courses_total_total_cost : 0,
     }
   },
   methods: {
@@ -1138,6 +1214,8 @@ export default {
             if (res.data.status) {
               this.show_report = true;
               this.subs = res.data.subs;
+              this.subs_total_order_fees = res.data.total_order_fees;
+              this.subs_total_subs_fees = res.data.total_subs_fees;
             }
           }).catch(err => {
             console.log(err)
@@ -1160,6 +1238,9 @@ export default {
             if (res.data.status) {
               this.show_report = true;
               this.projects = res.data.projects;
+              this.aids_total_value_person = res.data.total_value_person;
+              this.aids_total_donated = res.data.total_donated;
+              this.aids_total_project_amount = res.data.total_project_amount;
             }
           }).catch(err => {
             console.log(err)
@@ -1181,6 +1262,9 @@ export default {
             if (res.data.status) {
               this.show_report = true;
               this.courses = res.data.courses;
+              this.courses_total_supervisor_cost = res.data.total_supervisor_cost;
+              this.courses_total_number_of_effectiveness = res.data.total_number_of_effectiveness;
+              this.courses_total_total_cost = res.data.total_total_cost;
             }
           }).catch(err => {
             console.log(err)

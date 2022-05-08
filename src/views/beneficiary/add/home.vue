@@ -17,11 +17,7 @@
 							aria-label="Default select example"
 							v-model="housing_possession"
 						>
-							<option>ملك</option>
-							<option>ايجار</option>
-							<option>ارض حكومة</option>
-							<option>مع الاقارب</option>
-							<option>اخرى</option>
+							<option v-for="hou in housings" :key="hou.id" :value="hou.name">{{ hou.name }}</option>
 						</select>
 					</div>
 				</div>
@@ -56,12 +52,9 @@
 							aria-label="Default select example"
 							v-model="accommodation_type"
 						>
-							<option>باطون</option>
-							<option>اسبست</option>
-							<option>زينكو</option>
-							<option>خص</option>
-							<option>اخرى</option>
-						</select>
+              <option v-for="hou in housings_type" :key="hou.id" :value="hou.name">{{ hou.name }}</option>
+
+            </select>
 					</div>
 				</div>
 			</div>
@@ -126,12 +119,9 @@
 							aria-label="Default select example"
 							v-model="furniture_case"
 						>
-							<option>سيء</option>
-							<option>جيد</option>
-							<option>ممتاز</option>
-							<option>قديم</option>
-							<option>اخرى</option>
-						</select>
+              <option v-for="fur in furniture_cases" :key="fur.id" :value="fur.name">{{ fur.name }}</option>
+
+            </select>
 					</div>
 				</div>
 			</div>
@@ -394,9 +384,11 @@
 				collaborating_with_researcher: "",
 				can_used: "",
 				cooperation_notes: "",
+        housings: [],
+        housings_type: [],
+        furniture_cases: [],
 			};
 		},
-
 		methods: {
 			upload() {
 				const token = sessionStorage.getItem("token");
@@ -470,6 +462,20 @@
 				});
 			},
 		},
+    mounted() {
+      const token = sessionStorage.getItem("token");
+      axios.get('/api/beneficiary/data', {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }).then(res => {
+        this.housings = res.data.housings;
+        this.housings_type = res.data.housings_type;
+        this.furniture_cases = res.data.furniture_cases;
+      }).catch((err) => {
+        console.log(err);
+      })
+    },
 	};
 </script>
 <style scoped>

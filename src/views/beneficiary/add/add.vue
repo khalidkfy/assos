@@ -58,7 +58,7 @@
 						aria-controls="pills-income"
 						aria-selected="false"
 					>
-						مصادر الدخل 					
+						مصادر الدخل
 			</button>
 				</li>
 				<li class="nav-item" role="presentation">
@@ -74,10 +74,10 @@
 					>
 						الاحتياجات
 					</button>
-				</li>	
-			
+				</li>
+
 			</ul>
-			
+
 			<div class="tab-content" id="pills-tabContent">
 				<personal />
 								<Incoms />
@@ -97,10 +97,28 @@
 	import Container from "@/components/containers/container.vue";
 	import Source from "./source.vue";
 	import Incoms from "./income.vue";
+  import axios from "axios";
 
 	export default {
 		name: "add",
-		components: {
+    data() {
+      return {
+        categs:[],
+      }
+    },
+    mounted() {
+      const token = sessionStorage.getItem("token");
+      axios.get('/api/beneficiary/data', {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }).then(res => {
+        this.categs = res.data.categs;
+      }).catch((err) => {
+        console.log(err);
+      })
+    },
+    components: {
 			personal,
 			home,
 			work,
