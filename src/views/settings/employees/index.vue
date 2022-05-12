@@ -3,7 +3,7 @@
     الإعدادات | الموظفين
   </div>
   <container>
-    <router-link :to="{ name: 'settings.employees.create'}" class="btn">إضافة موظف</router-link>
+    <router-link v-if="hasPermission('emps_create')" :to="{ name: 'settings.employees.create'}" class="btn">إضافة موظف</router-link>
     <div class="d-flex justify-content-center align-items-start mt-5 h-100">
       <table class="table">
         <thead>
@@ -22,9 +22,9 @@
           <th>{{ emp.username }}</th>
           <th>{{ emp.description }}</th>
           <th class="d-flex">
-            <router-link :to="{ name: 'settings.employees.show', query: { q: emp.id } }" class="icons"><i class="fa fa-eye" aria-hidden="true"></i></router-link>
-            <router-link :to="{ name: 'settings.employees.edit', query: { q: emp.id } }" class="icons"><i class="fa fa-pencil" aria-hidden="true"></i></router-link>
-            <a @click.prevent="deleteItem(emp.id)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <router-link v-if="hasPermission('emps_edit')" :to="{ name: 'settings.employees.show', query: { q: emp.id } }" class="icons"><i class="fa fa-eye" aria-hidden="true"></i></router-link>
+            <router-link v-if="hasPermission('emps_edit')" :to="{ name: 'settings.employees.edit', query: { q: emp.id } }" class="icons"><i class="fa fa-pencil" aria-hidden="true"></i></router-link>
+            <a v-if="hasPermission('emps_delete')" @click.prevent="deleteItem(emp.id)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
           </th>
         </tr>
         </tbody>

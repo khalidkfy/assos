@@ -10,7 +10,7 @@
       </div>
       <div class="form-group col-md-12 mt-4">
         <button @click.prevent="save()" class="btn mx-2">حفظ</button>
-        <router-link :to="{ name: 'settings.fur_cases.index'}" class="btn">رجوع</router-link>
+        <router-link :to="{ name: 'settings.jobs.index'}" class="btn">رجوع</router-link>
       </div>
     </div>
   </container>

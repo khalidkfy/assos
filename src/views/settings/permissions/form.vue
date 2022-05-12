@@ -74,6 +74,14 @@
                 <td><input type="checkbox" v-model="rules.settings_edit"></td>
                 <td><input type="checkbox" v-model="rules.settings_delete"></td>
               </tr>
+              <tr>
+                <td>7</td>
+                <td>إعدادات الموظفين</td>
+                <td><input type="checkbox" v-model="rules.emps_show"></td>
+                <td><input type="checkbox" v-model="rules.emps_create"></td>
+                <td><input type="checkbox" v-model="rules.emps_edit"></td>
+                <td><input type="checkbox" v-model="rules.emps_delete"></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -151,6 +159,10 @@ export default {
         settings_create: false,
         settings_edit: false,
         settings_delete: false,
+        emps_show: false,
+        emps_create: false,
+        emps_edit: false,
+        emps_delete: false,
       },
       id: null,
       title: "الإعدادات | إضافة صلاحية",

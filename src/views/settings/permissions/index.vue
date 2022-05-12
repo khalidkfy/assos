@@ -3,7 +3,7 @@
     الإعدادات | الصلاحيات
   </div>
   <container>
-    <router-link :to="{ name: 'settings.permissions.create'}" class="btn">إضافة صلاحية</router-link>
+    <router-link v-if="hasPermission('emps_create')" :to="{ name: 'settings.permissions.create'}" class="btn">إضافة صلاحية</router-link>
     <div class="d-flex justify-content-center align-items-start mt-5 h-100">
       <table class="table">
         <thead>
@@ -13,13 +13,13 @@
           <th scope="col">الإجراءات</th>
         </tr>
         </thead>
-        <tbody v-for="(permission,index) in permissions" :key="index">
+        <tbody v-for="(job,index) in jobs" :key="index">
         <tr>
           <th>{{ index + 1 }}</th>
-          <th>{{ permission.name }}</th>
+          <th>{{ job.name }}</th>
           <th class="d-flex">
-            <router-link :to="{ name: 'settings.permissions.edit', query: { q: permission.id } }" class="icons"><i class="fa fa-pencil" aria-hidden="true"></i></router-link>
-            <a @click.prevent="deleteItem(permission.id)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <router-link v-if="hasPermission('emps_edit')" :to="{ name: 'settings.permissions.edit', query: { q: job.id } }" class="icons"><i class="fa fa-pencil" aria-hidden="true"></i></router-link>
+            <a v-if="hasPermission('emps_delete')" @click.prevent="deleteItem(job.id)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
           </th>
 
         </tr>
@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      permissions: [],
+      jobs: [],
       row: null,
       page: 1,
       per: 10,
@@ -89,7 +89,8 @@ export default {
               }
           )
           .then((res) => {
-            this.permissions = res.data.permissions.data;
+            console.log(res.data);
+            this.jobs = res.data.permissions.data;
             this.nums = res.data.permissions.last_page;
           })
           .catch((e) => {

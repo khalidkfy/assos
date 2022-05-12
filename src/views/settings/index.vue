@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 mb-3">
+      <div v-if="hasPermission('emps_show')" class="col-md-12 mb-3">
         <h6 class="title">الموظفين</h6>
         <div class="d-flex mt-4">
           <div class="mx-2 my-2">

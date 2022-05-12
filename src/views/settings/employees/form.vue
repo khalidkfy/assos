@@ -43,7 +43,9 @@
       </div>
       <div class="form-group col-md-6 my-3">
         <label>الوصف</label>
-        <textarea v-model="desc" class="form-control" type="date"></textarea>
+        <select class="form-select" aria-label="Default select example" v-model="desc">
+          <option v-for="(job,index) in descs" :key="index" :value="job.name">{{job.name}}</option>
+        </select>
       </div>
       <div class="form-group col-md-12 mt-4">
         <button @click.prevent="save()" class="btn mx-2">حفظ</button>
@@ -96,6 +98,7 @@ export default {
 
     }).then(res => {
       this.rules = res.data.rules;
+      this.descs = res.data.descs;
     })
   },
   data() {
@@ -111,6 +114,7 @@ export default {
       permission: null,
       desc: null,
       rules: [],
+      descs: [],
       title: "الإعدادات | إضافة موظف",
     }
   },

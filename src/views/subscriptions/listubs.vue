@@ -73,7 +73,7 @@
 </router-link
 							>
 
-							<router-link
+							<router-link v-if="hasPermission('subscriptions_edit')"
 								class="icons"
 								:to="{ name: 'update', query: { q: informat.id } }"
 							>

@@ -3,7 +3,7 @@
     الإعدادات | الوظائف
   </div>
   <container>
-    <router-link :to="{ name: 'settings.jobs.create'}" class="btn">إضافة وظيفة</router-link>
+    <router-link v-if="hasPermission('emps_create')" :to="{ name: 'settings.jobs.create'}" class="btn">إضافة وظيفة</router-link>
     <div class="d-flex justify-content-center align-items-start mt-5 h-100">
       <table class="table">
         <thead>
@@ -18,8 +18,8 @@
           <th>{{ index + 1 }}</th>
           <th>{{ job.name }}</th>
           <th class="d-flex">
-            <router-link :to="{ name: 'settings.jobs.edit', query: { q: job.id } }" class="icons"><i class="fa fa-pencil" aria-hidden="true"></i></router-link>
-            <a @click.prevent="deleteItem(job.id)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <router-link v-if="hasPermission('emps_edit')" :to="{ name: 'settings.jobs.edit', query: { q: job.id } }" class="icons"><i class="fa fa-pencil" aria-hidden="true"></i></router-link>
+            <a v-if="hasPermission('emps_delete')" @click.prevent="deleteItem(job.id)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
           </th>
 
         </tr>

@@ -260,6 +260,26 @@
               <td>{{ course.date }}</td>
             </tr>
             </tbody>
+            <tfoot>
+            <table class="table table-bordered mt-2">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>المجموع</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>عدد المتفاعلين</td>
+                <td>{{ courses_total_number_of_effectiveness }}</td>
+              </tr>
+              <tr>
+                <td>التكلفة الإجمالية</td>
+                <td>{{ courses_total_total_cost }}</td>
+              </tr>
+              </tbody>
+            </table>
+            </tfoot>
           </table>
         </div>
         <div class="my-3">
@@ -294,6 +314,30 @@
               <td>{{ project.project_date }}</td>
             </tr>
             </tbody>
+            <tfoot>
+            <table class="table table-bordered mt-2">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>المجموع</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>القيمة للشخص</td>
+                <td>{{ aids_total_value_person }}</td>
+              </tr>
+              <tr>
+                <td>العدد المتبرع به</td>
+                <td>{{ aids_total_donated }}</td>
+              </tr>
+              <tr>
+                <td>مبلغ المشروع</td>
+                <td>{{ aids_total_project_amount }}</td>
+              </tr>
+              </tbody>
+            </table>
+            </tfoot>
           </table>
         </div>
       </div>
@@ -446,6 +490,93 @@
           </tr>
         </tbody>
       </table>
+      <table id="subs_users_table" v-if="report_type == 'subs_users'" class="mt-3 table table-bordered">
+        <thead>
+        <tr class="text-center">
+          <th scope="col">#</th>
+          <th scope="col">رقم المستفيد</th>
+          <th scope="col">الاسم</th>
+          <th scope="col">التكلفة</th>
+          <th scope="col">رقم الجوال</th>
+          <th scope="col">العام</th>
+          <th scope="col">الطباعة</th>
+          <th scope="col">تاريخ الطباعة</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" v-for="(item, index) in subs_users" :key="item.id">
+          <td>{{ index + 1 }}</td>
+
+          <td>{{ item.beneficiary.affiliate_no }}</td>
+          <td>{{ item.beneficiary.name }}</td>
+          <td>{{ item.cost }}</td>
+          <td>{{ item.beneficiary.mobile_number }}</td>
+          <td>{{ item.beneficiary.year }}</td>
+
+          <td v-if="item.is_printed == 0"></td>
+          <td v-else>
+            <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+          </td>
+          <td>{{ item.printing_date }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <table id="courses_users_table" v-if="report_type == 'courses_users'" class="mt-3 table table-bordered">
+        <thead>
+        <tr class="text-center">
+          <th scope="col">#</th>
+          <th scope="col">رقم المنتسب</th>
+          <th scope="col">اسم المنتسب</th>
+          <th scope="col">رقم الجوال </th>
+          <th scope="col">اسم الفعالية </th>
+          <th scope="col">رقم الفعالية </th>
+          <th>تاريخ الميلاد</th>
+          <th scope="col">العام </th>
+        </tr>
+        </thead>
+        <tbody v-for="(informat , index ) in courses_users" :key="informat.id" class="text-center">
+        <tr>
+          <th>{{ index + 1 }}</th>
+          <th>{{ informat.beneficiary.affiliate_no }}</th>
+
+          <th>{{ informat.beneficiary.name }}</th>
+          <th>{{ informat.beneficiary.mobile_number }}</th>
+          <th>{{ informat.course.effectiveness_name }}</th>
+          <th>{{ informat.course.effectiveness_number }}</th>
+          <th>{{ informat.beneficiary.birth_date }}</th>
+          <th>{{ informat.beneficiary.year }}</th>
+        </tr>
+        </tbody>
+      </table>
+      <table id="aids_users_table" v-if="report_type == 'aids_users'" class="mt-3 table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">رقم المستفيد</th>
+          <th scope="col">اسم المستفيد</th>
+          <th scope="col">رقم الهاتف</th>
+          <th scope="col">رقم المشروع</th>
+          <th scope="col">تاريخ الاستلام</th>
+          <th scope="col">العام</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" v-for="(item , index) in aids_users" :key="item.id">
+
+
+          <td>{{ index + 1 }}</td>
+
+          <td>{{ item.beneficiary.affiliate_no }}</td>
+          <td>{{ item.beneficiary.name }}</td>
+          <td>{{ item.beneficiary.mobile_number }}</td>
+
+          <td>{{ item.aid.project_number }}</td>
+          <td>{{ item.received_date }}</td>
+
+          <td>{{ item.beneficiary.year }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div v-else>
@@ -502,6 +633,24 @@
             <div class="radio">
               <input type="radio" v-model="report_type" value="aid_details" name="report" id="aid_details">
               <label for="aid_details" class="mx-2">تفاصيل المساعدات</label>
+            </div>
+          </div>
+          <div class="my-3 col-md-3">
+            <div class="radio">
+              <input type="radio" v-model="report_type" value="subs_users" name="report" id="subs_users">
+              <label for="subs_users" class="mx-2">المستفيدين من الاشتراكات</label>
+            </div>
+          </div>
+          <div class="my-3 col-md-3">
+            <div class="radio">
+              <input type="radio" v-model="report_type" value="courses_users" name="report" id="courses_users">
+              <label for="courses_users" class="mx-2">المستفيدين من الدورات</label>
+            </div>
+          </div>
+          <div class="my-3 col-md-3">
+            <div class="radio">
+              <input type="radio" v-model="report_type" value="aids_users" name="report" id="aids_users">
+              <label for="aids_users" class="mx-2">المستفيدين من المساعدات</label>
             </div>
           </div>
         </div>
@@ -913,7 +1062,6 @@
           <div class="col-md-6">
             <label> المستفيد <span class="text-danger">*</span></label>
             <v-select v-model="benefit" class="form-control" :options="options" :value-by="option" label-by="name" clear-on-close close-on-select placeholder="اختر مستفيد" searchable search-placeholder="اكتب للبحث"> </v-select>
-
           </div>
         </div>
         <div v-if="report_type === 'not_benefiting'" class="row">
@@ -1049,6 +1197,24 @@
             </div>
           </div>
         </div>
+        <div v-if="report_type === 'subs_users'" class="row">
+          <div class="col-md-6">
+            <label> الاشتراك <span class="text-danger">*</span></label>
+            <v-select v-model="subscription" class="form-control" :options="subscriptions" :value-by="option" label-by="code" clear-on-close close-on-select placeholder="اختر اشتراك" searchable search-placeholder="اكتب للبحث"> </v-select>
+          </div>
+        </div>
+        <div v-if="report_type === 'courses_users'" class="row">
+          <div class="col-md-6">
+            <label> الدورة <span class="text-danger">*</span></label>
+            <v-select v-model="course" class="form-control" :options="courses_options" :value-by="option" label-by="name" clear-on-close close-on-select placeholder="اختر دورة" searchable search-placeholder="اكتب للبحث"> </v-select>
+          </div>
+        </div>
+        <div v-if="report_type === 'aids_users'" class="row">
+          <div class="col-md-6">
+            <label> المساعدة <span class="text-danger">*</span></label>
+            <v-select v-model="aid" class="form-control" :options="aids_options" :value-by="option" label-by="name" clear-on-close close-on-select placeholder="اختر مساعدة" searchable search-placeholder="اكتب للبحث"> </v-select>
+          </div>
+        </div>
 
         <div class="row justify-content-center mt-4">
           <button @click.prevent="save()" class="btn w-25">
@@ -1070,7 +1236,16 @@ export default {
     return {
       options: [],
       aids: [],
+      subscriptions: [],
+      subs_users: [],
+      aid: null,
+      aids_options: [],
+      course: null,
+      courses_options: [],
+      courses_users: [],
+      aids_users: [],
       benefit: null,
+      subscription: null,
       report_type: "benefits",
       show_report: false,
       show_logo: true,
@@ -1284,6 +1459,11 @@ export default {
               this.show_report = true;
               this.courses = res.data.courses;
               this.projects = res.data.projects
+              this.courses_total_number_of_effectiveness = res.data.total_number_of_effectiveness;
+              this.courses_total_total_cost = res.data.total_total_cost;
+              this.aids_total_value_person = res.data.total_value_person;
+              this.aids_total_donated = res.data.total_donated;
+              this.aids_total_project_amount = res.data.total_project_amount;
             }
           }).catch(err => {
             console.log(err)
@@ -1350,6 +1530,60 @@ export default {
             this.loading = false;
           })
           break;
+        case "subs_users":
+          axios.post('/api/reports/subs_users', {
+            sub: this.subscription ? this.subscription.id : null,
+          }, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }).then(res => {
+            if (res.data.status) {
+              this.show_report = true;
+              this.subs_users = res.data.subs_users;
+            }
+          }).catch(() => {
+            this.failed();
+          }).finally(() => {
+            this.loading = false;
+          })
+          break;
+        case "courses_users":
+          axios.post('/api/reports/courses_users', {
+            course: this.course ? this.course.id : null,
+          }, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }).then(res => {
+            if (res.data.status) {
+              this.show_report = true;
+              this.courses_users = res.data.courses_users;
+            }
+          }).catch(() => {
+            this.failed();
+          }).finally(() => {
+            this.loading = false;
+          })
+          break;
+        case "aids_users":
+          axios.post('/api/reports/aids_users', {
+            aid: this.aid ? this.aid.id : null,
+          }, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }).then(res => {
+            if (res.data.status) {
+              this.show_report = true;
+              this.aids_users = res.data.aids_users;
+            }
+          }).catch(() => {
+            this.failed();
+          }).finally(() => {
+            this.loading = false;
+          })
+          break;
       }
 
     },
@@ -1400,6 +1634,15 @@ export default {
         case "aid_details":
           id = "aid_details_table";
           break;
+        case "subs_users":
+          id = "subs_users_table";
+          break;
+        case "courses_users":
+          id = "courses_users_table";
+          break;
+        case "aids_users":
+          id = "aids_users_table";
+          break;
       }
       let elt = document.getElementById(id);
       console.log(elt)
@@ -1439,6 +1682,9 @@ export default {
       },
     }).then(res => {
       this.options = res.data.beneficiaries;
+      this.subscriptions = res.data.subscriptions;
+      this.courses_options = res.data.courses_options;
+      this.aids_options = res.data.aids_options;
     }).catch(() => {
       this.failed();
     }).finally(() => {
@@ -1454,6 +1700,7 @@ export default {
 }
 
 .radio {
+  width: 240px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 3px;
   border-radius: 7px;
