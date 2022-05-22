@@ -1341,6 +1341,25 @@
             role="tabpanel"
             aria-labelledby="pills-six-tab"
         >
+          <div class="row my-3">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>التاريخ من</label>
+                <input type="date" class="form-control" v-model="course_from_date">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>التاريخ الى</label>
+                <input type="date" class="form-control" v-model="course_to_date">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <button @click="courses()" class="btn btn-success mt-4">بحث</button>
+              </div>
+            </div>
+          </div>
           <table class="table ">
             <thead>
             <tr>
@@ -1375,7 +1394,25 @@
             role="tabpanel"
             aria-labelledby="pills-seven-tab"
         >
-
+          <div class="row my-3">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>التاريخ من</label>
+                <input type="date" class="form-control" v-model="aid_from_date">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>التاريخ الى</label>
+                <input type="date" class="form-control" v-model="aid_to_date">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <button @click="aids()" class="btn btn-success mt-4">بحث</button>
+              </div>
+            </div>
+          </div>
           <table class="table ">
 
             <thead>
@@ -1410,12 +1447,12 @@
               class="d-flex justify-content-evenly"
               style="background: #009879; color: white"
           >
-            <p class="mt-3">إجمالي الدخل المالي:</p>
+            <p class="mt-3">إجمالي العدد:</p>
 
             <div class="mt-3" v-for="(item, index) in aid2" :key="index">
               <a>{{ item.total_number }}</a>
             </div>
-            <p class="mt-3">التقييم المالي الإجمالي:</p>
+            <p class="mt-3">مجموع قيم الشخص:</p>
 
             <div class="mt-3" v-for="(item, index) in aid2" :key="index">
               <a>{{ item.total_value }}</a>
@@ -1445,15 +1482,15 @@
             <tbody>
             <tr class="text-center" v-for="(item , index) in subscs" :key="item.id">
               <th scope="row">{{ index + 1 }}</th>
-              <th scope="row">{{ item.code }}</th>
+              <th scope="row">{{ item.subsc.code }}</th>
 
 
-              <th scope="row">{{ item.start_subscription }}</th>
-              <th scope="row">{{ item.end_subscription }}</th>
+              <th scope="row">{{ item.subsc.start_subscription }}</th>
+              <th scope="row">{{ item.subsc.end_subscription }}</th>
 
               <td v-if="item.is_printed == 0 ">غير مطبوع</td>
               <td v-else> مطبوع</td>
-              <th scope="row">{{ item.printed_date }}</th>
+              <th scope="row">{{ item.printing_date }}</th>
 
 
             </tr>
@@ -1497,6 +1534,10 @@ export default {
       district: "",
       address: "",
       near_number: "",
+      course_from_date: "",
+      course_to_date: "",
+      aid_from_date: "",
+      aid_to_date: "",
       // home page
 
       housing_possession: "",
@@ -1595,6 +1636,10 @@ export default {
             headers: {
               Authorization: "Bearer " + token,
             },
+            params: {
+              from_date: this.aid_from_date,
+              to_date: this.aid_to_date,
+            }
           })
           .then((res) => {
             this.aid = res.data.data.aid;
@@ -1628,10 +1673,14 @@ export default {
             headers: {
               Authorization: "Bearer " + token,
             },
+            params: {
+              from_date: this.course_from_date,
+              to_date: this.course_to_date,
+            }
           })
           .then((res) => {
             console.log(res.data.data);
-            console.log("cfdssdfdsfdfs ");
+            // console.log("cfdssdfdsfdfs ");
             this.course = res.data.data;
           })
           .catch((e) => {

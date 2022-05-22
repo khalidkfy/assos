@@ -291,7 +291,7 @@
               <th>رقم المشروع</th>
               <th>اسم المشروع</th>
               <th>الجهة الممولة</th>
-              <th>القيمة للشخص</th>
+              <!--<th>القيمة للشخص</th>-->
               <th>العدد المتبرع به</th>
               <th>مبلغ المشروع</th>
               <th>النوع</th>
@@ -305,7 +305,7 @@
               <td>{{ project.project_number }}</td>
               <td>{{ project.project_name }}</td>
               <td>{{ project.funded_side }}</td>
-              <td>{{ project.value_per_person }}</td>
+              <!--<td>{{ project.value_per_person }}</td>-->
               <td>{{project.donated_number}}</td>
               <td>{{ project.project_amount }}</td>
               <td>{{ project.type ? project.type.name : 'غير معروف' }}</td>
@@ -587,67 +587,67 @@
       <div class="card p-3">
         <span>البحث عن:</span>
         <div class="row mt-2 mb-3">
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="benefits" name="report" id="benefits">
               <label for="benefits" class="mx-2">المستفيدين</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="subs" name="report" id="subs">
               <label for="subs" class="mx-2">الاشتراكات</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="helpers" name="report" id="helpers">
               <label for="helpers" class="mx-2">المساعدات</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="courses" name="report" id="courses">
               <label for="courses" class="mx-2">الدورات</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="achievements" name="report" id="achievements">
               <label for="achievements" class="mx-2">إنجازات الجمعية</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="benefit_details" name="report" id="benefit_details">
               <label for="benefit_details" class="mx-2">تفاصيل المستفيد</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="not_benefiting" name="report" id="not_benefiting">
               <label for="not_benefiting" class="mx-2">المستفيدين غير المنتفعين</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="aid_details" name="report" id="aid_details">
               <label for="aid_details" class="mx-2">تفاصيل المساعدات</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="subs_users" name="report" id="subs_users">
               <label for="subs_users" class="mx-2">المستفيدين من الاشتراكات</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="courses_users" name="report" id="courses_users">
               <label for="courses_users" class="mx-2">المستفيدين من الدورات</label>
             </div>
           </div>
-          <div class="my-3 col-md-3">
+          <div class="my-3 col-md-4">
             <div class="radio">
               <input type="radio" v-model="report_type" value="aids_users" name="report" id="aids_users">
               <label for="aids_users" class="mx-2">المستفيدين من المساعدات</label>
@@ -709,6 +709,17 @@
                 class="form-control my-2"
                 placeholder="الحي"
                 v-model="benefits_district"
+            />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="مصدر الدخل"
+                v-model="benefits_income"
+            /> <input
+                type="text"
+                class="form-control my-2"
+                placeholder="الاحتياجات"
+                v-model="benefits_needs"
             />
             <select class="form-control my-2"  v-model="benefits_gender">
               <option disabled selected>الجنس</option>
@@ -1097,6 +1108,15 @@
                 placeholder="الحي"
                 v-model="benefits_district"
             />
+            <span>الاشتراك</span>
+            <div class="form-group">
+              <input type="radio" v-model="non_done" value="1" name="report" id="done">
+              <label for="done" class="mx-2">منتهي</label>
+            </div>
+            <div class="form-group">
+              <input type="radio" v-model="non_done" value="0" name="report" id="not_done">
+              <label for="done" class="mx-2">غير منتهي</label>
+            </div>
             <select class="form-control my-2"  v-model="benefits_gender">
               <option disabled selected>الجنس</option>
               <option value="2">ذكر</option>
@@ -1235,6 +1255,7 @@ export default {
   data() {
     return {
       options: [],
+      non_done: null,
       aids: [],
       subscriptions: [],
       subs_users: [],
@@ -1344,6 +1365,8 @@ export default {
       courses_total_supervisor_cost : 0,
       courses_total_number_of_effectiveness : 0,
       courses_total_total_cost : 0,
+      benefits_income : null,
+      benefits_needs : null,
     }
   },
   methods: {
@@ -1361,6 +1384,8 @@ export default {
             benefits_gender: this.benefits_gender,
             benefits_city: this.benefits_city,
             benefits_district: this.benefits_district,
+            benefits_income: this.benefits_income,
+            benefits_needs: this.benefits_needs,
           }, {
             headers: {
               Authorization: "Bearer " + token,
@@ -1498,6 +1523,7 @@ export default {
             benefits_gender: this.benefits_gender,
             benefits_city: this.benefits_city,
             benefits_district: this.benefits_district,
+            non_done: this.non_done,
           }, {
             headers: {
               Authorization: "Bearer " + token,

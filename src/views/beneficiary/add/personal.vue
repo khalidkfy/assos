@@ -346,10 +346,7 @@
                   aria-label="Default select example"
                   v-model="current_work"
               >
-                <option>مزارع</option>
-                <option>حكومة</option>
-                <option>خاص</option>
-                <option>أخرى</option>
+                <option v-for="type in work_types" :key="type.id" :value="type.name">{{ type.name }}</option>
               </select>
             </div>
           </div>
@@ -365,8 +362,7 @@
                   aria-label="Default select example"
                   v-model="previous_work"
               >
-                <option>مزارع</option>
-                <option>اخرى</option>
+                <option v-for="type in work_types" :key="type.id" :value="type.name">{{ type.name }}</option>
               </select>
             </div>
           </div>
@@ -461,6 +457,7 @@ export default {
     return {
       id_number: "",
       categs: [],
+      work_types: [],
       specs: [],
       name: "",
       affiliate_no: "",
@@ -523,6 +520,7 @@ export default {
     }).then(res => {
       this.categs = res.data.categs;
       this.specs = res.data.specs;
+      this.work_types = res.data.work_types;
     }).catch((err) => {
       console.log(err);
     })

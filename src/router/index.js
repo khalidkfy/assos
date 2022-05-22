@@ -78,6 +78,11 @@ import EmployeesShow from "../views/settings/employees/show";
 import LogsShow from "../views/settings/logs/index";
 import AidTypesIndex from "../views/settings/aid_types/index";
 import AidTypesForm from "../views/settings/aid_types/form";
+import NeedTypesIndex from "../views/settings/need_types/index";
+import NeedTypesForm from "../views/settings/need_types/form";
+import WorkTypesIndex from "../views/settings/work/index";
+import WorkTypesForm from "../views/settings/work/form";
+import AidPeoplePrint from "../views/aid/print";
 // end settings
 
 const routes = [
@@ -453,6 +458,32 @@ const routes = [
     name: "settings.aid_types.form",
     component: AidTypesForm,
   },
+  {
+    path: "/need_types",
+    name: "settings.need_types.index",
+    component: NeedTypesIndex,
+  },
+  {
+    path: "/need_types",
+    name: "settings.need_types.form",
+    component: NeedTypesForm,
+  },
+  {
+    path: "/work_types",
+    name: "settings.work_types.index",
+    component: WorkTypesIndex,
+  },
+  {
+    path: "/work_types",
+    name: "settings.work_types.form",
+    component: WorkTypesForm,
+  },
+  {
+    path: "/aid_people_print",
+    name: "aid.people.print",
+    component: AidPeoplePrint,
+  },
+
 ];
 
 const router = createRouter({

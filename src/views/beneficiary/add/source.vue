@@ -10,8 +10,14 @@
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label">النوع </label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="type" />
-					</div>
+            <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="type"
+            >
+              <option v-for="ty in types" :key="ty.id" :value="ty.name">{{ty.name}}</option>
+            </select>
+          </div>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -20,7 +26,7 @@
 						>الملاحظات
 					</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" v-model="notes" />
+						<textarea class="form-control" v-model="notes" />
 					</div>
 				</div>
 			</div>
@@ -38,10 +44,25 @@
 			return {
 				notes: "",
 				type: "",
+				types: [],
 			};
 		},
-
-		methods: {
+    mounted() {
+      const token = sessionStorage.getItem("token");
+      axios
+          .get(
+              "api/settings/need_types/data",
+              {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              }
+          )
+          .then((res) => {
+            this.types = res.data.types
+          })
+    },
+    methods: {
 			source() {
 				const token = sessionStorage.getItem("token");
 				const af1 = sessionStorage.getItem("af1");
@@ -75,7 +96,7 @@
 						showConfirmButton: false,
 						timer: 1500,
 					})
-				
+
 			},
 			failed() {
 				this.$swal.fire({

@@ -13,6 +13,11 @@
           <div class="mx-2 my-2">
             <router-link class="link" :to="{name :'settings.specs.index'}">التخصصات</router-link>
           </div>
+          <div class="mx-2 my-2">
+            <router-link class="link" :to="{name :'settings.need_types.index'}">نوع الاحتياجات</router-link>
+          </div> <div class="mx-2 my-2">
+            <router-link class="link" :to="{name :'settings.work_types.index'}">العمل</router-link>
+          </div>
         </div>
       </div>
       <div class="col-md-12 mb-3">
