@@ -1,7 +1,7 @@
 <template>
   <div class="back">
-    <div class="" id="printableArea">
-      <div class="hd1" style="width: 50%; " v-for="(item, index) in nuuuu" :key="index">
+    <div class="" id="printableArea" >
+      <div class='hd1' style='width: 80%;margin: auto;'  v-for="(item, index) in nuuuu" :key="index">
         <div v-if="nums[index] " class="cont">
           <!--<img src="../../assets/img/bacg.jpeg" class="amg" alt=""/>-->
           <table class="table my-4 mx-3 ">
@@ -16,28 +16,28 @@
               </td>
             </tr>
             <tr>
-              <td class="font-weight-bolder" style="font-weight: bolder">رقم المنتسب</td>
-              <td class="font-weight-bolder" >{{ item.affiliate_no }}</td>
-              <td class="font-weight-bolder" style="font-weight: bolder">رقم المشروع</td>
-              <td class="font-weight-bolder" >{{ item.project_number }}</td>
-              <td class="font-weight-bolder" style="font-weight: bolder">اسم المشروع</td>
-              <td class="font-weight-bolder" >{{ item.project_name }}</td>
+              <td class="font-weight-bolder px-2" style="font-weight: bolder">رقم المنتسب</td>
+              <td class="font-weight-bolder px-2" >{{ item.affiliate_no }}</td>
+              <td class="font-weight-bolder px-2" style="font-weight: bolder">رقم المشروع</td>
+              <td class="font-weight-bolder px-2" >{{ item.project_number }}</td>
+              <td class="font-weight-bolder px-2" style="font-weight: bolder">اسم المشروع</td>
+              <td class="font-weight-bolder px-2" >{{ item.project_name }}</td>
             </tr>
             <tr>
-              <td class="font-weight-bolder" style="font-weight: bolder">الاسم رباعي</td>
-              <td class="font-weight-bolder" >{{ item.beneficiary_name }}</td>
-              <td class="font-weight-bolder" style="font-weight: bolder">رقم الجوال</td>
-              <td class="font-weight-bolder">{{ item.mobile_number }}</td>
-              <td class="font-weight-bolder"></td>
-              <td class="font-weight-bolder"></td>
+              <td class="font-weight-bolder px-2" style="font-weight: bolder">الاسم رباعي</td>
+              <td class="font-weight-bolder px-2" >{{ item.beneficiary_name }}</td>
+              <td class="font-weight-bolder px-2" style="font-weight: bolder">رقم الجوال</td>
+              <td class="font-weight-bolder px-2">{{ item.mobile_number }}</td>
+              <td class="font-weight-bolder px-2"></td>
+              <td class="font-weight-bolder px-2"></td>
             </tr>
             <tr>
-              <td class="font-weight-bolder" style="font-weight: bolder">التاريخ</td>
-              <td class="font-weight-bolder" >{{ item.aid.project_date }}</td>
-              <td class="font-weight-bolder" ></td>
-              <td class="font-weight-bolder" ></td>
-              <td class="font-weight-bolder" ></td>
-              <td class="font-weight-bolder" ></td>
+              <td class="font-weight-bolder px-2" style="font-weight: bolder">التاريخ</td>
+              <td class="font-weight-bolder px-2" >{{ item.aid.project_date }}</td>
+              <td class="font-weight-bolder px-2" ></td>
+              <td class="font-weight-bolder px-2" ></td>
+              <td class="font-weight-bolder px-2" ></td>
+              <td class="font-weight-bolder px-2 serial" >#{{++index}}</td>
             </tr>
           </table>
 
@@ -65,7 +65,17 @@
 .cont {
   position: relative;
 }
-
+.hd1:nth-child(6n) {
+  /*display: block !important;*/
+  page-break-after: always;
+}
+.serial {
+  font-weight: bold;
+  border: 2px solid;
+  text-align: center;
+  margin: 10px 0;
+  padding: 10px;
+}
 .new {
   display: flex;
   flex-wrap: wrap;
@@ -154,6 +164,7 @@
   font-size: 13px;
   right: 150px;
 }
+@media print { .parent { page-break-after: always; } }
 </style>
 
 <script>
@@ -176,7 +187,6 @@ export default {
     printDiv() {
       window.print();
     },
-
     basicdata() {
       const token = sessionStorage.getItem("token");
       axios

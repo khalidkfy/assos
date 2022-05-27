@@ -52,8 +52,6 @@
             <input type="checkbox" v-model="selectAll"/>
           </th>
           <th scope="col">#</th>
-
-          <th scope="col">#</th>
           <th scope="col">رقم المستفيد</th>
           <th scope="col">اسم المستفيد</th>
           <th scope="col">رقم الهاتف</th>
@@ -68,28 +66,23 @@
         </thead>
         <tbody>
         <tr class="text-center" v-for="(item , index) in informats" :key="item.id">
-          <input
+          <td><input
               type="checkbox"
               class="mt-3"
               :value="item.affiliate_no"
               v-model="selcted"
-          />
-
+          /></td>
           <td>{{ index + 1 }}</td>
-
           <td>{{ item.affiliate_no }}</td>
           <td>{{ item.beneficiary_name }}</td>
           <td>{{ item.mobile_number }}</td>
-
           <td>{{ item.project_number }}</td>
           <td>{{ item.received_date }}</td>
           <td>{{ item.income_development }}</td>
           <td>{{ item.income_work }}</td>
-
           <td>{{ item.year }}</td>
           <td v-if="done==2"><i class="fa fa-check" aria-hidden="true" style="color: green"></i></td>
           <td v-else></td>
-
           <td>
             <button class="delete" @click="delt(item.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
