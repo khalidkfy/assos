@@ -1,8 +1,11 @@
 <template>
   <div v-if="show_report" class="p-3">
     <div class="row">
-      <div class="col-md-4 title"><h3>جمعية رعاية كبار السن {{ report_title ? "- " + report_title : ''}}</h3></div>
+      <div class="col-md-4" style="text-align: right"><h3>جمعية رعاية كبار السن </h3></div>
       <div class="col-md-4" style="text-align: center">
+        <h3>{{report_title}}</h3>
+      </div>
+      <div class="col-md-4" style="text-align: left">
         <img v-if="show_logo" src="../../assets/img/log.jpeg" alt="" class="logos">
       </div>
       <div class="col-md-6">
@@ -131,7 +134,7 @@
           </tr>
           </thead>
           <tbody class="text-center" v-for="(project, index) in projects" :key="project.id">
-          <tr >
+            <tr >
             <th >{{++ index}}</th>
             <th v-if="projects_cols.project_number">{{ project.project_number }}</th>
             <th v-if="projects_cols.project_name">{{ project.project_name }}</th>
@@ -156,20 +159,21 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>القيمة للشخص</td>
-                <td>{{ aids_total_value_person }}</td>
-              </tr>
-              <tr>
-                <td>العدد المتبرع به</td>
-                <td>{{ aids_total_donated }}</td>
-              </tr>
-              <tr>
-                <td>مبلغ المشروع</td>
-                <td>{{ aids_total_project_amount }}</td>
-              </tr>
+                <!--<tr>-->
+                <!--  <td>القيمة للشخص</td>-->
+                <!--  <td>{{ aids_total_value_person }}</td>-->
+                <!--</tr>-->
+                <tr>
+                  <td>العدد المتبرع به</td>
+                  <td>{{ aids_total_donated }}</td>
+                </tr>
+                <tr>
+                  <td>مبلغ المشروع</td>
+                  <td>{{ aids_total_project_amount }}</td>
+                </tr>
               </tbody>
-            </table></div>
+            </table>
+          </div>
         </div>
       </div>
       <div v-if="report_type == 'courses'">
@@ -474,9 +478,11 @@
         </tr>
         </tbody>
       </table>
-      <table id="aid_details_table" v-if="report_type == 'aid_details'" class="mt-3 table table-bordered">
-        <thead>
+      <div v-if="report_type == 'aid_details'">
+        <table id="aid_details_table"  class="mt-3 table table-bordered">
+          <thead>
           <tr>
+            <th rowspan="2">#</th>
             <th rowspan="2">الاسم</th>
             <th rowspan="2">عدد</th>
             <th rowspan="2">مجموع المبلغ</th>
@@ -489,19 +495,46 @@
             </slot>
           </tr>
 
-        </thead>
-        <tbody>
-          <tr v-for="person in benefits" :key="person.id">
+          </thead>
+          <tbody>
+          <tr v-for="(person, index) in benefits" :key="person.id">
+            <td>{{++index}}</td>
             <td>{{person.name}}</td>
-            <td>{{person.total_count}}</td>
+            <td v-if="person.total_count > aids_avg">{{person.total_count}} <i class="fa fa-arrow-up text-success"></i></td>
+            <td v-else-if="person.total_count < aids_avg">{{person.total_count}} <i class="fa fa-arrow-down text-danger"></i></td>
+            <td v-else>{{person.total_count}}</td>
             <td>{{person.total_amount}}</td>
             <slot v-for="aid in aids" :key="aid.id">
               <td>{{getAidDetailsForPerson(aid, person, 'amount')}}</td>
               <td>{{getAidDetailsForPerson(aid, person, 'count')}}</td>
             </slot>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        <div class="row m-0">
+          <div class="col-md-4">
+            <table class="table table-bordered mt-2">
+              <thead>
+              <tr>
+                <th>عدد المساعدات</th>
+                <th>مجموع المساعدات</th>
+                <th>متوسط العدد</th>
+                <th>متوسط المبلغ</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>{{ formatNum(aids_count) }}</td>
+                <td>{{ formatNum(aids_sum_count) }}</td>
+                <td>{{ formatNum(aids_avg) }}</td>
+                <td>{{ formatNum(amount_avg) }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <table id="subs_users_table" v-if="report_type == 'subs_users'" class="mt-3 table table-bordered">
         <thead>
         <tr class="text-center">
@@ -565,8 +598,20 @@
         </tr>
         </tbody>
       </table>
-      <table id="courses_users_table" v-if="report_type == 'courses_users'" class="mt-3 table table-bordered">
-        <thead>
+      <div v-if="report_type == 'courses_users'">
+        <div class="row my-3">
+          <div class="col-md-4 my-2">
+            الاسم : {{course ? course.name : ''}}
+          </div>
+          <div class="col-md-4 my-2">
+            الرقم : {{course ? course.effectiveness_number : ''}}
+          </div>
+          <div class="col-md-4 my-2">
+            التاريخ : {{course ? course.date : ''}}
+          </div>
+        </div>
+        <table id="courses_users_table"  class="mt-3 table table-bordered">
+          <thead>
           <tr class="text-center">
             <th scope="col">#</th>
             <th v-if="courses_users_cols.id_number">رقم الهوية</th>
@@ -589,12 +634,12 @@
             <th v-if="courses_users_cols.wife_name">اسم الزوج</th>
             <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
             <th v-if="courses_users_cols.citizenship">المواطنة</th>
-            <th scope="col">اسم الفعالية </th>
-            <th scope="col">رقم الفعالية </th>
-            <th scope="col">التاريخ </th>
+            <!--<th scope="col">اسم الفعالية </th>-->
+            <!--<th scope="col">رقم الفعالية </th>-->
+            <!--<th scope="col">التاريخ </th>-->
           </tr>
-        </thead>
-        <tbody v-for="(informat , index ) in courses_users" :key="informat.id" class="text-center">
+          </thead>
+          <tbody v-for="(informat , index ) in courses_users" :key="informat.id" class="text-center">
           <tr>
             <th>{{ index + 1 }}</th>
             <th v-if="courses_users_cols.id_number">{{ informat.beneficiary.id_number }}</th>
@@ -617,72 +662,103 @@
             <th v-if="courses_users_cols.wife_name">{{ informat.beneficiary.wife_name }}</th>
             <th v-if="courses_users_cols.wife_identity">{{ informat.beneficiary.wife_identity }}</th>
             <th v-if="courses_users_cols.citizenship">{{ informat.beneficiary.citizenship }}</th>
-            <th>{{ informat.course.effectiveness_name }}</th>
-            <th>{{ informat.course.effectiveness_number }}</th>
-            <th>{{ new Date(informat.created_at).toLocaleDateString() }}</th>
+            <!--<th>{{ informat.course.effectiveness_name }}</th>-->
+            <!--<th>{{ informat.course.effectiveness_number }}</th>-->
+            <!--<th>{{ new Date(informat.created_at).toLocaleDateString() }}</th>-->
           </tr>
-        </tbody>
-      </table>
-      <table id="aids_users_table" v-if="report_type == 'aids_users'" class="mt-3 table table-bordered">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th v-if="courses_users_cols.id_number">رقم الهوية</th>
-          <th v-if="courses_users_cols.name">الاسم</th>
-          <th v-if="courses_users_cols.affiliate_no">رقم المستفيد</th>
-          <th v-if="courses_users_cols.mobile_number">رقم الجوال</th>
-          <th v-if="courses_users_cols.phone_number">رقم الهاتف</th>
-          <th v-if="courses_users_cols.year">السنة</th>
-          <th v-if="courses_users_cols.gender">الجنس</th>
-          <th v-if="courses_users_cols.birth_date">تاريخ الميلاد</th>
-          <th v-if="courses_users_cols.governorate">المحافظة</th>
-          <th v-if="courses_users_cols.district">المنطقة</th>
-          <th v-if="courses_users_cols.address">العنوان</th>
-          <th v-if="courses_users_cols.social_status">الحالة الاجتماعية</th>
-          <th v-if="courses_users_cols.near_number">رقم القريب</th>
-          <th v-if="courses_users_cols.qualification">المؤهل</th>
-          <th v-if="courses_users_cols.specialty">التخصص</th>
-          <th v-if="courses_users_cols.current_work">العمل الحالي</th>
-          <th v-if="courses_users_cols.previous_work">العمل السابق</th>
-          <th v-if="courses_users_cols.wife_name">اسم الزوج</th>
-          <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
-          <th v-if="courses_users_cols.citizenship">المواطنة</th>
-          <th scope="col">رقم المشروع</th>
-          <th scope="col">تاريخ الاستلام</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="text-center" v-for="(item , index) in aids_users" :key="item.id">
+          </tbody>
+        </table>
+      </div>
+      <div v-if="report_type == 'aids_users'">
+        <div class="row my-3">
+          <div class="col-md-4 my-2">
+            الاسم : {{aid ? aid.project_name : ''}}
+          </div>
+          <div class="col-md-4 my-2">
+            الرقم : {{aid ? aid.project_number : ''}}
+          </div>
+          <div class="col-md-4 my-2">
+            التاريخ : {{aid ? aid.project_date : ''}}
+          </div>
+        </div>
+        <table id="aids_users_table"  class="mt-3 table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th v-if="courses_users_cols.id_number">رقم الهوية</th>
+            <th v-if="courses_users_cols.name">الاسم</th>
+            <th v-if="courses_users_cols.affiliate_no">رقم المستفيد</th>
+            <th v-if="courses_users_cols.mobile_number">رقم الجوال</th>
+            <th v-if="courses_users_cols.phone_number">رقم الهاتف</th>
+            <th v-if="courses_users_cols.year">السنة</th>
+            <th v-if="courses_users_cols.gender">الجنس</th>
+            <th v-if="courses_users_cols.birth_date">تاريخ الميلاد</th>
+            <th v-if="courses_users_cols.governorate">المحافظة</th>
+            <th v-if="courses_users_cols.district">المنطقة</th>
+            <th v-if="courses_users_cols.address">العنوان</th>
+            <th v-if="courses_users_cols.social_status">الحالة الاجتماعية</th>
+            <th v-if="courses_users_cols.near_number">رقم القريب</th>
+            <th v-if="courses_users_cols.qualification">المؤهل</th>
+            <th v-if="courses_users_cols.specialty">التخصص</th>
+            <th v-if="courses_users_cols.current_work">العمل الحالي</th>
+            <th v-if="courses_users_cols.previous_work">العمل السابق</th>
+            <th v-if="courses_users_cols.wife_name">اسم الزوج</th>
+            <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
+            <th v-if="courses_users_cols.citizenship">المواطنة</th>
+            <!--<th scope="col">رقم المشروع</th>-->
+            <th scope="col">تاريخ الاستلام</th>
+            <th scope="col">التوقيع</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-center" v-for="(item , index) in aids_users" :key="item.id">
 
 
-          <th>{{ index + 1 }}</th>
+            <th>{{ index + 1 }}</th>
 
-          <th v-if="courses_users_cols.id_number">{{ item.beneficiary.id_number }}</th>
-          <th v-if="courses_users_cols.name">{{ item.beneficiary.name }}</th>
-          <th v-if="courses_users_cols.affiliate_no">{{ item.beneficiary.affiliate_no }}</th>
-          <th v-if="courses_users_cols.mobile_number">{{ item.beneficiary.mobile_number }}</th>
-          <th v-if="courses_users_cols.phone_number">{{ item.beneficiary.phone_number }}</th>
-          <th v-if="courses_users_cols.year">{{item.beneficiary.year}}</th>
-          <th v-if="courses_users_cols.gender">{{ item.beneficiary.gender == 1 ? "أنثى" : 'ذكر'}}</th>
-          <th v-if="courses_users_cols.birth_date">{{ item.beneficiary.birth_date }}</th>
-          <th v-if="courses_users_cols.governorate">{{ item.beneficiary.governorate ? item.beneficiary.governorate.governorate : 'غير معروف' }}</th>
-          <th v-if="courses_users_cols.district">{{ item.beneficiary.district ? item.beneficiary.district.district : 'غير معروف' }}</th>
-          <th v-if="courses_users_cols.address">{{ item.beneficiary.address }}</th>
-          <th v-if="courses_users_cols.social_status">{{ item.beneficiary.social_status }}</th>
-          <th v-if="courses_users_cols.near_number">{{ item.beneficiary.near_number }}</th>
-          <th v-if="courses_users_cols.qualification">{{ item.beneficiary.qualification }}</th>
-          <th v-if="courses_users_cols.specialty">{{ item.beneficiary.specialty }}</th>
-          <th v-if="courses_users_cols.current_work">{{ item.beneficiary.current_work }}</th>
-          <th v-if="courses_users_cols.previous_work">{{ item.beneficiary.previous_work }}</th>
-          <th v-if="courses_users_cols.wife_name">{{ item.beneficiary.wife_name }}</th>
-          <th v-if="courses_users_cols.wife_identity">{{ item.beneficiary.wife_identity }}</th>
-          <th v-if="courses_users_cols.citizenship">{{ item.beneficiary.citizenship }}</th>
-          <th>{{ item.aid.project_number }}</th>
-          <th>{{ item.received_date }}</th>
+            <th v-if="courses_users_cols.id_number">{{ item.beneficiary.id_number }}</th>
+            <th v-if="courses_users_cols.name">{{ item.beneficiary.name }}</th>
+            <th v-if="courses_users_cols.affiliate_no">{{ item.beneficiary.affiliate_no }}</th>
+            <th v-if="courses_users_cols.mobile_number">{{ item.beneficiary.mobile_number }}</th>
+            <th v-if="courses_users_cols.phone_number">{{ item.beneficiary.phone_number }}</th>
+            <th v-if="courses_users_cols.year">{{item.beneficiary.year}}</th>
+            <th v-if="courses_users_cols.gender">{{ item.beneficiary.gender == 1 ? "أنثى" : 'ذكر'}}</th>
+            <th v-if="courses_users_cols.birth_date">{{ item.beneficiary.birth_date }}</th>
+            <th v-if="courses_users_cols.governorate">{{ item.beneficiary.governorate ? item.beneficiary.governorate.governorate : 'غير معروف' }}</th>
+            <th v-if="courses_users_cols.district">{{ item.beneficiary.district ? item.beneficiary.district.district : 'غير معروف' }}</th>
+            <th v-if="courses_users_cols.address">{{ item.beneficiary.address }}</th>
+            <th v-if="courses_users_cols.social_status">{{ item.beneficiary.social_status }}</th>
+            <th v-if="courses_users_cols.near_number">{{ item.beneficiary.near_number }}</th>
+            <th v-if="courses_users_cols.qualification">{{ item.beneficiary.qualification }}</th>
+            <th v-if="courses_users_cols.specialty">{{ item.beneficiary.specialty }}</th>
+            <th v-if="courses_users_cols.current_work">{{ item.beneficiary.current_work }}</th>
+            <th v-if="courses_users_cols.previous_work">{{ item.beneficiary.previous_work }}</th>
+            <th v-if="courses_users_cols.wife_name">{{ item.beneficiary.wife_name }}</th>
+            <th v-if="courses_users_cols.wife_identity">{{ item.beneficiary.wife_identity }}</th>
+            <th v-if="courses_users_cols.citizenship">{{ item.beneficiary.citizenship }}</th>
+            <!--<th>{{ item.aid.project_number }}</th>-->
+            <th>{{ item.received_date }}</th>
+            <th></th>
 
-        </tr>
-        </tbody>
-      </table>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12" style="text-align: center;font-weight: bold">
+        جمعية رعاية كبار السن{{report_title ? " - " + report_title : ''}}
+      </div>
+      <div class="col-md-12 text-left" style="font-weight: bold; text-align: left">
+        اسم الموظف: {{emp ? emp.name : ''}}
+      </div>
+      <div class="col-md-12 text-left" style="font-weight: bold; text-align: left">
+         التاريخ: {{getDate}}
+      </div>
+      <div class="col-md-12 text-left" style="font-weight: bold; text-align: left">
+         الوقت: {{getTime}}
+      </div>
     </div>
   </div>
   <div v-else>
@@ -804,29 +880,51 @@
                 placeholder="رقم الهوية"
                 v-model="benefits_id"
             />
-            <input
-                type="text"
-                class="form-control my-2"
-                placeholder="المدينة"
-                v-model="benefits_city"
-            />
-            <input
-                type="text"
-                class="form-control my-2"
-                placeholder="الحي"
-                v-model="benefits_district"
-            />
-            <input
-                type="text"
-                class="form-control my-2"
-                placeholder="مصدر الدخل"
-                v-model="benefits_income"
-            /> <input
-                type="text"
-                class="form-control my-2"
-                placeholder="الاحتياجات"
-                v-model="benefits_needs"
-            />
+            <label>المدينة</label>
+            <select class="form-control my-2"  v-model="benefits_city">
+              <option disabled selected>المدينة</option>
+              <option v-for="gover in govers" :key="gover.id" :value="gover.governorate">{{ gover.governorate }}</option>
+            </select>
+            <!--<input-->
+            <!--    type="text"-->
+            <!--    class="form-control my-2"-->
+            <!--    placeholder="المدينة"-->
+            <!--    v-model="benefits_city"-->
+            <!--/>-->
+            <label>الحي</label>
+            <select class="form-control my-2"  v-model="benefits_district">
+              <option disabled selected>الحي</option>
+              <option v-for="district in districts" :key="district.id" :value="district.district">{{ district.district }}</option>
+            </select>
+            <!--<input-->
+            <!--    type="text"-->
+            <!--    class="form-control my-2"-->
+            <!--    placeholder="الحي"-->
+            <!--    v-model="benefits_district"-->
+            <!--/>-->
+            <label>مصدر الدخل</label>
+            <select class="form-control my-2"  v-model="benefits_income">
+              <option disabled selected>مصدر الدخل</option>
+              <option v-for="income in incomes" :key="income.id" :value="income.income">{{ income.income }}</option>
+            </select>
+            <!--<input-->
+            <!--    type="text"-->
+            <!--    class="form-control my-2"-->
+            <!--    placeholder="مصدر الدخل"-->
+            <!--    v-model="benefits_income"-->
+            <!--/>-->
+            <label>الاحتياجات</label>
+            <select class="form-control my-2"  v-model="benefits_needs">
+              <option disabled selected>الاحتياجات</option>
+              <option v-for="need in needs" :key="need.id" :value="need.name">{{ need.name }}</option>
+            </select>
+            <!--<input-->
+            <!--    type="text"-->
+            <!--    class="form-control my-2"-->
+            <!--    placeholder="الاحتياجات"-->
+            <!--    v-model="benefits_needs"-->
+            <!--/>-->
+            <label>الجنس</label>
             <select class="form-control my-2"  v-model="benefits_gender">
               <option disabled selected>الجنس</option>
               <option value="2">ذكر</option>
@@ -1272,11 +1370,28 @@
               <input type="radio" v-model="non_done" value="0" name="report" id="not_done">
               <label for="done" class="mx-2">غير منتهي</label>
             </div>
+            <label >الجنس</label>
             <select class="form-control my-2"  v-model="benefits_gender">
               <option disabled selected>الجنس</option>
               <option value="2">ذكر</option>
               <option value="1">أنثى</option>
             </select>
+            <label>التاريخ من</label>
+            <input
+                type="date"
+                class="form-control my-2"
+                aria-label="Default select example"
+                placeholder="التاريخ من"
+                v-model="ach_from_date"
+            />
+            <label>التاريخ الى</label>
+            <input
+                type="date"
+                class="form-control my-2"
+                aria-label="Default select example"
+                placeholder="التاريخ الى"
+                v-model="ach_to_date"
+            />
           </div>
           <div class="col-md-6">
             <div class="cols">
@@ -1870,6 +1985,15 @@ export default {
       benefits_needs : null,
       ach_from_date: null,
       ach_to_date: null,
+      govers: [],
+      districts: [],
+      incomes: [],
+      needs: [],
+      aids_count: 0,
+      aids_sum_count: 0,
+      aids_avg: 0,
+      amount_avg: 0,
+      emp: null,
     }
   },
   methods: {
@@ -2034,6 +2158,8 @@ export default {
             benefits_city: this.benefits_city,
             benefits_district: this.benefits_district,
             non_done: this.non_done,
+            from_date: this.ach_from_date,
+            to_date: this.ach_to_date,
           }, {
             headers: {
               Authorization: "Bearer " + token,
@@ -2062,6 +2188,10 @@ export default {
               this.show_report = true;
               this.aids = res.data.aids;
               this.benefits = res.data.benefits;
+              this.aids_count = res.data.aids_count;
+              this.aids_sum_count = res.data.aids_sum_count;
+              this.aids_avg = res.data.aids_avg;
+              this.amount_avg = res.data.amount_avg;
             }
           }).catch(err => {
             console.log(err)
@@ -2188,7 +2318,7 @@ export default {
       let XLSX = require("xlsx");
       let wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
       return XLSX.writeFile(wb, ((this.report_title || "report") + ".xlsx"));
-    }
+    },
   },
   watch: {
     benefits_cols_all(v) {
@@ -2229,11 +2359,32 @@ export default {
       this.subscriptions = res.data.subscriptions;
       this.courses_options = res.data.courses_options;
       this.aids_options = res.data.aids_options;
+      this.govers = res.data.govers;
+      this.districts = res.data.districts;
+      this.incomes = res.data.incomes;
+      this.needs = res.data.needs;
+      this.emp = res.data.emp;
     }).catch(() => {
       this.failed();
     }).finally(() => {
       this.loading = false;
     });
+  },
+  computed: {
+    getDate() {
+      var today = new Date();
+
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+      return date
+    },
+    getTime() {
+      var today = new Date();
+
+      var time = today.getHours() + ":" + today.getMinutes();
+
+      return time;
+    }
   }
 }
 </script>

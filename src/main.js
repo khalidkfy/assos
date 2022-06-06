@@ -62,6 +62,9 @@ app.mixin({
           break;
       }
       return text;
+    },
+    formatNum(num, digits = 2) {
+      return num.toFixed(digits);
     }
   },
 });
