@@ -328,7 +328,7 @@
                         aria-label="Default select example"
                         v-model="district"
                     >
-                      <option v-for="items in informats2" :key="items.id" :value="items.id">
+                      <option v-for="items in districts" :key="items.id" :value="items.id">
                         {{ items.district }}
                       </option>
                     </select>
@@ -802,7 +802,7 @@
                       aria-label="Default select example"
                       v-model="need_type"
                   >
-                    <option v-for="ty in need_types" :key="ty.id" :value="ty.name">{{ty.name}}</option>
+                    <option v-for="ty in need_types" :key="ty.id" :value="ty.name">{{ ty.name }}</option>
                   </select>
                 </div>
               </div>
@@ -864,6 +864,7 @@ export default {
       qualification: "",
       social_status: "",
       district: "",
+      districts: [],
       address: "",
       near_number: "",
       file: null,
@@ -1011,38 +1012,42 @@ export default {
             },
           })
           .then((res) => {
-            console.log(res.data);
-            console.log("البيانات الاساسية");
-            (this.id_number = res.data.data.id_number),
-                (this.affiliate_no = res.data.data.affiliate_no),
-                (this.name = res.data.data.name),
-                (this.image = res.data.data.image),
-                (this.affiliate_image = res.data.data.affiliate_image),
-                (this.id_image = res.data.data.id_image),
-                (this.mobile_number = res.data.data.mobile_number),
-                (this.governorate = res.data.data.governorate),
-                (this.citizenship = res.data.data.citizenship),
-                (this.classe = res.data.data.class),
-                (this.wife_identity = res.data.data.wife_identity),
-                (this.wife_name = res.data.data.wife_name),
-                (this.previous_work = res.data.data.previous_work),
-                (this.number_of_people = res.data.data.number_of_people),
-                (this.phone_number = res.data.data.phone_number),
-                (this.gender = res.data.data.gender),
-                (this.birth_date = res.data.data.birth_date),
-                (this.year = res.data.data.year),
-                (this.specialty = res.data.data.specialty),
-                (this.qualification = res.data.data.qualification),
-                (this.social_status = res.data.data.social_status),
-                (this.district = res.data.data.district),
-                (this.address = res.data.data.address),
-                (this.near_number = res.data.data.near_number);
+            // console.log(res.data);
+            // console.log("البيانات الاساسية");
+            // console.log(1222222);
+            // console.log(res.data.data.need_types);
+            this.need_types = res.data.data.need_types;
+            this.districts = res.data.data.districts;
+            this.id_number = res.data.data.id_number;
+            this.affiliate_no = res.data.data.affiliate_no;
+            this.name = res.data.data.name;
+            this.image = res.data.data.image;
+            this.affiliate_image = res.data.data.affiliate_image;
+            this.id_image = res.data.data.id_image;
+            this.mobile_number = res.data.data.mobile_number;
+            this.governorate = res.data.data.governorate;
+            this.citizenship = res.data.data.citizenship;
+            this.classe = res.data.data.class;
+            this.wife_identity = res.data.data.wife_identity;
+            this.wife_name = res.data.data.wife_name;
+            this.previous_work = res.data.data.previous_work;
+            this.number_of_people = res.data.data.number_of_people;
+            this.phone_number = res.data.data.phone_number;
+            this.gender = res.data.data.gender;
+            this.birth_date = res.data.data.birth_date;
+            this.year = res.data.data.year;
+            this.specialty = res.data.data.specialty;
+            this.qualification = res.data.data.qualification;
+            this.social_status = res.data.data.social_status;
+            this.district = res.data.data.district;
+            this.address = res.data.data.address;
+            this.near_number = res.data.data.near_number;
             this.current_work = res.data.data.current_work;
             this.need_type = res.data.data.need.type;
             this.need_type_notes = res.data.data.need.notes;
             this.need_type_id = res.data.data.need.id;
-            this.need_types = res.data.data.need_types
-            this.work_types = res.data.data.work_types
+            this.work_types = res.data.data.work_types;
+
           })
           .catch((e) => {
             console.log(e);

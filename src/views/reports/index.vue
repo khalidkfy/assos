@@ -606,7 +606,7 @@
           <div class="col-md-4 my-2">
             الرقم : {{course ? course.effectiveness_number : ''}}
           </div>
-          <div class="col-md-4 my-2">
+          <div v-if="show_date" class="col-md-4 my-2">
             التاريخ : {{course ? course.date : ''}}
           </div>
         </div>
@@ -677,7 +677,7 @@
           <div class="col-md-4 my-2">
             الرقم : {{aid ? aid.project_number : ''}}
           </div>
-          <div class="col-md-4 my-2">
+          <div v-if="show_date" class="col-md-4 my-2">
             التاريخ : {{aid ? aid.project_date : ''}}
           </div>
         </div>
@@ -847,6 +847,10 @@
             <div class="form-group">
               <label for="show_logo" class="mx-2">عرض الشعار</label>
               <input v-model="show_logo" id="show_logo" type="checkbox">
+            </div>
+            <div v-if="report_type == 'courses_users' || report_type == 'aids_users'" class="form-group">
+              <label for="show_date" class="mx-2">عرض التاريخ</label>
+              <input v-model="show_date" id="show_date" type="checkbox">
             </div>
           </div>
         </div>
@@ -1849,6 +1853,7 @@ export default {
     return {
       options: [],
       non_done: null,
+      show_date: true,
       aids: [],
       subscriptions: [],
       subs_users: [],
