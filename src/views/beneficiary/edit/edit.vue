@@ -1011,12 +1011,14 @@ export default {
               Authorization: "Bearer " + token,
             },
           })
-          .then((res) => {
+          .then((res) =>  {
             // console.log(res.data);
             // console.log("البيانات الاساسية");
             // console.log(1222222);
             // console.log(res.data.data.need_types);
             this.need_types = res.data.data.need_types;
+            this.rec = res.data.data.governorate_id;
+            this.district = res.data.data.district_id;
             this.districts = res.data.data.districts;
             this.id_number = res.data.data.id_number;
             this.affiliate_no = res.data.data.affiliate_no;
@@ -1039,7 +1041,7 @@ export default {
             this.specialty = res.data.data.specialty;
             this.qualification = res.data.data.qualification;
             this.social_status = res.data.data.social_status;
-            this.district = res.data.data.district;
+            // this.district = res.data.data.district;
             this.address = res.data.data.address;
             this.near_number = res.data.data.near_number;
             this.current_work = res.data.data.current_work;

@@ -340,10 +340,10 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>القيمة للشخص</td>
-                <td>{{ aids_total_value_person }}</td>
-              </tr>
+<!--              <tr>-->
+<!--                <td>القيمة للشخص</td>-->
+<!--                <td>{{ aids_total_value_person }}</td>-->
+<!--              </tr>-->
               <tr>
                 <td>العدد المتبرع به</td>
                 <td>{{ aids_total_donated }}</td>
@@ -599,18 +599,18 @@
         </tbody>
       </table>
       <div v-if="report_type == 'courses_users'">
-        <div class="row my-3">
-          <div class="col-md-4 my-2">
+        <div class="" style="display: flex; justify-content: space-between; margin: 10px 0">
+          <div class="">
             الاسم : {{course ? course.name : ''}}
           </div>
-          <div class="col-md-4 my-2">
+          <div class="">
             الرقم : {{course ? course.effectiveness_number : ''}}
           </div>
-          <div v-if="show_date" class="col-md-4 my-2">
+          <div v-if="show_date" class="">
             التاريخ : {{course ? course.date : ''}}
           </div>
         </div>
-        <table id="courses_users_table"  class="mt-3 table table-bordered">
+        <table id="courses_users_table" style="page-break-after: always"  class="mt-3 table table-bordered">
           <thead>
           <tr class="text-center">
             <th scope="col">#</th>
@@ -670,18 +670,18 @@
         </table>
       </div>
       <div v-if="report_type == 'aids_users'">
-        <div class="row my-3">
-          <div class="col-md-4 my-2">
+        <div style="display: flex; justify-content: space-between; margin: 10px 0">
+          <div class=" ">
             الاسم : {{aid ? aid.project_name : ''}}
           </div>
-          <div class="col-md-4 my-2">
+          <div class=" ">
             الرقم : {{aid ? aid.project_number : ''}}
           </div>
-          <div v-if="show_date" class="col-md-4 my-2">
+          <div v-if="show_date" class=" ">
             التاريخ : {{aid ? aid.project_date : ''}}
           </div>
         </div>
-        <table id="aids_users_table"  class="mt-3 table table-bordered">
+        <table id="aids_users_table"  style="page-break-after: always"  class="mt-3 table table-bordered">
           <thead>
           <tr>
             <th scope="col">#</th>

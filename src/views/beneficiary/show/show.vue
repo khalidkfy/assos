@@ -1327,10 +1327,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="text-center" v-for="item in informats3" :key="item.id">
-              <td>{{ item.id }}</td>
-              <td>{{ item.type }}</td>
-              <td>{{ item.note }}</td>
+<!--            <tr class="text-center" v-for="item in informats3" :key="item.id">-->
+<!--              <td>{{ item.id }}</td>-->
+<!--              <td>{{ item.type }}</td>-->
+<!--              <td>{{ item.note }}</td>-->
+<!--            </tr>-->
+            <tr class="text-center">
+              <td>1</td>
+              <td>{{ informats3.type }}</td>
+              <td>{{ informats3.notes }}</td>
             </tr>
             </tbody>
           </table>
@@ -1610,20 +1615,22 @@ export default {
     this.aids();
     this.courses();
     this.subsc();
+    this.needed();
   },
   methods: {
     needed() {
       const token = sessionStorage.getItem("token");
-      console.log(this.informats);
       axios
-          .get(`/api/need/show?beneficiary_id=700${this.$route.query.q}`, {
+          .get(`/api/need/show?beneficiary_id=${this.$route.query.q}`, {
             headers: {
               Authorization: "Bearer " + token,
             },
           })
           .then((res) => {
             console.log(res.data);
-            this.informats3 = res.data.data.data;
+            console.log('needed');
+            this.informats3 = res.data.data;
+            console.log(this.informats3.type)
           })
           .catch((e) => {
             console.log(e);
