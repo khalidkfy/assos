@@ -706,7 +706,7 @@
             <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
             <th v-if="courses_users_cols.citizenship">المواطنة</th>
             <!--<th scope="col">رقم المشروع</th>-->
-            <th scope="col">تاريخ الاستلام</th>
+<!--            <th scope="col">تاريخ الاستلام</th>-->
             <th scope="col">التوقيع</th>
           </tr>
           </thead>
@@ -737,7 +737,7 @@
             <th v-if="courses_users_cols.wife_identity">{{ item.beneficiary.wife_identity }}</th>
             <th v-if="courses_users_cols.citizenship">{{ item.beneficiary.citizenship }}</th>
             <!--<th>{{ item.aid.project_number }}</th>-->
-            <th>{{ item.received_date }}</th>
+<!--            <th>{{ item.received_date }}</th>-->
             <th></th>
 
           </tr>
