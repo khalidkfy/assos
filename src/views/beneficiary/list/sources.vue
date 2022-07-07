@@ -11,24 +11,9 @@
 						<select
 							class="form-select"
 							aria-label="Default select example"
-							v-model="source_of_income"
+							v-model="income_id"
 						>
-							<option selected>عمل خاص</option>
-							<option>راتب تقاعد</option>
-							<option>وزارة التنمية الاجتماعية</option>
-							<option>وكالة الغوث للاجئين</option>
-							<option>جمعية خيرية اهلية /دولية-1</option>
-							<option>جمعية خيرية اهلية /دولية-2</option>
-							<option>جمعية خيرية اهلية /دولية-3</option>
-							<option>جمعية خيرية اهلية /دولية-4</option>
-							<option>جمعية خيرية اهلية /دولية-5</option>
-							<option>جمعية خيرية اهلية /دولية-6</option>
-							<option>املاك وعقارات مدرة للدخل</option>
-							<option>مساعدات شهرية/اسرى</option>
-							<option>مساعدات شهرية/جرحى</option>
-							<option>مساعدات شهرية/شهداء</option>
-							<option>كفالات ايتام</option>
-							<option>اعالة الابناء الاقارب</option>
+              <option v-for="inc in incomes" :key="inc.id" :value="inc.id">{{inc.income}}</option>
 						</select>
 					</div>
 				</div>
@@ -113,6 +98,8 @@
 				in_kind_assistance: "",
 				financial_evaluation: "",
 				notes: "",
+        income_id: null,
+        incomes: [],
 			};
 		},
 
@@ -131,6 +118,7 @@
 							in_kind_assistance: this.in_kind_assistance,
 							financial_evaluation: this.financial_evaluation,
 							notes: this.notes,
+              income_id: this.income_id,
 						},
 						{
 							headers: {
@@ -166,7 +154,27 @@
 				});
 			},
 		},
-	};
+    mounted() {
+
+      const token = sessionStorage.getItem("token");
+
+      axios
+          .get(
+              "api/sourcesofincome/data",
+              {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              }
+          )
+          .then((res) => {
+            this.incomes =res.data.incomes
+          })
+          .catch(() => {
+            this.failed();
+          });
+    }
+  };
 </script>
 <style scoped>
 	.form-control,

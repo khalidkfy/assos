@@ -17,6 +17,7 @@
 									v-model="news"
 									class="form-control"
 									placeholder="رقم المستفيد "
+                  @keyup.enter="addRow() , ret()"
 								/>
 							</th>
 						

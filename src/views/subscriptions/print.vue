@@ -10,6 +10,7 @@
           <p class="abs4">{{ item.birth_date }}</p>
           <p class="abs3">{{ item.start_subscription }}</p>
           <p class="year">{{ item.year }}</p>
+<!--          <p class="year">{{ sub_desc }}</p>-->
           <p class="abs5">{{ item.dist_gover_name }}</p>
 
           <img :src="'http://134.122.119.130:8080/' + item.image" class="imgs" alt="">
@@ -78,7 +79,7 @@
 .year {
   position: absolute;
   top: 70px;
-  right: 45px;
+  right: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #4992F2;
   font-weight: 700;
@@ -144,6 +145,7 @@ export default {
   data() {
     return {
       year: "2022",
+      sub_desc: '',
       informats: [],
       nums: this.$route.query.q,
     };
@@ -194,6 +196,7 @@ export default {
           .then((res) => {
             console.log(res.data.data.SubscriptionPeople.dist);
             this.informats = res.data.data.SubscriptionPeople;
+            this.sub_desc = res.data.data.Subsc.description;
           })
           .catch((e) => {
             console.log(e);

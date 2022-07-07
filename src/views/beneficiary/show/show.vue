@@ -1317,25 +1317,25 @@
             role="tabpanel"
             aria-labelledby="pills-fifth-tab"
         >
-          <table class="table ">
+          <table class="table">
             <thead>
             <tr>
-              <th scope="col">#</th>
-
-              <th scope="col">النوع</th>
-              <th scope="col">الملاحظات</th>
+              <th>النوع</th>
+              <th>الملاحظات</th>
+              <th>#</th>
             </tr>
             </thead>
             <tbody>
-<!--            <tr class="text-center" v-for="item in informats3" :key="item.id">-->
-<!--              <td>{{ item.id }}</td>-->
-<!--              <td>{{ item.type }}</td>-->
-<!--              <td>{{ item.note }}</td>-->
-<!--            </tr>-->
-            <tr class="text-center">
-              <td>1</td>
-              <td>{{ informats3.type }}</td>
-              <td>{{ informats3.notes }}</td>
+            <tr v-for="(need) in needss " :key="need.id">
+              <th>
+                <input type="text" disabled class="form-control" v-model="need.type">
+              </th>
+              <th><input type="text" disabled class="form-control" v-model="need.notes"></th>
+              <th>
+
+
+              </th>
+
             </tr>
             </tbody>
           </table>
@@ -1604,6 +1604,7 @@ export default {
       aid: [],
       aid2: [],
       course: [],
+      needss: [],
       subscs: []
     };
   },
@@ -1709,6 +1710,7 @@ export default {
             console.log(res.data);
             (this.id_number = res.data.data.id_number),
                 (this.affiliate_no = res.data.data.affiliate_no),
+                (this.needss = res.data.data.needss),
                 (this.name = res.data.data.name),
                 (this.mobile_number = res.data.data.mobile_number),
                 (this.governorate = res.data.data.governorate),

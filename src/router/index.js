@@ -83,6 +83,10 @@ import NeedTypesForm from "../views/settings/need_types/form";
 import WorkTypesIndex from "../views/settings/work/index";
 import WorkTypesForm from "../views/settings/work/form";
 import AidPeoplePrint from "../views/aid/print";
+import MedicinalIndex from "../views/settings/medicinal/index"
+import MedicinalForm from "../views/settings/medicinal/form"
+import TypeCourseIndex from "../views/settings/type_course/index"
+import TypeCourseForm from "../views/settings/type_course/form"
 // end settings
 
 const routes = [
@@ -482,6 +486,26 @@ const routes = [
     path: "/aid_people_print",
     name: "aid.people.print",
     component: AidPeoplePrint,
+  },
+  {
+    path: "/medicinal",
+    name: "settings.medicinal.index",
+    component: MedicinalIndex,
+  },
+  {
+    path: "/medicinal/form",
+    name: "settings.medicinal.form",
+    component: MedicinalForm,
+  },
+  {
+    path: "/type_course",
+    name: "settings.type_course.index",
+    component: TypeCourseIndex,
+  },
+  {
+    path: "/type_course/form",
+    name: "settings.type_course.form",
+    component: TypeCourseForm,
   },
 
 ];

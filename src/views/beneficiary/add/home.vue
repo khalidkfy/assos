@@ -93,10 +93,16 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">العلاج</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" v-model="treatment" />
-					</div>
+					<label class="col-sm-12 col-form-label">العلاج</label>
+          <div class="col-sm-10">
+            <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="treatment"
+            >
+              <option v-for="med in medicinals" :key="med.id" :value="med.name">{{ med.name }}</option>
+            </select>
+          </div>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -387,6 +393,7 @@
         housings: [],
         housings_type: [],
         furniture_cases: [],
+        medicinals:[],
 			};
 		},
 		methods: {
@@ -472,6 +479,7 @@
         this.housings = res.data.housings;
         this.housings_type = res.data.housings_type;
         this.furniture_cases = res.data.furniture_cases;
+        this.medicinals = res.data.medicinals;
       }).catch((err) => {
         console.log(err);
       })

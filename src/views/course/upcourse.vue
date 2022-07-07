@@ -16,8 +16,7 @@
 							aria-label="Default select example"
 							v-model="source_of_income"
 						>
-							<option value="1">دورة</option>
-							<option value="2">رحلة</option>
+							<option v-for="type in types" :key="type.id" :value="type.name">{{ type.name }}</option>
 					
 				
 						
@@ -187,6 +186,7 @@
 				cost: "",
 				total_cost: "",
 				notes: "",
+        types: [],
 				source_of_income:""
 			};
 		},
@@ -230,6 +230,21 @@
 					.catch((e) => {
 						console.log(e);
 					});
+        axios
+            .get(
+                "api/course/data",
+                {
+                  headers: {
+                    Authorization: "Bearer " + token,
+                  },
+                }
+            )
+            .then((res) => {
+              this.types = res.data.type_course;
+            })
+            .catch(() => {
+              this.failed();
+            });
 			},
 
 			source() {

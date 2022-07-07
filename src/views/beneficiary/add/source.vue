@@ -6,30 +6,35 @@
 		aria-labelledby="pills-fourth-tab"
 	>
 		<div class="row">
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label">النوع </label>
-					<div class="col-sm-9">
-            <select
-                class="form-select"
-                aria-label="Default select example"
-                v-model="type"
-            >
-              <option v-for="ty in types" :key="ty.id" :value="ty.name">{{ty.name}}</option>
-            </select>
-          </div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>الملاحظات
-					</label>
-					<div class="col-sm-9">
-						<textarea class="form-control" v-model="notes" />
-					</div>
-				</div>
-			</div>
+			<div class="col-md-12">
+        <button @click="addNeed" class="btn btn-success my-2">
+          اضافة
+        </button>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>النوع</th>
+            <th>الملاحظات</th>
+            <th>#</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(need, index) in needs " :key="need.id">
+            <th>
+              <select class="form-select" aria-label="Default select example" v-model="need.type">
+                <option v-for="type in types" :key="type.id" :value="type.name">{{type.name}}</option>
+              </select>
+            </th>
+            <th><input type="text" class="form-control" v-model="need.notes"></th>
+            <th>
+              <a @click.prevent="deleteItem(index)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+            </th>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
 
 			<div class="row justify-content-center mt-4">
 				<button @click.prevent="source" class="btn w-25">اضافة</button>
@@ -45,6 +50,7 @@
 				notes: "",
 				type: "",
 				types: [],
+        needs:[],
 			};
 		},
     mounted() {
@@ -61,6 +67,7 @@
           .then((res) => {
             this.types = res.data.types
           })
+
     },
     methods: {
 			source() {
@@ -68,11 +75,10 @@
 				const af1 = sessionStorage.getItem("af1");
 				axios
 					.post(
-						"api/need/store",
+						"api/need/store-needs",
 						{
 							beneficiary_id: af1,
-							notes: this.notes,
-							type: this.type,
+							needs: this.needs
 						},
 						{
 							headers: {
@@ -105,6 +111,15 @@
 					text: "تأكد من المدخلات المطلوبة",
 				});
 			},
+      addNeed() {
+        this.needs.push({
+          type:null,
+          notes:null
+        })
+      },
+      deleteItem(index) {
+        this.needs.splice(index, 1);
+      }
 		},
 	};
 </script>

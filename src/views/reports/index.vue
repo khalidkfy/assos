@@ -8,7 +8,7 @@
       <div class="col-md-4" style="text-align: left">
         <img v-if="show_logo" src="../../assets/img/log.jpeg" alt="" class="logos">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 d-print-none">
         <button v-if="print_btn" @click="print()" class="btn btn-success mx-2">طباعة</button>
         <button v-if="print_btn" @click="exportTable()" class="btn btn-success mx-2">تصدير اكسل</button>
         <button v-if="print_btn" @click="show_report = false" class="btn btn-success">إلغاء</button>
@@ -707,7 +707,7 @@
             <th v-if="courses_users_cols.citizenship">المواطنة</th>
             <!--<th scope="col">رقم المشروع</th>-->
 <!--            <th scope="col">تاريخ الاستلام</th>-->
-            <th scope="col">التوقيع</th>
+            <th width="300" scope="col">التوقيع</th>
           </tr>
           </thead>
           <tbody>
@@ -1365,6 +1365,12 @@
                 placeholder="الحي"
                 v-model="benefits_district"
             />
+            <input
+                type="text"
+                class="form-control my-2"
+                placeholder="السنة"
+                v-model="benefits_year"
+            />
             <span>الاشتراك</span>
             <div class="form-group">
               <input type="radio" v-model="non_done" value="1" name="report" id="done">
@@ -1831,6 +1837,16 @@
                 v-model="ach_to_date"
             />
           </div>
+          <div class="col-md-6">
+            <label>السنة</label>
+            <input
+                type="text"
+                class="form-control my-2"
+                aria-label="Default select example"
+                placeholder="السنة"
+                v-model="benefits_year"
+            />
+          </div>
         </div>
 
         <div class="row justify-content-center mt-4">
@@ -2162,6 +2178,7 @@ export default {
             benefits_gender: this.benefits_gender,
             benefits_city: this.benefits_city,
             benefits_district: this.benefits_district,
+            year: this.benefits_year,
             non_done: this.non_done,
             from_date: this.ach_from_date,
             to_date: this.ach_to_date,
@@ -2184,6 +2201,7 @@ export default {
           axios.post('/api/reports/aid_details', {
             from_date: this.ach_from_date,
             to_date: this.ach_to_date,
+            year: this.benefits_year,
           }, {
             headers: {
               Authorization: "Bearer " + token,
@@ -2316,6 +2334,9 @@ export default {
           break;
         case "aids_users":
           id = "aids_users_table";
+          break;
+        case "achievements":
+          id = "achievements";
           break;
       }
       let elt = document.getElementById(id);

@@ -793,29 +793,34 @@
             aria-labelledby="pills-income-tab"
         >
           <div class="row">
-            <div class="col-md-6">
-              <div class="m-3 row">
-                <label for="inputPassword" class="col-sm-12 col-form-label">النوع </label>
-                <div class="col-sm-9">
-                  <select
-                      class="form-select"
-                      aria-label="Default select example"
-                      v-model="need_type"
-                  >
-                    <option v-for="ty in need_types" :key="ty.id" :value="ty.name">{{ ty.name }}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="m-3 row">
-                <label for="inputPassword" class="col-sm-12 col-form-label"
-                >الملاحظات
-                </label>
-                <div class="col-sm-9">
-                  <textarea class="form-control" v-model="need_type_notes"/>
-                </div>
-              </div>
+            <div class="col-md-12">
+              <button @click="addNeed" class="btn btn-success my-2">
+                اضافة
+              </button>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>النوع</th>
+                  <th>الملاحظات</th>
+                  <th>#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(need, index) in needss " :key="need.id">
+                  <th>
+                    <select class="form-select" aria-label="Default select example" v-model="need.type">
+                      <option v-for="type in need_types" :key="type.id" :value="type.name">{{type.name}}</option>
+                    </select>
+                  </th>
+                  <th><input type="text" class="form-control" v-model="need.notes"></th>
+                  <th>
+                    <a @click.prevent="deleteItem(index)" href="#" class="icons"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                  </th>
+
+                </tr>
+                </tbody>
+              </table>
             </div>
 
             <div class="row justify-content-center mt-4">
@@ -841,6 +846,7 @@ export default {
     return {
       id_number: "",
       need_types: [],
+      needss: [],
       work_types: [],
       name: "",
       affiliate_no: "",
@@ -1017,6 +1023,7 @@ export default {
             // console.log(1222222);
             // console.log(res.data.data.need_types);
             this.need_types = res.data.data.need_types;
+            this.needss = res.data.data.needss;
             this.rec = res.data.data.governorate_id;
             this.district = res.data.data.district_id;
             this.districts = res.data.data.districts;
@@ -1110,7 +1117,7 @@ export default {
           })
           .then((res) => {
             console.log(res.data.data.data);
-            (this.incomes = res.data.data.data), (this.informats2 = res.data);
+            (this.incomes = res.data.data.data) (this.informats2 = res.data);
           })
           .catch((e) => {
             console.log(e);
@@ -1300,9 +1307,7 @@ export default {
           .post(
               "api/need/update",
               {
-                id: this.need_type_id,
-                need_type_notes: this.need_type_notes,
-                need_type: this.need_type,
+                needs: this.needss,
                 benf_id: this.$route.query.q
               },
               {
@@ -1317,6 +1322,15 @@ export default {
           .catch(() => {
             this.failed()
           });
+    },
+    addNeed() {
+      this.needss.push({
+        type:null,
+        notes:null
+      })
+    },
+    deleteItem(index) {
+      this.needss.splice(index, 1);
     }
   },
 
