@@ -489,17 +489,8 @@
                   >العمل الحالي
                   </label>
                   <div class="col-sm-10">
-                    <select
-                        class="form-select"
-                        aria-label="Default select example"
-                        v-model="current_work"
-                        disabled
-                    >
-                      <option>مزارع</option>
-                      <option>حكومة</option>
-                      <option>خاص</option>
-                      <option>أخرى</option>
-                    </select>
+                    <input type="text" maxlength="10" disabled class="form-control" v-model="current_work"/>
+
                   </div>
                 </div>
               </div>
@@ -509,15 +500,8 @@
                   >العمل السابق</label
                   >
                   <div class="col-sm-10">
-                    <select
-                        class="form-select"
-                        aria-label="Default select example"
-                        v-model="previous_work"
-                        disabled
-                    >
-                      <option>مزارع</option>
-                      <option>اخرى</option>
-                    </select>
+                    <input type="text" maxlength="10" disabled class="form-control" v-model="previous_work"/>
+
                   </div>
                 </div>
               </div>

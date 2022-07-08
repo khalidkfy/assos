@@ -1272,6 +1272,7 @@ export default {
       formData.append("wife_identity", this.wife_identity);
       formData.append("wife_name", this.wife_name);
       formData.append("current_work", this.current_work);
+      formData.append("previous_work", this.previous_work);
       formData.append("specialty", this.specialty);
       formData.append("qualification", this.qualification);
       formData.append("year", this.year);

@@ -3,14 +3,14 @@
     <div class="new" id="printableArea">
       <div class="hd1" style="width: 50%; " v-for="(item, index) in nuuuu" :key="index">
         <div v-if="nums[index] " class="cont">
-          <img src="../../assets/img/bacg.jpeg" class="amg" alt=""/>
+          <img src="../../assets/img/new.jpg" class="amg" alt=""/>
           <p class="abs0">{{ item.affiliate_no }}</p>
           <p class="abs">{{ item.beneficiary_name }}</p>
           <p class="abs2">{{ item.id_number }}</p>
           <p class="abs4">{{ item.birth_date }}</p>
           <p class="abs3">{{ item.start_subscription }}</p>
           <p class="year">{{ item.year }}</p>
-<!--          <p class="year">{{ sub_desc }}</p>-->
+          <p class="year" style="top: 90px;right: 100px;font-size: 13px">{{ sub_desc }}</p>
           <p class="abs5">{{ item.dist_gover_name }}</p>
 
           <img :src="'http://134.122.119.130:8080/' + item.image" class="imgs" alt="">

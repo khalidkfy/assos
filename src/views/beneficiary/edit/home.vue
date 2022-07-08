@@ -17,10 +17,7 @@
                 aria-label="Default select example"
                 v-model="housing_possession"
             >
-              <option>ملك</option>
-              <option>ايجار</option>
-              <option>ارض حكومة</option>
-              <option>مع الاقارب</option>
+              <option v-for="hou in housings" :key="hou.id" :value="hou.name">{{ hou.name }}</option>
             </select>
           </div>
         </div>
@@ -36,8 +33,7 @@
                 aria-label="Default select example"
                 v-model="other_housing_possession"
             >
-              <option>يوجد</option>
-              <option>لايوجد</option>
+              <option v-for="hou in housings" :key="hou.id" :value="hou.name">{{ hou.name }}</option>
             </select>
           </div>
         </div>
@@ -53,10 +49,7 @@
                 class="form-select"
                 aria-label="Default select example"
                 v-model="accommodation_type">
-              <option>باطون</option>
-              <option>اسبست</option>
-              <option>زينكو</option>
-              <option>خص</option>
+              <option v-for="type in housing_types" :key="type.id" :value="type.name">{{ type.name }}</option>
             </select></div>
         </div>
       </div>
@@ -396,6 +389,8 @@ export default {
       can_used: "",
       cooperation_notes: "",
       medicinals:[],
+      housings:[],
+      housing_types:[],
     };
   },
   created() {
@@ -467,6 +462,8 @@ export default {
             console.log('home');
             this.housing_possession = res.data.data.housing_possession;
             this.medicinals = res.data.data.medicinals;
+            this.housings = res.data.data.housings;
+            this.housing_types = res.data.data.housing_types;
             this.other_housing_possession = res.data.data.other_housing_possession;
             this.accommodation_type = res.data.data.accommodation_type;
             this.furniture_case = res.data.data.furniture_case;
