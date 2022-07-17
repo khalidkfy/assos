@@ -5,24 +5,42 @@
 	<container>
 		<div class="d-flex justify-content-end"></div>
 		<div class="row">
+      <div class="col-md-6">
+        <div class="m-3 row">
+          <label for="inputPassword" class="col-sm-12 col-form-label"
+          >النشاط</label
+          >
+          <div class="col-sm-9">
+            <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="source_of_income"
+            >
+              <option value="1">دورة</option>
+              <option value="2">رحلة</option>
+
+            </select>
+          </div>
+        </div>
+      </div>
 				<div class="col-md-6">
 				<div class="m-3 row">
 				<label for="inputPassword" class="col-sm-12 col-form-label"
-						>النشاط</label
+						>نوع النشاط</label
 					>
 					<div class="col-sm-9">
 						<select
 							class="form-select"
 							aria-label="Default select example"
-							v-model="source_of_income"
+							v-model="source_type"
 						>
 							<option v-for="type in types" :key="type.id" :value="type.name">{{ type.name }}</option>
-					
-				
-						
+
+
+
 						</select>
 					</div>
-		
+
 				</div></div>
 			<div class="col-md-6">
 				<div class="m-3 row">
@@ -187,7 +205,8 @@
 				total_cost: "",
 				notes: "",
         types: [],
-				source_of_income:""
+				source_of_income:"",
+        source_type:""
 			};
 		},
 	created() {
@@ -226,6 +245,7 @@
 							this.total_cost = res.data.data.Course.total_cost;				
 							this.notes = res.data.data.Course.notes;				
 							this.source_of_income = res.data.data.Course.activity_type;				
+							this.source_type = res.data.data.Course.activity_type2;
 					})
 					.catch((e) => {
 						console.log(e);
@@ -266,7 +286,8 @@
 							cost: this.cost,
 							total_cost: this.total_cost,
 							notes: this.notes,
-							activity_type:this.source_of_income
+							activity_type:this.source_of_income,
+              source_type:this.source_type,
 						},
 						{
 							headers: {

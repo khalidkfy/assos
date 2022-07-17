@@ -9,9 +9,10 @@
         <img v-if="show_logo" src="../../assets/img/log.jpeg" alt="" class="logos">
       </div>
       <div class="col-md-6 d-print-none">
-        <button v-if="print_btn" @click="print()" class="btn btn-success mx-2">طباعة</button>
-        <button v-if="print_btn" @click="exportTable()" class="btn btn-success mx-2">تصدير اكسل</button>
-        <button v-if="print_btn" @click="show_report = false" class="btn btn-success">إلغاء</button>
+        <button @click="print()" class="btn btn-success mx-2 d-print-none">طباعة</button>
+        <button v-if="report_type !== 'achievements'" @click="exportTable()" class="btn btn-success mx-2 d-print-none">تصدير اكسل</button>
+        <button v-else @click="exportTable2()" class="btn btn-success mx-2 d-print-none">تصدير اكسل</button>
+        <button @click="show_report = false" class="btn btn-success d-print-none">إلغاء</button>
       </div>
     </div>
     <div class="table-responsive">
@@ -245,7 +246,7 @@
       <div v-if="report_type == 'achievements'" class="mt-3">
         <div class="my-3">
           <h4>الدورات</h4>
-          <table class="mt-3 table table-bordered">
+          <table id="table1"  class="mt-3 table table-bordered">
             <thead>
               <tr>
               <th>#</th>
@@ -300,7 +301,7 @@
         </div>
         <div class="my-3">
           <h4>المساعدات</h4>
-          <table class="mt-3 table table-bordered">
+          <table  id="table2" class="mt-3 table table-bordered">
             <thead>
             <tr>
               <th>#</th>
@@ -599,7 +600,7 @@
         </tbody>
       </table>
       <div v-if="report_type == 'courses_users'">
-        <div class="" style="display: flex; justify-content: space-between; margin: 10px 0">
+        <div class="d-print-none" style="display: flex; justify-content: space-between; margin: 10px 0">
           <div class="">
             الاسم : {{course ? course.name : ''}}
           </div>
@@ -610,7 +611,7 @@
             التاريخ : {{course ? course.date : ''}}
           </div>
         </div>
-        <table id="courses_users_table" style="page-break-after: always"  class="mt-3 table table-bordered">
+        <table id="courses_users_table" class="mt-3 table table-bordered">
           <thead>
           <tr class="text-center">
             <th scope="col">#</th>
@@ -670,7 +671,7 @@
         </table>
       </div>
       <div v-if="report_type == 'aids_users'">
-        <div style="display: flex; justify-content: space-between; margin: 10px 0">
+        <div class="d-print-none" style="display: flex; justify-content: space-between; margin: 10px 0">
           <div class=" ">
             الاسم : {{aid ? aid.project_name : ''}}
           </div>
@@ -681,7 +682,7 @@
             التاريخ : {{aid ? aid.project_date : ''}}
           </div>
         </div>
-        <table id="aids_users_table"  style="page-break-after: always"  class="mt-3 table table-bordered">
+        <table id="aids_users_table"   class="mt-3 table table-bordered">
           <thead>
           <tr>
             <th scope="col">#</th>
@@ -1863,7 +1864,8 @@
 <script>
 import axios from "axios";
 import container from "@/components/containers/container.vue";
-
+// import XLSX from "xlsx";
+let XLSX = require("xlsx");
 export default {
   data() {
     return {
@@ -2341,9 +2343,28 @@ export default {
       }
       let elt = document.getElementById(id);
       console.log(elt)
-      let XLSX = require("xlsx");
+      // let XLSX = require("xlsx");
       let wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
       return XLSX.writeFile(wb, ((this.report_title || "report") + ".xlsx"));
+    },
+    exportTable2() {
+      // let XLSX = require("xlsx");
+      let tbl1 = document.getElementById("table1")
+      let tbl2 = document.getElementById("table2")
+
+      let worksheet_tmp1 = XLSX.utils.table_to_sheet(tbl1);
+      let worksheet_tmp2 = XLSX.utils.table_to_sheet(tbl2);
+
+      let a = XLSX.utils.sheet_to_json(worksheet_tmp1, { header: 1 })
+      let b = XLSX.utils.sheet_to_json(worksheet_tmp2, { header: 1 })
+
+      a = a.concat(['']).concat(b)
+
+      let worksheet = XLSX.utils.json_to_sheet(a, { skipHeader: true })
+
+      const new_workbook = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(new_workbook, worksheet, "worksheet")
+      return   XLSX.writeFile(new_workbook,((this.report_title || "report") + ".xlsx"))
     },
   },
   watch: {

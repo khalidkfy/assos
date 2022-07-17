@@ -214,16 +214,7 @@
                           aria-label="Default select example"
                           v-model="classe"
                       >
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                        <option>D</option>
-                        <option>متوفي</option>
-                        <option>منقطع A</option>
-                        <option>منقطع B</option>
-                        <option>منقطع C</option>
-                        <option>منقطع E</option>
-                        <option>اخرى</option>
+                        <option v-for="categ in categs" :key="categ.id" :value="categ.name">{{ categ.name }}</option>
                       </select>
                       <small class="text-danger">
                         {{ errclass }}
@@ -429,10 +420,7 @@
                         aria-label="Default select example"
                         v-model="specialty"
                     >
-                      <option>عربي</option>
-                      <option>انجليزي</option>
-                      <option>صحة</option>
-                      <option>اخرى</option>
+                      <option v-for="spec in specss" :key="spec.id" :value="spec.name">{{ spec.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -846,6 +834,8 @@ export default {
     return {
       id_number: "",
       need_types: [],
+      categs: [],
+      specss: [],
       needss: [],
       work_types: [],
       name: "",
@@ -1056,6 +1046,9 @@ export default {
             this.need_type_notes = res.data.data.need.notes;
             this.need_type_id = res.data.data.need.id;
             this.work_types = res.data.data.work_types;
+            this.categs = res.data.data.categs;
+            this.specss = res.data.data.specss;
+
 
           })
           .catch((e) => {

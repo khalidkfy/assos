@@ -120,10 +120,7 @@
                 aria-label="Default select example"
                 v-model="furniture_case"
             >
-              <option>سيء</option>
-              <option>جيد</option>
-              <option>ممتاز</option>
-              <option>قديم</option>
+              <option v-for="casee in cases" :key="casee.id" :value="casee.name">{{ casee.name }}</option>
             </select>
           </div>
         </div>
@@ -391,6 +388,7 @@ export default {
       medicinals:[],
       housings:[],
       housing_types:[],
+      cases:[],
     };
   },
   created() {
@@ -464,6 +462,7 @@ export default {
             this.medicinals = res.data.data.medicinals;
             this.housings = res.data.data.housings;
             this.housing_types = res.data.data.housing_types;
+            this.cases = res.data.data.cases;
             this.other_housing_possession = res.data.data.other_housing_possession;
             this.accommodation_type = res.data.data.accommodation_type;
             this.furniture_case = res.data.data.furniture_case;
