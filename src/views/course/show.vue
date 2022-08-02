@@ -73,6 +73,7 @@
 						<th scope="col">تكلفة المشرف</th>
 						<th scope="col">المبلغ الاجمالي</th>
 						<th scope="col">النشاط</th>
+						<th scope="col">نوع النشاط</th>
 						<th scope="col">الاجراءات</th>
 					</tr>
 				</thead>
@@ -91,7 +92,9 @@
 						<th>{{ informat.supervisor_cost }}</th>
 						<th>{{ informat.total_cost }}</th>
 						<th v-if=" informat.activity_type == 1 ">دورة</th>
-						<th v-else>رحلة</th>
+						<th v-if=" informat.activity_type == 2 ">رحلة</th>
+						<th v-if=" informat.activity_type == 3 ">إداري</th>
+						<th>{{ informat.activity_type2 }}</th>
 						<th class="d-flex justify-content-between">
 
 								<router-link

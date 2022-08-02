@@ -258,6 +258,7 @@
               <th>عدد المتفاعلين</th>
               <th>التكلفة الإجمالية</th>
               <th>النشاط</th>
+              <th>نوع النشاط</th>
               <th>التاريخ</th>
             </tr>
             </thead>
@@ -272,7 +273,9 @@
               <td>{{ course.number_of_effectiveness }}</td>
               <td>{{ course.total_cost }}</td>
               <td v-if="course.activity_type == 1">دورة</td>
-              <td v-if="course.activity_type !== 1">رحلة</td>
+              <td v-if="course.activity_type == 2">رحلة</td>
+              <td v-if="course.activity_type == 3">إداري</td>
+              <td>{{ course.activity_type2 }}</td>
               <td>{{ course.date }}</td>
             </tr>
             </tbody>
@@ -671,7 +674,7 @@
         </table>
       </div>
       <div v-if="report_type == 'aids_users'">
-        <div class="d-print-none" style="display: flex; justify-content: space-between; margin: 10px 0">
+        <div class="" style="display: flex; justify-content: space-between; margin: 10px 0">
           <div class=" ">
             الاسم : {{aid ? aid.project_name : ''}}
           </div>
@@ -934,6 +937,11 @@
               <option disabled selected>الجنس</option>
               <option value="2">ذكر</option>
               <option value="1">أنثى</option>
+            </select>
+            <label>التصنيف</label>
+            <select class="form-control my-2"  v-model="categ">
+              <option disabled selected>التصنيف</option>
+              <option v-for="cc in categs" :key="cc.id" :value="cc.name">{{ cc.name }}</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -1315,6 +1323,9 @@
           <div class="col-md-6">
             <label> المستفيد <span class="text-danger">*</span></label>
             <v-select v-model="benefit" class="form-control" :options="options" :value-by="option" label-by="name" clear-on-close close-on-select placeholder="اختر مستفيد" searchable search-placeholder="اكتب للبحث"> </v-select>
+
+            <label> رقم المستفيد <span class="text-danger">*</span></label>
+            <v-select v-model="benefit" class="form-control" :options="options" :value-by="option" label-by="id_number" clear-on-close close-on-select placeholder="اختر مستفيد" searchable search-placeholder="اكتب للبحث"> </v-select>
             <label>التاريخ من</label>
             <input
                 type="date"
@@ -1386,6 +1397,11 @@
               <option disabled selected>الجنس</option>
               <option value="2">ذكر</option>
               <option value="1">أنثى</option>
+            </select>
+            <label>التصنيف</label>
+            <select class="form-control my-2"  v-model="categ">
+              <option disabled selected>التصنيف</option>
+              <option v-for="cc in categs" :key="cc.id" :value="cc.name">{{ cc.name }}</option>
             </select>
             <label>التاريخ من</label>
             <input
@@ -1870,6 +1886,8 @@ export default {
   data() {
     return {
       options: [],
+      categ: null,
+      categs: [],
       non_done: null,
       show_date: true,
       aids: [],
@@ -2036,6 +2054,7 @@ export default {
             benefits_district: this.benefits_district,
             benefits_income: this.benefits_income,
             benefits_needs: this.benefits_needs,
+            categ: this.categ,
           }, {
             headers: {
               Authorization: "Bearer " + token,
@@ -2184,6 +2203,7 @@ export default {
             non_done: this.non_done,
             from_date: this.ach_from_date,
             to_date: this.ach_to_date,
+            categ: this.categ,
           }, {
             headers: {
               Authorization: "Bearer " + token,
@@ -2411,6 +2431,7 @@ export default {
       this.incomes = res.data.incomes;
       this.needs = res.data.needs;
       this.emp = res.data.emp;
+      this.categs = res.data.categs;
     }).catch(() => {
       this.failed();
     }).finally(() => {

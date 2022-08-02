@@ -18,6 +18,7 @@
             >
               <option value="1">دورة</option>
               <option value="2">رحلة</option>
+              <option value="3">إداري</option>
 
             </select>
           </div>

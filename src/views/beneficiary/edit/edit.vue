@@ -755,7 +755,7 @@
             </thead>
             <tbody>
             <tr v-for="inco in incomes " :key="inco.id">
-              <th>{{ inco.source_of_income }}</th>
+              <th>{{ inco.income ? inco.income.income : '' }}</th>
               <th>{{ inco.in_kind_assistance }}</th>
               <th>{{ inco.income_source_details }}</th>
               <th>{{ inco.notes }}</th>

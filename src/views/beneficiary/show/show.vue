@@ -1263,7 +1263,7 @@
             </thead>
             <tbody>
             <tr class="text-center" v-for="item in informats" :key="item.id">
-              <td>{{ item.source_of_income }}</td>
+              <td>{{ item.income ? item.income.income : '' }}</td>
               <td>{{ item.financial_value }}</td>
               <td>{{ item.income_source_details }}</td>
               <td>{{ item.in_kind_assistance }}</td>
