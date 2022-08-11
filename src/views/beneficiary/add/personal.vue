@@ -310,7 +310,7 @@
                   aria-label="Default select example"
                   v-model="specialty"
               >
-                <option v-for="spec in specs" :key="spec.id" :value="spec.name">{{ spec.name }}</option>
+                <option v-for="spec in specs" :value="spec.name" :key="spec.id" >{{ spec.name }}</option>
               </select>
             </div>
           </div>

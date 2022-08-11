@@ -539,7 +539,7 @@
                 </div>
               </div>
             </div>
-            <button @click.prevent="editpersonal" class="btn w-25 mt-5">اضافة</button>
+            <button @click.prevent="editpersonal" class="btn w-25 mt-5">تعديل</button>
             <!-- النهاية -->
           </div>
         </div>

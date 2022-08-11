@@ -1325,7 +1325,7 @@
             <v-select v-model="benefit" class="form-control" :options="options" :value-by="option" label-by="name" clear-on-close close-on-select placeholder="اختر مستفيد" searchable search-placeholder="اكتب للبحث"> </v-select>
 
             <label> رقم المستفيد <span class="text-danger">*</span></label>
-            <v-select v-model="benefit" class="form-control" :options="options" :value-by="option" label-by="id_number" clear-on-close close-on-select placeholder="اختر مستفيد" searchable search-placeholder="اكتب للبحث"> </v-select>
+            <v-select v-model="benefit" class="form-control" :options="options" :value-by="option" label-by="affiliate_no" clear-on-close close-on-select placeholder="اختر مستفيد" searchable search-placeholder="اكتب للبحث"> </v-select>
             <label>التاريخ من</label>
             <input
                 type="date"

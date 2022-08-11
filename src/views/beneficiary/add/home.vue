@@ -93,14 +93,16 @@
 			</div>
 			<div class="col-md-6">
 				<div class="m-3 row">
-					<label class="col-sm-12 col-form-label">العلاج</label>
+					<label  for="inputPassword" class="col-sm-12 col-form-label"
+          >العلاج
+          </label>
           <div class="col-sm-10">
             <select
                 class="form-select"
                 aria-label="Default select example"
                 v-model="treatment"
             >
-              <option v-for="med in medicinals" :key="med.id" :value="med.name">{{ med.name }}</option>
+              <option v-for="med in medicinals" :key="med.id" :value="med.name" >{{ med.name }}</option>
             </select>
           </div>
 				</div>

@@ -119,21 +119,6 @@
 			<div class="col-md-6">
 				<div class="m-3 row">
 					<label for="inputPassword" class="col-sm-12 col-form-label"
-						>عدد المتفاعلين
-					</label>
-					<div class="col-sm-9">
-						<input
-							type="text"
-							class="form-control"
-							v-model="number_of_effectiveness"
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="m-3 row">
-					<label for="inputPassword" class="col-sm-12 col-form-label"
 						>التكلفة
 					</label>
 					<div class="col-sm-9">
@@ -188,7 +173,6 @@
 				end: "",
 				supervisor: "",
 				supervisor_cost: "",
-				number_of_effectiveness: "",
 				cost: "",
 				total_cost: "",
 				notes: "",
@@ -215,7 +199,6 @@
 							end: this.end,
 							supervisor: this.supervisor,
 							supervisor_cost: this.supervisor_cost,
-							number_of_effectiveness: this.number_of_effectiveness,
 							cost: this.cost,
 							total_cost: this.total_cost,
 							notes: this.notes,

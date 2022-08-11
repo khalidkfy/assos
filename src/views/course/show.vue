@@ -17,8 +17,8 @@
 				type="text"
 				class="form-control m-2"
 				style="width: 40%"
-				v-model="name"
-				@change="effectiveness_number"
+				v-model="effectiveness_number"
+				@change="basicdata"
 				placeholder="رقم الدورة"
 			/>
 		</div>
