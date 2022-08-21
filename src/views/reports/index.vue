@@ -939,10 +939,8 @@
               <option value="1">أنثى</option>
             </select>
             <label>التصنيف</label>
-            <select class="form-control my-2"  v-model="categ">
-              <option disabled selected>التصنيف</option>
-              <option v-for="cc in categs" :key="cc.id" :value="cc.name">{{ cc.name }}</option>
-            </select>
+            <v-select v-model="categ" :multiple="true" :reduce="(option) => option.name" taggable  class="form-control" :options="categs"  label-by="name" clear-on-close close-on-select placeholder="اختر التصنيف" searchable search-placeholder="اكتب للبحث"> </v-select>
+
           </div>
           <div class="col-md-6">
             <div class="cols">
@@ -1399,10 +1397,7 @@
               <option value="1">أنثى</option>
             </select>
             <label>التصنيف</label>
-            <select class="form-control my-2"  v-model="categ">
-              <option disabled selected>التصنيف</option>
-              <option v-for="cc in categs" :key="cc.id" :value="cc.name">{{ cc.name }}</option>
-            </select>
+            <v-select v-model="categ" :multiple="true" :reduce="(option) => option.name" taggable  class="form-control" :options="categs"  label-by="name" clear-on-close close-on-select placeholder="اختر التصنيف" searchable search-placeholder="اكتب للبحث"> </v-select>
             <label>التاريخ من</label>
             <input
                 type="date"
@@ -1886,7 +1881,7 @@ export default {
   data() {
     return {
       options: [],
-      categ: null,
+      categ: [],
       categs: [],
       non_done: null,
       show_date: true,
