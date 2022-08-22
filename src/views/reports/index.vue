@@ -40,6 +40,7 @@
           <th v-if="benefits_cols.wife_name">اسم الزوج</th>
           <th v-if="benefits_cols.wife_identity">هوية الزوج</th>
           <th v-if="benefits_cols.citizenship">المواطنة</th>
+          <th v-if="benefits_cols.class">التصنيف</th>
         </tr>
         </thead>
         <tbody>
@@ -65,7 +66,9 @@
           <td v-if="benefits_cols.wife_name">{{ ben.wife_name }}</td>
           <td v-if="benefits_cols.wife_identity">{{ ben.wife_identity }}</td>
           <td v-if="benefits_cols.citizenship">{{ ben.citizenship }}</td>
-        </tr>
+          <td v-if="benefits_cols.class">{{ ben.class }}</td>
+
+          </tr>
         </tbody>
       </table>
       <div v-if="report_type == 'subs'">
@@ -454,6 +457,7 @@
           <th v-if="benefits_cols.wife_name">اسم الزوج</th>
           <th v-if="benefits_cols.wife_identity">هوية الزوج</th>
           <th v-if="benefits_cols.citizenship">المواطنة</th>
+          <th v-if="benefits_cols.class">التصنيف</th>
         </tr>
         </thead>
         <tbody>
@@ -479,6 +483,7 @@
           <td v-if="benefits_cols.wife_name">{{ ben.wife_name }}</td>
           <td v-if="benefits_cols.wife_identity">{{ ben.wife_identity }}</td>
           <td v-if="benefits_cols.citizenship">{{ ben.citizenship }}</td>
+          <td v-if="benefits_cols.class">{{ ben.class }}</td>
         </tr>
         </tbody>
       </table>
