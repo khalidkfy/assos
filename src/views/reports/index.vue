@@ -568,6 +568,7 @@
           <th v-if="courses_users_cols.wife_name">اسم الزوج</th>
           <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
           <th v-if="courses_users_cols.citizenship">المواطنة</th>
+          <th v-if="courses_users_cols.class">التصنيف</th>
           <th scope="col">التكلفة</th>
           <th scope="col">الطباعة</th>
           <th scope="col">تاريخ الطباعة</th>
@@ -597,6 +598,7 @@
           <th v-if="courses_users_cols.wife_name">{{ item.beneficiary.wife_name }}</th>
           <th v-if="courses_users_cols.wife_identity">{{ item.beneficiary.wife_identity }}</th>
           <th v-if="courses_users_cols.citizenship">{{ item.beneficiary.citizenship }}</th>
+          <th v-if="courses_users_cols.class">{{ item.beneficiary.class }}</th>
 
           <th>{{ item.cost }}</th>
           <th v-if="item.is_printed == 0"></th>
@@ -643,6 +645,7 @@
             <th v-if="courses_users_cols.wife_name">اسم الزوج</th>
             <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
             <th v-if="courses_users_cols.citizenship">المواطنة</th>
+            <th v-if="courses_users_cols.class">التصنيف</th>
             <!--<th scope="col">اسم الفعالية </th>-->
             <!--<th scope="col">رقم الفعالية </th>-->
             <!--<th scope="col">التاريخ </th>-->
@@ -671,6 +674,7 @@
             <th v-if="courses_users_cols.wife_name">{{ informat.beneficiary.wife_name }}</th>
             <th v-if="courses_users_cols.wife_identity">{{ informat.beneficiary.wife_identity }}</th>
             <th v-if="courses_users_cols.citizenship">{{ informat.beneficiary.citizenship }}</th>
+            <th v-if="courses_users_cols.class">{{ informat.beneficiary.class }}</th>
             <!--<th>{{ informat.course.effectiveness_name }}</th>-->
             <!--<th>{{ informat.course.effectiveness_number }}</th>-->
             <!--<th>{{ new Date(informat.created_at).toLocaleDateString() }}</th>-->
@@ -714,6 +718,8 @@
             <th v-if="courses_users_cols.wife_name">اسم الزوج</th>
             <th v-if="courses_users_cols.wife_identity">هوية الزوج</th>
             <th v-if="courses_users_cols.citizenship">المواطنة</th>
+            <th v-if="courses_users_cols.class">التصنيف</th>
+
             <!--<th scope="col">رقم المشروع</th>-->
 <!--            <th scope="col">تاريخ الاستلام</th>-->
             <th width="300" scope="col">التوقيع</th>
@@ -745,6 +751,8 @@
             <th v-if="courses_users_cols.wife_name">{{ item.beneficiary.wife_name }}</th>
             <th v-if="courses_users_cols.wife_identity">{{ item.beneficiary.wife_identity }}</th>
             <th v-if="courses_users_cols.citizenship">{{ item.beneficiary.citizenship }}</th>
+            <th v-if="courses_users_cols.class">{{ item.beneficiary.class }}</th>
+
             <!--<th>{{ item.aid.project_number }}</th>-->
 <!--            <th>{{ item.received_date }}</th>-->
             <th></th>
@@ -1031,11 +1039,15 @@
                 </div>
                 <div class="col-md-6 my-1">
                   <input type="checkbox" v-model="benefits_cols.wife_identity"  id="wife_identity">
-                  <label for="wife_identity" class="mx-2">هوية الزوج</label>
+                  <label for="wife_identity" class="mx-2">هوية الزوج </label>
                 </div>
                 <div class="col-md-6 my-1">
                   <input type="checkbox" v-model="benefits_cols.citizenship"  id="citizenship">
                   <label for="citizenship" class="mx-2">المواطنة</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="benefits_cols.class"  id="class">
+                  <label for="class" class="mx-2">التصنيف</label>
                 </div>
               </div>
             </div>
@@ -1510,6 +1522,10 @@
                   <input type="checkbox" v-model="benefits_cols.citizenship"  id="citizenship2">
                   <label for="citizenship2" class="mx-2">المواطنة</label>
                 </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="benefits_cols.class"  id="class2">
+                  <label for="class2" class="mx-2">التصنيف</label>
+                </div>
               </div>
             </div>
           </div>
@@ -1608,6 +1624,10 @@
                 <div class="col-md-6 my-1">
                   <input type="checkbox" v-model="courses_users_cols.citizenship"  id="sub_users_citizenship">
                   <label for="sub_users_citizenship" class="mx-2">المواطنة</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_users_cols.citizenship"  id="sub_users_class">
+                  <label for="sub_users_class" class="mx-2">التصنيف</label>
                 </div>
               </div>
             </div>
@@ -1708,6 +1728,10 @@
                   <input type="checkbox" v-model="courses_users_cols.citizenship"  id="course_benefit_citizenship">
                   <label for="course_benefit_citizenship" class="mx-2">المواطنة</label>
                 </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_users_cols.class"  id="course_benefit_class">
+                  <label for="course_benefit_class" class="mx-2">التصنيف</label>
+                </div>
               </div>
             </div>
           </div>
@@ -1806,6 +1830,10 @@
                 <div class="col-md-6 my-1">
                   <input type="checkbox" v-model="courses_users_cols.citizenship"  id="aid_users_citizenship">
                   <label for="aid_users_citizenship" class="mx-2">المواطنة</label>
+                </div>
+                <div class="col-md-6 my-1">
+                  <input type="checkbox" v-model="courses_users_cols.class"  id="aid_users_class">
+                  <label for="aid_users_class" class="mx-2">التصنيف</label>
                 </div>
               </div>
             </div>
@@ -1929,6 +1957,7 @@ export default {
         citizenship : true,
         governorate : true,
         district : true,
+        class : true,
       },
       course_benefit_benefits_cols_all: true,
       courses_users_cols: {
@@ -1952,6 +1981,7 @@ export default {
         citizenship : true,
         governorate : true,
         district : true,
+        class : true,
       },
       subs_cols_all: true,
       subs_cols: {
