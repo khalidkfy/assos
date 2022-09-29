@@ -731,27 +731,27 @@
 
             <th>{{ index + 1 }}</th>
 
-            <th v-if="courses_users_cols.id_number">{{ item.beneficiary.id_number }}</th>
-            <th v-if="courses_users_cols.name">{{ item.beneficiary.name }}</th>
-            <th v-if="courses_users_cols.affiliate_no">{{ item.beneficiary.affiliate_no }}</th>
-            <th v-if="courses_users_cols.mobile_number">{{ item.beneficiary.mobile_number }}</th>
-            <th v-if="courses_users_cols.phone_number">{{ item.beneficiary.phone_number }}</th>
-            <th v-if="courses_users_cols.year">{{item.beneficiary.year}}</th>
-            <th v-if="courses_users_cols.gender">{{ item.beneficiary.gender == 1 ? "أنثى" : 'ذكر'}}</th>
-            <th v-if="courses_users_cols.birth_date">{{ item.beneficiary.birth_date }}</th>
-            <th v-if="courses_users_cols.governorate">{{ item.beneficiary.governorate ? item.beneficiary.governorate.governorate : 'غير معروف' }}</th>
-            <th v-if="courses_users_cols.district">{{ item.beneficiary.district ? item.beneficiary.district.district : 'غير معروف' }}</th>
-            <th v-if="courses_users_cols.address">{{ item.beneficiary.address }}</th>
-            <th v-if="courses_users_cols.social_status">{{ item.beneficiary.social_status }}</th>
-            <th v-if="courses_users_cols.near_number">{{ item.beneficiary.near_number }}</th>
-            <th v-if="courses_users_cols.qualification">{{ item.beneficiary.qualification }}</th>
-            <th v-if="courses_users_cols.specialty">{{ item.beneficiary.specialty }}</th>
-            <th v-if="courses_users_cols.current_work">{{ item.beneficiary.current_work }}</th>
-            <th v-if="courses_users_cols.previous_work">{{ item.beneficiary.previous_work }}</th>
-            <th v-if="courses_users_cols.wife_name">{{ item.beneficiary.wife_name }}</th>
-            <th v-if="courses_users_cols.wife_identity">{{ item.beneficiary.wife_identity }}</th>
-            <th v-if="courses_users_cols.citizenship">{{ item.beneficiary.citizenship }}</th>
-            <th v-if="courses_users_cols.class">{{ item.beneficiary.class }}</th>
+            <th v-if="courses_users_cols.id_number">{{ item.id_number }}</th>
+            <th v-if="courses_users_cols.name">{{ item.name }}</th>
+            <th v-if="courses_users_cols.affiliate_no">{{ item.affiliate_no }}</th>
+            <th v-if="courses_users_cols.mobile_number">{{ item.mobile_number }}</th>
+            <th v-if="courses_users_cols.phone_number">{{ item.phone_number }}</th>
+            <th v-if="courses_users_cols.year">{{item.year}}</th>
+            <th v-if="courses_users_cols.gender">{{ item.gender == 1 ? "أنثى" : 'ذكر'}}</th>
+            <th v-if="courses_users_cols.birth_date">{{ item.birth_date }}</th>
+            <th v-if="courses_users_cols.governorate">{{ item.governorate ? item.governorate : 'غير معروف' }}</th>
+            <th v-if="courses_users_cols.district">{{ item.district ? item.district : 'غير معروف' }}</th>
+            <th v-if="courses_users_cols.address">{{ item.address }}</th>
+            <th v-if="courses_users_cols.social_status">{{ item.social_status }}</th>
+            <th v-if="courses_users_cols.near_number">{{ item.near_number }}</th>
+            <th v-if="courses_users_cols.qualification">{{ item.qualification }}</th>
+            <th v-if="courses_users_cols.specialty">{{ item.specialty }}</th>
+            <th v-if="courses_users_cols.current_work">{{ item.current_work }}</th>
+            <th v-if="courses_users_cols.previous_work">{{ item.previous_work }}</th>
+            <th v-if="courses_users_cols.wife_name">{{ item.wife_name }}</th>
+            <th v-if="courses_users_cols.wife_identity">{{ item.wife_identity }}</th>
+            <th v-if="courses_users_cols.citizenship">{{ item.citizenship }}</th>
+            <th v-if="courses_users_cols.class">{{ item.class }}</th>
 
             <!--<th>{{ item.aid.project_number }}</th>-->
 <!--            <th>{{ item.received_date }}</th>-->
