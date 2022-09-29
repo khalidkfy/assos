@@ -494,6 +494,22 @@ export default {
           .catch((e) => {
             console.log(e);
           });
+
+      axios
+          .get(`/api/beneficiary/show?beneficiary_id=${this.$route.query.q}`, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) =>  {
+            this.medicinals = res.data.data.medicinals;
+            this.housings = res.data.data.housings;
+            this.housing_types = res.data.data.housing_types;
+            this.cases = res.data.data.cases;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
   },
 };

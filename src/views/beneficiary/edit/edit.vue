@@ -1054,6 +1054,21 @@ export default {
           .catch((e) => {
             console.log(e);
           });
+
+      axios
+          .get(`/api/beneficiary/data`, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) =>  {
+            this.categs = res.data.categs;
+            this.specss = res.data.specs;
+            this.work_types = res.data.work_types;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
 
     homedata() {
